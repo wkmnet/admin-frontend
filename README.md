@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # BlurAdmin Angular admin panel front-end framework
 
 Customizable admin panel framework made with :heart: by [Akveo team](http://akveo.com/). Follow us on [Twitter](https://twitter.com/akveo_inc) to get latest news about this template first!
@@ -42,3 +43,6 @@ License
 
 Enjoy!
 We're always happy to hear your feedback.
+=======
+#frontend
+>>>>>>> 751cbe2aa03a967df6d12136735d3259d6b33b9c
