@@ -28,7 +28,7 @@
       icon: 'ion-document',
       subMenu: [{
         title: 'Sign In',
-        fixedHref: 'auth.html',
+        fixedHref: 'logout',
         blank: true
       }, {
         title: 'Sign Up',

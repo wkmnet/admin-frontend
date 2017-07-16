@@ -9,27 +9,28 @@
       .controller('DashboardPieChartCtrl', DashboardPieChartCtrl);
 
   /** @ngInject */
-  function DashboardPieChartCtrl($scope, $timeout, baConfig, baUtil) {
+  function DashboardPieChartCtrl($scope, $timeout, $http, $window,$location, baConfig, baUtil) {
     var pieColor = baUtil.hexToRGB(baConfig.colors.defaultText, 0.2);
+    $scope.monitor = {"cpu":0,"memory":0,"linuxCpu":0,"linuxMemory":0};
     $scope.charts = [{
       color: pieColor,
-      description: 'New Visits',
-      stats: '57,820',
+      description: '虚拟机CPU',
+      stats: '100',
       icon: 'person',
     }, {
       color: pieColor,
-      description: 'Purchases',
-      stats: '$ 89,745',
+      description: '虚拟机内存',
+      stats: '100',
       icon: 'money',
     }, {
       color: pieColor,
-      description: 'Active Users',
-      stats: '178,391',
+      description: '系统CPU',
+      stats: '100',
       icon: 'face',
     }, {
       color: pieColor,
-      description: 'Returned',
-      stats: '32,592',
+      description: '系统内存',
+      stats: '100',
       icon: 'refresh',
     }
     ];
@@ -39,21 +40,68 @@
     }
 
     function loadPieCharts() {
-      $('.chart').each(function () {
-        var chart = $(this);
-        chart.easyPieChart({
-          easing: 'easeOutBounce',
-          onStep: function (from, to, percent) {
-            $(this.el).find('.percent').text(Math.round(percent));
-          },
-          barColor: chart.attr('rel'),
-          trackColor: 'rgba(0,0,0,0)',
-          size: 84,
-          scaleLength: 0,
-          animation: 2000,
-          lineWidth: 9,
-          lineCap: 'round',
-        });
+      $('.chart').each(function (index) {
+        if(index == 0) {
+          var chart = $(this);
+          chart.easyPieChart({
+            easing: 'easeOutBounce',
+            onStep: function (from, to, percent) {
+              $(this.el).find('.percent').text($scope.monitor.cpu);
+            },
+            barColor: chart.attr('rel'),
+            trackColor: 'rgba(0,0,0,0)',
+            size: 84,
+            scaleLength: 0,
+            animation: 2000,
+            lineWidth: 9,
+            lineCap: 'round',
+          });
+        } else if(index == 1) {
+            var chart = $(this);
+            chart.easyPieChart({
+                easing: 'easeOutBounce',
+                onStep: function (from, to, percent) {
+                    $(this.el).find('.percent').text($scope.monitor.memory);
+                },
+                barColor: chart.attr('rel'),
+                trackColor: 'rgba(0,0,0,0)',
+                size: 84,
+                scaleLength: 0,
+                animation: 2000,
+                lineWidth: 9,
+                lineCap: 'round',
+            });
+        } else if(index == 2) {
+            var chart = $(this);
+            chart.easyPieChart({
+                easing: 'easeOutBounce',
+                onStep: function (from, to, percent) {
+                    $(this.el).find('.percent').text($scope.monitor.linuxCpu);
+                },
+                barColor: chart.attr('rel'),
+                trackColor: 'rgba(0,0,0,0)',
+                size: 84,
+                scaleLength: 0,
+                animation: 2000,
+                lineWidth: 9,
+                lineCap: 'round',
+            });
+        } else {
+            var chart = $(this);
+            chart.easyPieChart({
+                easing: 'easeOutBounce',
+                onStep: function (from, to, percent) {
+                    $(this.el).find('.percent').text($scope.monitor.linuxMemory);
+                },
+                barColor: chart.attr('rel'),
+                trackColor: 'rgba(0,0,0,0)',
+                size: 84,
+                scaleLength: 0,
+                animation: 2000,
+                lineWidth: 9,
+                lineCap: 'round',
+            });
+        }
       });
 
       $('.refresh-data').on('click', function () {
@@ -63,13 +111,45 @@
 
     function updatePieCharts() {
       $('.pie-charts .chart').each(function(index, chart) {
-        $(chart).data('easyPieChart').update(getRandomArbitrary(55, 90));
+        if(index == 0) {
+            $(chart).data('easyPieChart').update($scope.monitor.cpu);
+        } else if(index == 1){
+            $(chart).data('easyPieChart').update($scope.monitor.memory);
+        } else if(index == 2) {
+            $(chart).data('easyPieChart').update($scope.monitor.linuxCpu);
+        } else {
+            $(chart).data('easyPieChart').update($scope.monitor.linuxMemory);
+        }
       });
     }
 
-    $timeout(function () {
-      loadPieCharts();
-      updatePieCharts();
-    }, 1000);
+    $http.get("/api/monitor").success(function(response) {
+        $scope.monitor = response;
+        loadPieCharts();
+        updatePieCharts();
+        $timeout(scanSystemMonitor,1000);
+    });
+    function scanSystemMonitor() {
+        $http.get("/api/monitor").success(function(response) {
+            $scope.monitor = response;
+            console.log($scope.monitor);
+            updatePieCharts();
+            $timeout(scanSystemMonitor,3000);
+        });
+    }
+    //跳转url
+    // $timeout(redirection,20000);
+    // function redirection() {
+    //     console.log("---" + $location.path());
+    //     $location.path('/auth.html').replace();
+    //     $window.location.href = "http://127.0.0.1:8080/auth.html";
+    //     console.log("---" + $location.path());
+    //     $timeout(redirection,2000);
+    // }
+    //$timeout(scanSystemMonitor,1000);
+    // $timeout(function () {
+    //   loadPieCharts();
+    //   updatePieCharts();
+    // }, 1000);
   }
 })();
