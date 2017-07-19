@@ -9,7 +9,7 @@
     .controller('ProfilePageCtrl', ProfilePageCtrl);
 
   /** @ngInject */
-  function ProfilePageCtrl($scope, fileReader, $filter, $uibModal) {
+  function ProfilePageCtrl($scope, $http, fileReader, $filter, $uibModal, FileUploader) {
     $scope.picture = $filter('profilePicture')('Nasta');
 
     $scope.removePicture = function () {
@@ -76,11 +76,83 @@
         });
     };
 
-    $scope.getFile = function () {
-      fileReader.readAsDataUrl($scope.file, $scope)
-          .then(function (result) {
-            $scope.picture = result;
-          });
+    $scope.onFileSelected = function ($files) {
+       console.log("onFileSelected : ",$files);
+       $scope.file = $files;
+    };
+
+    $scope.getFile = function (uploadFile) {
+      console.log("getFile...");
+      console.log("scope.file :",uploadFile);
+      // var fileInput = document.getElementById('uploadFile');
+      // console.log("file ...", fileInput.value);
+      var fd = new FormData();
+        // fd.append("id","12335");
+        // fd.append("token","abc-def");
+        fd.append("file",uploadFile);
+      $http.post("/file/upload", fd, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+      }).success(function (data) {
+        console.log("success data : ", data);
+      })
+      .error(function (data, status) {
+          console.log("error data : ", data,status);
+      });
+
+
+
+      var uploader = $scope.uploader = new FileUploader({
+          url: 'upload.php'
+      });
+      // FILTERS
+      uploader.filters.push({
+          name: 'customFilter',
+          fn: function(item /*{File|FileLikeObject}*/, options) {
+              return this.queue.length < 10;
+          }
+      });
+
+      // CALLBACKS
+      uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
+          console.info('onWhenAddingFileFailed', item, filter, options);
+      };
+      uploader.onAfterAddingFile = function(fileItem) {
+          console.info('onAfterAddingFile', fileItem);
+      };
+      uploader.onAfterAddingAll = function(addedFileItems) {
+          console.info('onAfterAddingAll', addedFileItems);
+      };
+      uploader.onBeforeUploadItem = function(item) {
+          console.info('onBeforeUploadItem', item);
+      };
+      uploader.onProgressItem = function(fileItem, progress) {
+          console.info('onProgressItem', fileItem, progress);
+      };
+      uploader.onProgressAll = function(progress) {
+          console.info('onProgressAll', progress);
+      };
+      uploader.onSuccessItem = function(fileItem, response, status, headers) {
+          console.info('onSuccessItem', fileItem, response, status, headers);
+      };
+      uploader.onErrorItem = function(fileItem, response, status, headers) {
+          console.info('onErrorItem', fileItem, response, status, headers);
+      };
+      uploader.onCancelItem = function(fileItem, response, status, headers) {
+          console.info('onCancelItem', fileItem, response, status, headers);
+      };
+      uploader.onCompleteItem = function(fileItem, response, status, headers) {
+          console.info('onCompleteItem', fileItem, response, status, headers);
+      };
+      uploader.onCompleteAll = function() {
+          console.info('onCompleteAll');
+      };
+
+      console.log("uploader ...", uploader);
+      // fileReader.readAsDataUrl($scope.file, $scope)
+      //     .then(function (result) {
+      //       $scope.picture = result;
+      //     });
     };
 
     $scope.switches = [true, true, false, true, true, false];
