@@ -9,8 +9,8 @@
     'BlurAdmin.pages.components.mail',
     'BlurAdmin.pages.components.timeline',
     'BlurAdmin.pages.components.tree',
-  ])
-      .config(routeConfig);
+    'BlurAdmin.pages.components.upload',
+  ]).config(routeConfig);
 
   /** @ngInject */
   function routeConfig($stateProvider) {

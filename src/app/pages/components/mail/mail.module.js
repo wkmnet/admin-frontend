@@ -19,7 +19,7 @@
           controllerAs: "tabCtrl",
           title: 'Mail',
           sidebarMeta: {
-            order: 0,
+            order: 100,
           },
         }).state('components.mail.label', {
           url: '/:label',

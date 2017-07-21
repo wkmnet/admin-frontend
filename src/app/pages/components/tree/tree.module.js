@@ -20,7 +20,7 @@
           templateUrl: 'app/pages/components/tree/tree.html',
           title: 'Tree View',
           sidebarMeta: {
-            order: 200,
+            order: 300,
           },
         });
   }

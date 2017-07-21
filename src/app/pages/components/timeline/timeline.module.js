@@ -17,7 +17,7 @@
           title: 'Timeline',
           sidebarMeta: {
             icon: 'ion-ios-pulse',
-            order: 100,
+            order: 200,
           },
       });
   }
