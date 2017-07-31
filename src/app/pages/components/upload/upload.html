@@ -1,11 +1,14 @@
 <div class="widgets">
     <div class="row">
-        <div class="col-lg-8 col-md-6">
+        <div class="col-lg-6 col-md-3">
             <div class="progress">
                 <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{currentItem.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{currentItem.progress}}%">
                     <span class="sr-only">{{currentItem.progress}}% Complete (success)</span>
                 </div>
             </div>
+        </div>
+        <div class="col-lg-2 col-md-3">
+            <button type="button" class="btn btn-primary btn-with-icon"><i class="ion-stats-bars"></i>{{system.currentTime}}</button>
         </div>
         <div class="col-lg-2 col-md-3">
             <button type="button" class="btn btn-success" ng-click="selectUploadFile()">上传视频</button>

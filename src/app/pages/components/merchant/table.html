@@ -1,0 +1,34 @@
+<div class="horizontal-scroll">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th class="align-right">#</th>
+            <th class="align-right">商户号</th>
+            <th class="align-right">商户名</th>
+            <th class="align-right">签名类型</th>
+            <th class="align-right">回调地址</th>
+            <th class="align-right">状态</th>
+            <th class="align-right">操作</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="item in data.list">
+            <td class="align-right">{{item.id}}</td>
+            <td class="align-right">{{item.merchant_no}}</td>
+            <td class="align-right">{{item.merchant_name}}</td>
+            <td class="align-right">{{item.sign_type == "MD5"?"MD5":item.sign_type == "RSA2"?"RSA2":"-"}}</td>
+            <td class="align-right">{{item.notify_url}}</td>
+            <td class="align-right">{{item.status == 0?"创建":item.status == 1?"正常":item.status == 2?"禁用":"-"}}</td>
+            <th class="align-right">
+                <a href="javascript:void(0);" ng-click="deleteMerchant(item.id)">删除</a>
+                <a href="#/components/edit_merchant/edit/{{item.id}}">编辑</a>
+            </th>
+        </tr>
+        <tfoot>
+        <tr>
+            <td colspan="7" class="text-center">
+
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>

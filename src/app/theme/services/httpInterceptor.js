@@ -32,7 +32,7 @@
                 } else if(501 === err.status) {
                     // ...
                 } else if(403 === err.status) {
-                    $window.location.href = "/auth.html";
+                    $window.location.href = "/auth";
                 }
                 return $q.reject(err);
             }

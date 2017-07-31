@@ -6,10 +6,12 @@
   'use strict';
 
   angular.module('BlurAdmin.pages.components', [
-    'BlurAdmin.pages.components.mail',
-    'BlurAdmin.pages.components.timeline',
-    'BlurAdmin.pages.components.tree',
-    'BlurAdmin.pages.components.upload',
+    // 'BlurAdmin.pages.components.mail',
+    // 'BlurAdmin.pages.components.timeline',
+    // 'BlurAdmin.pages.components.tree',
+    // 'BlurAdmin.pages.components.upload',
+    'BlurAdmin.pages.components.new_merchant',
+    'BlurAdmin.pages.components.merchant',
   ]).config(routeConfig);
 
   /** @ngInject */
@@ -19,7 +21,7 @@
           url: '/components',
           template : '<ui-view></ui-view>',
           abstract: true,
-          title: '组件',
+          title: '支付管理',
           sidebarMeta: {
             icon: 'ion-gear-a',
             order: 100,

@@ -25,6 +25,16 @@
 
         $scope.address = {"type":"qn"};
 
+        $scope.system = {"currentTime":"1970/01/01 13:00:45"};
+        function serverTime () {
+            $http.get("/api/monitor/0").success(function(response) {
+                $scope.system.currentTime = response.currentTime;
+                console.log(response);
+                $timeout(serverTime,1000);
+            });
+        }
+        serverTime();
+
 
         $scope.changeSelected = function (selected) {
             console.log("select:", selected);

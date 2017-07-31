@@ -1,0 +1,30 @@
+<div class="horizontal-scroll">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th class="align-right">#</th>
+            <th class="align-right">邮箱</th>
+            <th class="align-right">用户名</th>
+            <th class="align-right">创建时间</th>
+            <th class="align-right">操作</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="item in data.list">
+            <td class="align-right">{{item.id}}</td>
+            <td class="align-right">{{item.email}}</td>
+            <td class="align-right">{{item.user_name}}</td>
+            <td class="align-right">{{item.create_time}}</td>
+            <th class="align-right">
+                <a href="javascript:void(0);" ng-click="deleteUser(item.id)">删除</a>
+                <a href="#/user/new/edit/{{item.id}}">编辑</a>
+            </th>
+        </tr>
+        <tfoot>
+        <tr>
+            <td colspan="5" class="text-center">
+
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>

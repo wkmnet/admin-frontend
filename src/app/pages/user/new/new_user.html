@@ -1,0 +1,19 @@
+<form>
+    <div class="form-group">
+        <label for="merchant_no">邮箱</label>
+        <input type="text" class="form-control" id="merchant_no" ng-model="user.email" placeholder="邮箱">
+    </div>
+    <div class="form-group">
+        <label for="merchant_name">用户名</label>
+        <input type="text" class="form-control form-control-rounded" id="merchant_name" ng-model="user.user_name" placeholder="用户名">
+    </div>
+    <div class="form-group">
+        <label for="mch_no">密码</label>
+        <input type="text" class="form-control form-control-rounded" id="mch_no" ng-model="user.password" placeholder="密码">
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="button-wrapper"><button type="button" ng-click="saveUser()" class="btn btn-success">保存</button></div>
+        </div>
+    </div>
+</form>
