@@ -54,6 +54,21 @@
             });
         };
 
+        $scope.payMethod= {}
+        $scope.selectAppChange = function(selected){
+            console.log("selected pay app :",selected)
+            if(selected == "wx"){
+                console.log("wx")
+                $scope.payMethod = [{"key":"NATIVE","value":"二维码支付"},{"key":"JSAPI","value":"H5页面支付"}]
+                return
+            }
+            if(selected == "alipay"){
+                console.log("alipay")
+                $scope.payMethod = [{"key":"NATIVE","value":"二维码支付"}]
+                return
+            }
+        };
+
     }
 
 })();
