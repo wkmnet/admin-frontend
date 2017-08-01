@@ -46,7 +46,8 @@
         $scope.deleteUser = function (id) {
             $http.delete("/api/user/" + id).success(function(resp){
                 if(resp.success){
-                    $scope.queryMerchant();
+                    toastr.success('数据删除成功!');
+                    $scope.queryUser();
                 } else {
                     toastr.error(resp.message);
                 }

@@ -19,7 +19,8 @@
     /** @ngInject */
     function EditUserCtrl($stateParams,$http,$scope,toastr) {
 
-        $scope.userId = $stateParams.id;
+        $scope.userId = $stateParams.user;
+        console.log("userId",$stateParams.user);
 
         $scope.user = {};
 
