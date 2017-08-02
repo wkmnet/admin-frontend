@@ -57,6 +57,22 @@
                 toastr.error(resp);
             });
         };
+        
+        $scope.switchStatus = function(id,status){
+            console.log("id:",id);
+            console.log("status",status);
+            $http.put("/api/merchant/" + id,{"status":status}).success(function(response){
+                if(response.success){
+                    $scope.queryMerchant();
+                }else{
+                    toastr.error(response.message)
+                }
+            }).error(function(resp,status){
+                console.log("status",status);
+                toastr.error(resp);
+            });
+            
+        };
 
     }
 

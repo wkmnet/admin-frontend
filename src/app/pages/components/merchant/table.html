@@ -17,7 +17,9 @@
             <td class="align-right">{{item.merchant_name}}</td>
             <td class="align-right">{{item.sign_type == "MD5"?"MD5":item.sign_type == "RSA2"?"RSA2":"-"}}</td>
             <td class="align-right">{{item.notify_url}}</td>
-            <td class="align-right">{{item.status == 0?"创建":item.status == 1?"正常":item.status == 2?"禁用":"-"}}</td>
+            <td class="align-right">{{item.status == 0?"创建":item.status == 1?"正常":item.status == 2?"禁用":"-"}}
+              <a href="javascript:void(0)" ng-click="switchStatus({{item.id}},{{item.status == 1?2:1}})">{{item.status == 1?"禁用":"启用"}}</a>
+            </td>
             <th class="align-right">
                 <a href="javascript:void(0);" ng-click="deleteMerchant(item.id)">删除</a>
                 <a href="#/components/edit_merchant/edit/{{item.id}}">编辑</a>
