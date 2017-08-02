@@ -23,12 +23,30 @@
 
         $scope.merchant = {};
 
+        $scope.payMethod= {};
+
+        $scope.wxPayType = [{"key":"NATIVE","value":"二维码支付"},{"key":"JSAPI","value":"H5页面支付"}];
+
+        $scope.alipayPayType = [{"key":"NATIVE","value":"二维码支付"}];
+
         $scope.loadMerchant = function() {
             console.log("merchant",$scope.merchantId);
             $http.get("/api/merchant/" + $scope.merchantId).success(function(response){
                 console.log("response:",response);
                 if(response.success){
                     $scope.merchant = response.data;
+
+                    console.log("pay_channel",$scope.merchant.pay_channel);
+                    
+                    if($scope.merchant.pay_channel == "wx"){
+                        console.log("wx")
+                        $scope.payMethod = $scope.wxPayType;
+                    }
+                    if($scope.merchant.pay_channel == "alipay"){
+                        console.log("alipay")
+                        $scope.payMethod = $scope.alipayPayType;
+                    }
+
                 } else {
                     toastr.error(response.message);
                 }
@@ -54,18 +72,18 @@
             });
         };
 
-        $scope.payMethod= {}
+
         $scope.selectAppChange = function(selected){
             console.log("selected pay app :",selected)
             if(selected == "wx"){
                 console.log("wx")
-                $scope.payMethod = [{"key":"NATIVE","value":"二维码支付"},{"key":"JSAPI","value":"H5页面支付"}]
-                return
+                $scope.payMethod = $scope.wxPayType;
+                return;
             }
             if(selected == "alipay"){
                 console.log("alipay")
-                $scope.payMethod = [{"key":"NATIVE","value":"二维码支付"}]
-                return
+                $scope.payMethod = $scope.alipayPayType;
+                return;
             }
         };
 
