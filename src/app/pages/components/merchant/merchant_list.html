@@ -3,18 +3,19 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label for="mch_no">商户号</label>
-                <input type="text" ng-model="param.merchant_no" class="form-control form-control-rounded" id="mch_no" placeholder="">
+                <input type="text" ng-model="param.merchant_no" class="form-control" id="mch_no" placeholder="">
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group">
                 <label for="mch_name">商户名</label>
-                <input type="text" ng-model="param.merchant_name" class="form-control form-control-rounded" id="mch_name" placeholder="">
+                <input type="text" ng-model="param.merchant_name" class="form-control" id="mch_name" placeholder="">
             </div>
         </div>
         <div class="col-md-3">
+            <label for="status">商户状态</label>
             <div class="form-group">
-                <select class="form-control" ng-model="param.status" title="商户类型" data-style="btn-primary" data-container="body" selectpicker>
+                <select class="form-control" id="status" ng-model="param.status" title="商户类型" data-style="btn-primary" data-container="body" selectpicker>
                     <option></option>
                     <option value="0">创建</option>
                     <option value="1">正常</option>

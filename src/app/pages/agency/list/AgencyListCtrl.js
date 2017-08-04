@@ -21,8 +21,8 @@
 
         $scope.data = {};
 
-        $scope.queryUser = function () {
-            var url = "/api/user?page=" + ($scope.param.page || "") + "&email=" + ($scope.param.email || "") + "&user_name=" + ($scope.param.user_name || "");
+        $scope.queryAgency = function () {
+            var url = "/api/agency?page=" + ($scope.param.page || "") + "&agency_no=" + ($scope.param.agency_no || "") + "&status=" + ($scope.param.status || "");
             $http.get(url).success(function(resp){
                 if(resp.success){
                     $scope.data = resp.data;
@@ -38,21 +38,51 @@
 
         $scope.page = function (p) {
             $scope.param.page = p;
-            $scope.queryUser();
+            $scope.queryAgency();
         };
 
-        $scope.queryUser();
+        $scope.queryAgency();
 
-        $scope.deleteUser = function (id) {
-            $http.delete("/api/user/" + id).success(function(resp){
+        $scope.deleteAgency = function (id) {
+            $http.delete("/api/agency/" + id).success(function(resp){
                 if(resp.success){
                     toastr.success('数据删除成功!');
-                    $scope.queryUser();
+                    $scope.queryAgency();
                 } else {
                     toastr.error(resp.message);
                 }
             }).error(function(resp,status){
                 console.log("status:",status);
+                toastr.error(resp);
+            });
+        };
+
+        $scope.switchStatus = function(id,status){
+            console.log("id:",id);
+            console.log("status",status);
+            $http.put("/api/agency/" + id,{"status":status}).success(function(response){
+                if(response.success){
+                    $scope.queryAgency();
+                }else{
+                    toastr.error(response.message)
+                }
+            }).error(function(resp,status){
+                console.log("status",status);
+                toastr.error(resp);
+            });
+
+        };
+
+        $scope.getAgencyNo = function(){
+            $http.get("/api/agency/getAgencyNo").success(function(response){
+                if(response.success){
+                    $scope.agency.agency_no=response.data;
+                }else{
+                    toastr.error(response.message)
+                }
+
+            }).error(function(resp,status){
+                console.log("status",status);
                 toastr.error(resp);
             });
         };

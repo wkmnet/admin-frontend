@@ -19,17 +19,17 @@
     /** @ngInject */
     function EditAgencyCtrl($stateParams,$http,$scope,toastr) {
 
-        $scope.userId = $stateParams.user;
-        console.log("userId",$stateParams.user);
+        $scope.agencyId = $stateParams.agency;
+        console.log("agencyId",$stateParams.agency);
 
-        $scope.user = {};
+        $scope.agency = {};
 
-        $scope.loadUser = function() {
-            console.log("user",$scope.userId);
-            $http.get("/api/user/" + $scope.userId).success(function(response){
+        $scope.loadAgency = function() {
+            console.log("agency",$scope.agencyId);
+            $http.get("/api/agency/" + $scope.agencyId).success(function(response){
                 console.log("response:",response);
                 if(response.success){
-                    $scope.user = response.data;
+                    $scope.agency = response.data;
                 } else {
                     toastr.error(response.message);
                 }
@@ -38,11 +38,11 @@
                 toastr.error(data);
             });
         };
-        $scope.loadUser();
+        $scope.loadAgency();
 
-        $scope.saveUser = function () {
-            console.log("update user:",$scope.user);
-            $http.put("/api/user/" + $scope.userId,$scope.user).success(function(response){
+        $scope.saveAgency = function () {
+            console.log("update agency:",$scope.agency);
+            $http.put("/api/agency/" + $scope.agencyId,$scope.agency).success(function(response){
                 console.log("response:",response);
                 if(response.success){
                     toastr.success('数据保存成功!');
@@ -52,6 +52,20 @@
             }).error(function(data, status){
                 console.log("status:",status);
                 toastr.error(data);
+            });
+        };
+
+        $scope.getAgencyNo = function(){
+            $http.get("/api/agency/getAgencyNo").success(function(response){
+                if(response.success){
+                    $scope.agency.agency_no=response.data;
+                }else{
+                    toastr.error(response.message)
+                }
+
+            }).error(function(resp,status){
+                console.log("status",status);
+                toastr.error(resp);
             });
         };
 

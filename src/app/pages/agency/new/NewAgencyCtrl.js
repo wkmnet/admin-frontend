@@ -19,12 +19,12 @@
     /** @ngInject */
     function NewAgencyCtrl($scope, $http, toastr) {
 
-        $scope.user = {};
+        $scope.agency = {};
 
-        $scope.saveUser = function () {
-            console.log("save user:",$scope.user);
+        $scope.saveAgency = function () {
+            console.log("save agency:",$scope.agency);
 
-            $http.post("/api/user",$scope.user).success(function(response){
+            $http.post("/api/agency",$scope.agency).success(function(response){
                 console.log("response:",response);
                 if(response.success){
                     toastr.success('数据保存成功!');
@@ -35,6 +35,20 @@
             }).error(function(data, status){
                 console.log("status:",status);
                 toastr.error(data);
+            });
+        };
+
+        $scope.getAgencyNo = function(){
+            $http.get("/api/agency/getAgencyNo").success(function(response){
+                if(response.success){
+                    $scope.agency.agency_no=response.data;
+                }else{
+                    toastr.error(response.message)
+                }
+
+            }).error(function(resp,status){
+                console.log("status",status);
+                toastr.error(resp);
             });
         };
 

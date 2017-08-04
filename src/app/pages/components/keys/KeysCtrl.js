@@ -135,8 +135,8 @@
                     console.log("response:",response);
                     if(response.success){
                         toastr.success('数据更新成功!');
-                        $("#deleteBtn").hide();
-                        $scope.merchant={};
+                      //  $("#deleteBtn").hide();
+                       // $scope.merchant={};
                         console.log("merchant:",$scope.merchant);
                         console.log("merchant.signId:",$scope.merchant.signId);
                     } else {
@@ -176,6 +176,7 @@
                 console.log("res:",res);
                 if(res.success){
                     toastr.success('数据删除成功!');
+                    $("#deleteBtn").hide();
                     $scope.merchant={};
                 } else {
                     toastr.error(res.message);

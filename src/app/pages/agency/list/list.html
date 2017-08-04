@@ -2,18 +2,23 @@
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
-                <label for="mch_no">邮箱</label>
-                <input type="text" ng-model="param.email" class="form-control form-control-rounded" id="mch_no" placeholder="">
+                <label for="agency_no">平台编号</label>
+                <input type="text" ng-model="param.agency_no" class="form-control" id="agency_no" placeholder="">
             </div>
         </div>
         <div class="col-md-4">
             <div class="form-group">
-                <label for="mch_name">用户名</label>
-                <input type="text" ng-model="param.user_name" class="form-control form-control-rounded" id="mch_name" placeholder="">
+                <label for="status">平台状态</label>
+                <select class="form-control" id="status" ng-model="param.status" title="平台状态" data-style="btn-primary" data-container="body" selectpicker>
+                    <option></option>
+                    <option value="0">创建</option>
+                    <option value="1">正常</option>
+                    <option value="2">禁用</option>
+                </select>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="button-wrapper"><button type="button" ng-click="queryUser()" class="btn btn-primary  btn-sm">查询</button></div>
+            <div class="button-wrapper"><button type="button" ng-click="queryAgency()" class="btn btn-primary  btn-sm">查询</button></div>
         </div>
     </div>
     <div class="row">

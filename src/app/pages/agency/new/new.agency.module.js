@@ -21,7 +21,7 @@
             .state('agency.new', {
                 url: '/new',
                 template: '<ui-view></ui-view>',
-                controller: "NewUserCtrl",
+                controller: "NewAgencyCtrl",
                 title: '新建平台',
                 sidebarMeta: {
                     icon: 'ion-ios-pulse',
@@ -34,7 +34,7 @@
                 controller: "NewAgencyCtrl",
                 controllerAs: "newAgencyCtrl"
             }).state('agency.new.edit', {
-                url: '/edit/:user',
+                url: '/edit/:agency',
                 templateUrl: 'app/pages/agency/new/edit/agency.html',
                 title: '编辑平台',
                 controller: "EditAgencyCtrl",
