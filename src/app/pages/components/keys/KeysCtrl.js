@@ -105,6 +105,15 @@
                         $scope.merchant.signId = res.data.id;
                         //如果成功，可以删除
                         $("#deleteBtn").show();
+                        if($scope.merchant.sign_type == "MD5"){
+                            $("#publicSignDiv").hide();
+                            $("#privateSignDiv").hide();
+                            $("#mdgSignDiv").show();
+                        }else if($scope.merchant.sign_type == "RSA2"){
+                            $("#mdgSignDiv").hide();
+                            $("#publicSignDiv").show();
+                            $("#privateSignDiv").show();
+                        }
                     
                     } else {
                         $scope.merchant.sign="";
@@ -125,6 +134,16 @@
         }
         
         $scope.selectSignTypeChange = function(sign_type){
+            console.log("sign_type : " + sign_type);
+            if(sign_type == "MD5"){
+                $("#publicSignDiv").hide();
+                $("#privateSignDiv").hide();
+                $("#mdgSignDiv").show();
+            }else if(sign_type == "RSA2"){
+                $("#mdgSignDiv").hide();
+                $("#publicSignDiv").show();
+                $("#privateSignDiv").show();
+            }
             $scope.showKey();
         }
 
