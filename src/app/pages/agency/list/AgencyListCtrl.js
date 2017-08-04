@@ -22,7 +22,7 @@
         $scope.data = {};
 
         $scope.queryAgency = function () {
-            var url = "/api/agency?page=" + ($scope.param.page || "") + "&agency_no=" + ($scope.param.agency_no || "") + "&status=" + ($scope.param.status || "");
+            var url = "/api/agency?page=" + ($scope.param.page || "") + "&agency_no=" + ($scope.param.agency_no || "") + "&agency_name=" + ($scope.param.agency_name || "") + "&status=" + ($scope.param.status || "");
             $http.get(url).success(function(resp){
                 if(resp.success){
                     $scope.data = resp.data;
