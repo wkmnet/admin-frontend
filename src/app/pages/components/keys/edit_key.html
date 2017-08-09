@@ -7,6 +7,7 @@
         <div class="col-md-4 text-left">
             <div class="form-group">
                 <select class="form-control" ng-model="merchant.id" ng-change="selectMerchantChange(merchant.id)" title="支付渠道" data-style="btn-primary" selectpicker>
+                   <option></option>
                     <option ng-repeat="item in data.list" value="{{item.id}}">{{item.merchant_no}}      {{item.merchant_name}}</option>
                 </select>
             </div>

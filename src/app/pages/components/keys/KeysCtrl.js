@@ -63,11 +63,16 @@
                         console.log("wx")
                         $scope.signType = $scope.wxSignType;
 
-                    }
+                    }else if($scope.merchant.pay_channel == "alipay"){
                     //如果是支付宝，就显示rsa2
-                    if($scope.merchant.pay_channel == "alipay"){
                         console.log("alipay")
                         $scope.signType = $scope.alipaySignType;
+                    }else{
+                        //都不是，为空时, 回到初始状态
+                        $scope.signType = {};
+                        $("#mdgSignDiv").show();
+                        $("#publicSignDiv").show();
+                        $("#privateSignDiv").show();
                     }
                     console.log("signType:",$scope.signType);
                     //有签名类型就去数据库查找
