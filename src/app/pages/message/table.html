@@ -1,0 +1,53 @@
+<div class="horizontal-scroll">
+    <table class="table">
+        <thead>
+        <tr>
+            <th class="align-left">#</th>
+            <th class="align-left">通知次数</th>
+            <th class="align-left">状态</th>
+            <th class="align-left">延迟时间</th>
+            <th class="align-left">创建时间</th>
+            <th class="align-left">更新时间</th>
+            <th class="align-left">通知地址</th>
+            <th class="align-left">通知文本</th>
+            <th class="align-left">操作</th>
+
+        </tr>
+        </thead>
+        <tr ng-repeat="item in data.list">
+            <td class="align-left">{{item.id}}</td>
+            <td class="align-left">{{item.times}}</td>
+            <td class="align-left">{{item.status}}</td>
+            <td class="align-left">{{item.delay}}</td>
+            <td class="align-left">{{item.created_time}}</td>
+            <td class="align-left">{{item.updated_time}}</td>
+            <td class="align-left">{{item.notify_url}}</td>
+            <td class="align-left">{{item.text}}</td>
+            <td class="align-left">
+                <a href="javascript:void(0)" ng-click="sendMessge({{item.id}})">通知</a>
+            </td>
+
+
+        </tr>
+        <tfoot>
+
+        <tr>
+            <td colspan="9" class="text-center">
+                <div class="row"  ng-if="data.list.length">
+                    <div class="col-md-2">
+                        当前第{{data.pageNumber}}页
+                    </div>
+                    <div class="col-md-2">
+                        总共{{data.totalPage}}页
+                    </div>
+                    <div id="btn-group"  class="btn-group col-md-8" role="group" aria-label="First group">
+                        <button type="button" data-ng-repeat="btn in btns" ng-click="page(btn+1)" class="btn btn-primary">{{btn+1}}</button>
+                    </div>
+
+                </div>
+            </td>
+
+        </tr>
+        </tfoot>
+    </table>
+</div>

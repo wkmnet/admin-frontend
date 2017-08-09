@@ -26,6 +26,7 @@
             $http.get(url).success(function(resp){
                 if(resp.success){
                     $scope.data = resp.data;
+                    $scope.createBtn();
                 } else {
                     toastr.error(resp.message);
                 }
@@ -55,6 +56,18 @@
                 console.log("status:",status);
                 toastr.error(resp);
             });
+        };
+
+        $scope.btns = [];
+        $scope.createBtn = function(){
+            $scope.btns = [];
+            //var num = Math.ceil($scope.data.totalRow /  $scope.data.pageSize);
+            var num = $scope.data.totalPage;
+            console.log("num : " + num);
+            for (var i = 0;i< num;i++) {
+                $scope.btns.push(i);
+            }
+            console.log("btns : " + $scope.btns);
         };
     }
 

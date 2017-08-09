@@ -1,0 +1,62 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="status">订单状态</label>
+                <select class="form-control" id="status" ng-model="param.status" title="订单状态" data-style="btn-primary" data-container="body" selectpicker>
+                    <option></option>
+                    <option value="0">创建</option>
+                    <option value="1">成功</option>
+                    <option value="2">超时</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="order_no">交易订单号</label>
+                <input type="text" ng-model="param.order_no" class="form-control" id="order_no" placeholder="">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="out_pay_order">接入方订单号</label>
+                <input type="text" ng-model="param.out_pay_order" class="form-control" id="out_pay_order" placeholder="">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="channel">选择支付渠道</label>
+                <select class="form-control" id="channel" ng-click="selectChannel()" ng-model="param.channel" title="支付渠道" data-style="btn-primary" data-container="body" selectpicker>
+                    <option ng-repeat="item in channel.list" value="{{item.merchant_no}}">{{item.merchant_no}}      {{item.merchant_name}}</option>
+                </select>
+            </div>
+        </div>
+     <div class="col-md-6">
+        <div class="form-group">
+            <label for="order_no">交易日期</label>
+            <div class="input-daterange input-group" id="datepicker">
+                <input type="text" ng-model="param.start" id="start" class="form-control" name="start"/>
+                <span class="input-group-addon">到</span>
+                <input type="text" ng-model="param.end" id="end" class="form-control" name="end"/>
+            </div>
+        </div>
+
+        </div>
+        <div class="col-md-2">
+            <label></label>
+            <div class="button-wrapper"><button type="button" ng-click="queryTrade()" class="btn btn-primary  btn-sm">查询</button></div>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="交易列表" ba-panel-class="with-scroll">
+                <div include-with-scope="app/pages/trade/current/current_table.html"></div>
+            </div>
+        </div>
+    </div>
+</div>

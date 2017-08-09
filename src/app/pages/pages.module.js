@@ -13,6 +13,8 @@
     'BlurAdmin.pages.components',
     'BlurAdmin.pages.user',
     'BlurAdmin.pages.agency',
+    'BlurAdmin.pages.trade',
+    'BlurAdmin.pages.message',
     // 'BlurAdmin.pages.form',
     // 'BlurAdmin.pages.tables',
     // 'BlurAdmin.pages.charts',

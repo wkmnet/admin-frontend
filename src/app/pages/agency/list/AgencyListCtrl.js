@@ -17,15 +17,21 @@
 
     /** @ngInject */
     function AgencyListCtrl($scope, $http, toastr) {
-        $scope.param = {"page":1};
+        $scope.param = {"page":1,"page_size":20};
+        
 
         $scope.data = {};
 
         $scope.queryAgency = function () {
-            var url = "/api/agency?page=" + ($scope.param.page || "") + "&agency_no=" + ($scope.param.agency_no || "") + "&agency_name=" + ($scope.param.agency_name || "") + "&status=" + ($scope.param.status || "");
+            var url = "/api/agency?page=" + ($scope.param.page || "") + 
+                "&page_size=" + ($scope.param.page_size || "") +
+                "&agency_no=" + ($scope.param.agency_no || "") + 
+                "&agency_name=" + ($scope.param.agency_name || "") + 
+                "&status=" + ($scope.param.status || "");
             $http.get(url).success(function(resp){
                 if(resp.success){
                     $scope.data = resp.data;
+                    $scope.createBtn();
                 } else {
                     toastr.error(resp.message);
                 }
@@ -85,6 +91,18 @@
                 console.log("status",status);
                 toastr.error(resp);
             });
+        };
+
+        $scope.btns = [];
+        $scope.createBtn = function(){
+            $scope.btns = [];
+            //var num = Math.ceil($scope.data.totalRow /  $scope.data.pageSize);
+            var num = $scope.data.totalPage;
+            console.log("num : " + num);
+            for (var i = 0;i< num;i++) {
+                $scope.btns.push(i);
+            }
+            console.log("btns : " + $scope.btns);
         };
     }
 
