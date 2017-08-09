@@ -131,6 +131,7 @@
         //发送通知
         $scope.refund = function(order_no,amount_pay){
             console.log("order_no : " + order_no);
+            console.log("order_no : " + order_no);
             var url = "/api/trade/refund?order_no=" + order_no + "&amount_pay=" + amount_pay;
             $http.get(url).success(function(resp){
                 if(resp.success){

@@ -18,7 +18,7 @@
     /** @ngInject */
     function MessageCtrl($scope, $http, toastr) {
         
-        $scope.tablePageSize = 20;
+        $scope.tablePageSize = 10;
         $scope.param = {"page_size":$scope.tablePageSize};
 
         $scope.data = {};
