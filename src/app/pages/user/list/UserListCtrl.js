@@ -36,6 +36,10 @@
             });
 
         };
+        $scope.queryBtn = function(){
+            $scope.param.page = 1;
+            $scope.queryUser();
+        }
 
         $scope.page = function (p) {
             $scope.param.page = p;

@@ -38,6 +38,10 @@
             });
 
         };
+        $scope.queryBtn = function(){
+            $scope.param.page = 1;
+            $scope.queryMerchant();
+        }
 
         $scope.page = function (p) {
             $scope.param.page = p;

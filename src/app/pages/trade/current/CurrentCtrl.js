@@ -18,8 +18,8 @@
     /** @ngInject */
     function CurrentCtrl($scope, $http, toastr) {
         
-        $scope.tablePageSize = 20;
-        $scope.param = {"page_size":$scope.tablePageSize};
+        $scope.tablePageSize = 10;
+        $scope.param = {"page":1,"page_size":$scope.tablePageSize};
 
         $scope.data = {};
         
@@ -49,7 +49,13 @@
                 toastr.error(resp);
             });
 
+
+
         };
+        $scope.queryBtn = function(){
+            $scope.param.page = 1;
+            $scope.queryTrade();
+        }
         $scope.page = function (p) {
             console.log("p:" + p);
             $scope.param.page = p;

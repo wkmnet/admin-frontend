@@ -17,7 +17,8 @@
 
     /** @ngInject */
     function HistoryCtrl($scope, $http, toastr) {
-        $scope.param = {"page":1,"page_size":20};
+        $scope.tablePageSize = 10;
+        $scope.param = {"page":1,"page_size":$scope.tablePageSize};
 
         $scope.data = {};
         
@@ -45,6 +46,11 @@
             });
 
         };
+
+        $scope.queryBtn = function(){
+            $scope.param.page = 1;
+            $scope.queryHistoryTrade();
+        }
 
         $scope.page = function (p) {
             $scope.param.page = p;
