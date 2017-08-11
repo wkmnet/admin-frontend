@@ -29,7 +29,7 @@
             var url = "/api/trade?page=" + ($scope.param.page || "") +
                 "&page_size=" + ($scope.param.page_size || "") +
                 "&order_no=" + ($scope.param.order_no || "") +
-                "&out_pay_order=" + ($scope.param.out_pay_order || "") +
+               // "&out_pay_order=" + ($scope.param.out_pay_order || "") +
                 "&channel=" + ($scope.param.channel || "") +
                 "&status=" + ($scope.param.status || "") +
                 "&start=" + ($scope.param.start || "") +
