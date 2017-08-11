@@ -121,6 +121,7 @@
             $http.get(url).success(function(resp){
                 if(resp.success){
                     toastr.success("申请退款成功！");
+                    $scope.queryHistoryTrade();
                 } else {
                     toastr.error(resp.message);
                 }
