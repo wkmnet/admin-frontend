@@ -13,15 +13,15 @@
 (function () {
     'use strict';
 
-    angular.module("BlurAdmin.pages.message",[]).config(routeConfig);
+    angular.module("BlurAdmin.pages.message",["BlurAdmin.pages.message.list"]).config(routeConfig);
 
     /** @ngInject */
     function routeConfig($stateProvider) {
         $stateProvider
             .state('message', {
-                url: '/list',
-                templateUrl: 'app/pages/message/list.html',
-                controller: "MessageCtrl",
+                url: '/message',
+                template : '<ui-view></ui-view>',
+                abstract: true,
                 title: '消息管理',
                 sidebarMeta: {
                     icon: 'ion-gear-a',

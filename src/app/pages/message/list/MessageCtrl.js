@@ -12,14 +12,14 @@
 (function(){
     'use strict'
 
-    angular.module('BlurAdmin.pages.message.messageList')
+    angular.module('BlurAdmin.pages.message.list')
         .controller('MessageCtrl', MessageCtrl);
 
     /** @ngInject */
     function MessageCtrl($scope, $http, toastr) {
         
         $scope.tablePageSize = 10;
-        $scope.param = {"page_size":$scope.tablePageSize};
+        $scope.param = {"page":1,"page_size":$scope.tablePageSize};
 
         $scope.data = {};
         
@@ -34,7 +34,7 @@
                 if(resp.success){
                     $scope.data = resp.data;
                     //设置butten组
-                    $scope.createBtn();
+                   // $scope.createBtn();
 
                 } else {
                     toastr.error(resp.message);
@@ -45,13 +45,17 @@
             });
 
         };
-        $scope.page = function (p) {
+        $scope.queryBtn = function(){
+            $scope.param.page = 1;
+            $scope.queryMessage();
+        }
+       /* $scope.page = function (p) {
             console.log("p:" + p);
             $scope.param.page = p;
             $scope.queryMessage();
-        };
+        };*/
         
-        $scope.btns = [];
+      /*  $scope.btns = [];
         $scope.createBtn = function(){
             $scope.btns = [];
            // var num = Math.ceil($scope.data.totalRow /  $scope.data.pageSize);
@@ -61,7 +65,7 @@
                 $scope.btns.push(i);
             }
             console.log("btns : " + $scope.btns);
-        };
+        };*/
 
 
 
