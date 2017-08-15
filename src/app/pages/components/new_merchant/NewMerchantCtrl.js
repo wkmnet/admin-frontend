@@ -48,7 +48,7 @@
             }
             if(selected == "alipay"){
                 console.log("alipay")
-                $scope.payMethod = [{"key":"NATIVE","value":"二维码支付"},{"key":"QUICK_WAP_PAY","value":"手机网站支付"}]
+                $scope.payMethod = [{"key":"NATIVE","value":"二维码支付"},{"key":"QUICK_WAP_PAY","value":"手机网站支付"},{"key":"FAST_INSTANT_TRADE_PAY","value":"PC网站支付"}]
                 return
             }
         };
