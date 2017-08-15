@@ -6,6 +6,7 @@
             <th class="align-right">平台编号</th>
             <th class="align-right">平台名称</th>
             <th class="align-right">平台密钥</th>
+            <th class="align-right">超时时间</th>
             <th class="align-right">创建时间</th>
             <th class="align-right">状态</th>
             <th class="align-right">操作</th>
@@ -16,6 +17,7 @@
             <td class="align-right">{{item.agency_no}}</td>
             <td class="align-right">{{item.agency_name}}</td>
             <td class="align-right">{{item.agency_key}}</td>
+            <td class="align-right">{{item.expire_age}}</td>
             <td class="align-right">{{item.created_time}}</td>
             <td class="align-right">{{item.status == 0?"创建":item.status == 1?"正常":item.status == 2?"禁用":"-"}}
             </td>
