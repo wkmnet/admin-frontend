@@ -52,7 +52,7 @@
             });
         };
 
-        $scope.getAgencyNo();
+      //  $scope.getAgencyNo();
 
 
 
