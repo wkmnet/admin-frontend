@@ -77,6 +77,24 @@
             }
             console.log("btns : " + $scope.btns);
         };*/
+
+        $scope.currentUser = {};
+        //获取cookie中的用户id
+        //MANGER-USER-KEY=2-28cae871c5133305e1f77a723f5e98f6
+        $scope.getCookie = function(){
+            var name = "MANGER-USER-KEY";
+            var search = name + "=";
+            if (document.cookie.length > 0) {
+                var end = document.cookie.lastIndexOf("-")
+                $scope.currentUser = document.cookie.substring(search.length,end);
+                console.log("search.length : " + search.length);
+                console.log("end : " + end);
+            }
+            console.log("currentUser : " + $scope.currentUser);
+        };
+        $scope.getCookie();
+
+
     }
 
 })();
