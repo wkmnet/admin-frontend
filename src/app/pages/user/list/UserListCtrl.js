@@ -17,16 +17,20 @@
 
     /** @ngInject */
     function UserListCtrl($scope, $http, toastr) {
-        $scope.param = {"page":1};
+        $scope.tablePageSize = 10;
+        $scope.param = {"page":1,"page_size":$scope.tablePageSize};
 
         $scope.data = {};
 
         $scope.queryUser = function () {
-            var url = "/api/user?page=" + ($scope.param.page || "") + "&email=" + ($scope.param.email || "") + "&user_name=" + ($scope.param.user_name || "");
+            var url = "/api/user?page=" + ($scope.param.page || "") +
+                "&page_size=" + ($scope.param.page_size || "") +
+                "&email=" + ($scope.param.email || "") +
+                "&user_name=" + ($scope.param.user_name || "");
             $http.get(url).success(function(resp){
                 if(resp.success){
                     $scope.data = resp.data;
-                    $scope.createBtn();
+                   // $scope.createBtn();
                 } else {
                     toastr.error(resp.message);
                 }
@@ -41,11 +45,11 @@
             $scope.queryUser();
         }
 
-        $scope.page = function (p) {
+       /* $scope.page = function (p) {
             $scope.param.page = p;
             $scope.queryUser();
         };
-
+*/
         $scope.queryUser();
 
         $scope.deleteUser = function (id) {
@@ -62,7 +66,7 @@
             });
         };
 
-        $scope.btns = [];
+    /*    $scope.btns = [];
         $scope.createBtn = function(){
             $scope.btns = [];
             //var num = Math.ceil($scope.data.totalRow /  $scope.data.pageSize);
@@ -72,7 +76,7 @@
                 $scope.btns.push(i);
             }
             console.log("btns : " + $scope.btns);
-        };
+        };*/
     }
 
 })();

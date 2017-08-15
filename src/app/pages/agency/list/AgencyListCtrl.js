@@ -17,7 +17,8 @@
 
     /** @ngInject */
     function AgencyListCtrl($scope, $http, toastr) {
-        $scope.param = {"page":1,"page_size":20};
+        $scope.tablePageSize = 10;
+        $scope.param = {"page":1,"page_size":$scope.tablePageSize};
         
 
         $scope.data = {};
@@ -31,7 +32,7 @@
             $http.get(url).success(function(resp){
                 if(resp.success){
                     $scope.data = resp.data;
-                    $scope.createBtn();
+                    //$scope.createBtn();
                 } else {
                     toastr.error(resp.message);
                 }
@@ -47,11 +48,11 @@
             $scope.queryAgency();
         }
 
-        $scope.page = function (p) {
+       /* $scope.page = function (p) {
             $scope.param.page = p;
             $scope.queryAgency();
         };
-
+*/
         $scope.queryAgency();
 
         $scope.deleteAgency = function (id) {
@@ -98,7 +99,7 @@
             });
         };
 
-        $scope.btns = [];
+     /*   $scope.btns = [];
         $scope.createBtn = function(){
             $scope.btns = [];
             //var num = Math.ceil($scope.data.totalRow /  $scope.data.pageSize);
@@ -108,7 +109,7 @@
                 $scope.btns.push(i);
             }
             console.log("btns : " + $scope.btns);
-        };
+        };*/
     }
 
 })();

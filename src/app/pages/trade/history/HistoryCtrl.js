@@ -52,11 +52,11 @@
             $scope.queryHistoryTrade();
         }
 
-        $scope.page = function (p) {
+     /*   $scope.page = function (p) {
             $scope.param.page = p;
             $scope.queryHistoryTrade();
         };
-
+*/
         $scope.queryHistoryTrade();
 
        
@@ -132,7 +132,7 @@
 
         };
 
-        $scope.btns = [];
+     /*   $scope.btns = [];
         $scope.createBtn = function(){
             $scope.btns = [];
             //var num = Math.ceil($scope.data.totalRow /  $scope.data.pageSize);
@@ -143,7 +143,7 @@
             }
             console.log("btns : " + $scope.btns);
         };
-
+*/
 
 
     }

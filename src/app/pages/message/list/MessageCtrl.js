@@ -12,7 +12,7 @@
 (function(){
     'use strict'
 
-    angular.module('BlurAdmin.pages.message')
+    angular.module('BlurAdmin.pages.message.messageList')
         .controller('MessageCtrl', MessageCtrl);
 
     /** @ngInject */

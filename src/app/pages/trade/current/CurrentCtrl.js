@@ -39,7 +39,7 @@
                 if(resp.success){
                     $scope.data = resp.data;
                     //设置butten组
-                    $scope.createBtn();
+                  //  $scope.createBtn();
 
                 } else {
                     toastr.error(resp.message);
@@ -56,13 +56,13 @@
             $scope.param.page = 1;
             $scope.queryTrade();
         }
-        $scope.page = function (p) {
+      /*  $scope.page = function (p) {
             console.log("p:" + p);
             $scope.param.page = p;
             $scope.queryTrade();
-        };
+        };*/
         
-        $scope.btns = [];
+     /*   $scope.btns = [];
         $scope.createBtn = function(){
             $scope.btns = [];
             //var num = Math.ceil($scope.data.totalRow /  $scope.data.pageSize);
@@ -73,7 +73,7 @@
             }
             console.log("btns : " + $scope.btns);
         };
-
+*/
 
 
         $scope.queryTrade();
