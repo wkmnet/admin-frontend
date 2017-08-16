@@ -12,11 +12,11 @@
 (function(){
     'use strict'
 
-    angular.module('BlurAdmin.pages.trade')
+    angular.module('BlurAdmin.pages.trade.history')
         .controller('HistoryCtrl', HistoryCtrl);
 
     /** @ngInject */
-    function HistoryCtrl($scope, $http, toastr) {
+    function HistoryCtrl($scope, $http, toastr,$uibModal) {
         $scope.tablePageSize = 10;
         $scope.param = {"page":1,"page_size":$scope.tablePageSize};
 
@@ -146,6 +146,24 @@
 */
 
 
+
+        $scope.open = function(id) {
+            console.log("index :" + id);
+            // $scope.queryTradeById(id);
+            $uibModal.open({
+                animation: true,
+                templateUrl: "app/pages/trade/current/order_info.html",
+                controller:"OrderModalCtrl",
+                resolve: {
+                    order:function(){
+                        console.log("order :" + $scope.data.list[id].order_no);
+                        return $scope.data.list[id];
+                    }
+                }
+            });
+        };
+
     }
+   
 
 })();

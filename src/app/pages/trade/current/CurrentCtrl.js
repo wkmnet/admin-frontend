@@ -12,11 +12,13 @@
 (function(){
     'use strict'
 
-    angular.module('BlurAdmin.pages.trade')
-        .controller('CurrentCtrl', CurrentCtrl);
+    angular.module('BlurAdmin.pages.trade.current')
+        .controller('CurrentCtrl', CurrentCtrl).controller("OrderModalCtrl",OrderModalCtrl);
+
+
 
     /** @ngInject */
-    function CurrentCtrl($scope, $http, toastr) {
+    function CurrentCtrl($scope, $http, toastr,$uibModal) {
         
         $scope.tablePageSize = 10;
         $scope.param = {"page":1,"page_size":$scope.tablePageSize};
@@ -153,10 +155,50 @@
 
         };
         
+        $scope.order ={};
+        $scope.queryTradeById = function(id){
+            console.log("id: " + id);
+            var url = "/api/trade/" + id;
+            $http.get(url).success(function(resp){
+                if(resp.success){
+                   $scope.order = resp.data;
+                    console.log("currentOrder : " + $scope.order.order_no)
+                } else {
+                    toastr.error(resp.message);
+                }
+            }).error(function(resp,status){
+                console.log("status:",status);
+                toastr.error(resp);
+            });
+            
+        };
+
+        $scope.open = function(id) {
+            console.log("index :" + id);
+           // $scope.queryTradeById(id);
+            $uibModal.open({
+                animation: true,
+                templateUrl: "app/pages/trade/current/order_info.html",
+                controller:"OrderModalCtrl",
+                resolve: {
+                    order:function(){
+                        console.log("order :" + $scope.data.list[id].order_no);
+                        return $scope.data.list[id];
+                    }
+                }
+            });
+        };
 
 
-       
 
     }
+
+    
+    function OrderModalCtrl($scope, $http, toastr,$uibModal,order) {
+        $scope.order = order;
+        console.log("order_no : " + $scope.order.order_no);
+        
+    }
+
 
 })();

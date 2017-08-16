@@ -24,7 +24,7 @@
         </tr>
         </thead>
         <tr ng-repeat="item in data.list">
-            <td class="align-right">{{item.id}}</td>
+            <td class="align-right" ng-click = "open($index)">{{item.id}} </td>
             <td class="align-right">{{item.order_no}}</td>
             <td class="align-right">{{item.transaction_no}}</td>
           <!--  <td class="align-right">{{item.out_pay_order}}</td>
