@@ -79,13 +79,28 @@
         };*/
 
         $scope.currentUser= {};
+        $scope.queryCurrent = function (id) {
+            $http.get("/api/user/" + id).success(function(resp){
+                if(resp.success){
+                    $scope.currentUser = resp.data;
+                } else {
+                    toastr.error(resp.message);
+                }
+            }).error(function(resp,status){
+                console.log("status:",status);
+                toastr.error(resp);
+            });
+        };
+
+
         $scope.getCookie = function(){
             var name = "MANGER-USER-KEY";
             var cookie_value =  $scope.readCookie(name);
             var end = cookie_value.indexOf("-")
             console.log("value : " + cookie_value);
-            $scope.currentUser = cookie_value.substring(0,end);
-            console.log("$scope.currentUser : " + $scope.currentUser);
+            var id = cookie_value.substring(0,end);
+            console.log("currentId : " + id);
+            $scope.queryCurrent(id);
         };
 
         $scope.readCookie = function(name) {
