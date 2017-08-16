@@ -43,7 +43,7 @@
             console.log("selected pay app :",selected)
             if(selected == "wx"){
                 console.log("wx")
-                $scope.payMethod = [{"key":"NATIVE","value":"二维码支付"},{"key":"MWEB","value":"H5页面支付"}]
+                $scope.payMethod = [{"key":"NATIVE","value":"二维码支付"},{"key":"MWEB","value":"H5页面支付"},{"key":"JSAPI","value":"公众号支付"}]
                 return
             }
             if(selected == "alipay"){
