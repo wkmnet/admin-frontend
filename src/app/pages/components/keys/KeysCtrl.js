@@ -25,7 +25,7 @@
         
         $scope.md5 = {};
 
-        $scope.wxSignType = ["MD5"];
+        $scope.wxSignType = ["MD5","testSignType"];
 
         $scope.alipaySignType = ["RSA2"];
 
@@ -34,10 +34,8 @@
         $scope.queryMerchant = function () {
             var url = "/api/merchant";
             $http.get(url).success(function(resp){
-                if(resp.success){
+                if(resp.data){
                     $scope.data = resp.data;
-                } else {
-                    toastr.error(resp.message);
                 }
             }).error(function(resp,status){
                 console.log("status:",status);
@@ -47,88 +45,71 @@
         };
         $scope.queryMerchant();
         
-        
+        //根据支付渠道，查询签名类型
+        $scope.querySignTypeByMerchantId = function(merchantId){
+            $http.get("/api/merchant/" + merchantId).success(function(response){
+                if(response.data) {
+                    $scope.merchant.pay_channel = response.data.pay_channel;
+                    $scope.merchant.sign_type = response.data.sign_type;
+
+                    if($scope.merchant.pay_channel){
+                        //1.根据支付渠道，显示应有的签名类型
+                        if($scope.merchant.pay_channel == "wx"){
+                            //如果是微信，就显示微信的签名类型
+                            console.log("wx")
+                            $scope.signType = $scope.wxSignType;
+
+                        }else if($scope.merchant.pay_channel == "alipay"){
+                            //如果是支付宝，就显示支付宝的签名类型
+                            console.log("alipay")
+                            $scope.signType = $scope.alipaySignType;
+                        }
+
+                    }else{
+                        //没有支付渠道，支付类型数组置空
+                        $scope.signType = {};
+                        //设置签名类型为空
+                        $scope.merchant.sign_type = "";
+
+                    }
+                     //设置签名类型
+                    $scope.selectSignTypeChange($scope.merchant.sign_type);
+
+                }
+            });
+            
+        }
+        //支付渠道选择改变
         $scope.selectMerchantChange = function(merchantId){
             console.log("merchantId ", merchantId);
-            //查询签名类型和密钥
-            $http.get("/api/merchant/" + merchantId).success(function(response){
-                console.log("response:",response);
-                if(response.success && response.data) {
-
-                  $scope.merchant.sign_type = response.data.sign_type;
-
-                    $scope.merchant.pay_channel = response.data.pay_channel;
-                    //如果有是微信，就显示md5
-                    if($scope.merchant.pay_channel == "wx"){
-                        console.log("wx")
-                        $scope.signType = $scope.wxSignType;
-
-                    }else if($scope.merchant.pay_channel == "alipay"){
-                    //如果是支付宝，就显示rsa2
-                        console.log("alipay")
-                        $scope.signType = $scope.alipaySignType;
-                    }else{
-                        //都不是，为空时, 回到初始状态
-                        $scope.signType = {};
-                        $("#mdgSignDiv").show();
-                        $("#publicSignDiv").show();
-                        $("#privateSignDiv").show();
-                    }
-                    console.log("signType:",$scope.signType);
-                    //有签名类型就去数据库查找
-                    if ($scope.merchant.sign_type) {
-                        $scope.showKey();
-                    }else{
-                        $("#deleteBtn").hide();
-                        $scope.merchant.sign="";
-                        $scope.merchant.public_sign="";
-                        $scope.merchant.private_sign="";
-                        $scope.merchant.signId = "";
-                    }
-                } else {
-                    toastr.error(response.message);
-                }
-            }).error(function(data, status){
-                console.log("status:",status);
-                toastr.error(data);
-            });
-
-         
+            $scope.querySignTypeByMerchantId(merchantId);
         }
         
-        $scope.showKey = function(){
-                //查询签名类型和密钥
-            console.log("merchant.sign_type:", $scope.merchant.sign_type);
+        
+        //根据支付渠道id和签名类型，查询密钥
+        $scope.showKey = function(sign_type){
+            
             $scope.merchant.merchant_id = $scope.merchant.id;
+            
                 $http.get("/api/sign/" + $scope.merchant.id + "?sign_type=" + $scope.merchant.sign_type).success(function (res) {
-                    console.log("res:", res);
-                    
-                    if (res.success && res.data) {
-                        $scope.merchant.sign=res.data.sign;
-                        $scope.merchant.public_sign=res.data.public_sign;
-                        $scope.merchant.private_sign=res.data.private_sign;
+                    //如果有密钥，则显示各个密钥
+                    if (res.data) {
+                        $scope.merchant.sign = res.data.sign;
+                        $scope.merchant.public_sign = res.data.public_sign;
+                        $scope.merchant.private_sign = res.data.private_sign;
                         $scope.merchant.signId = res.data.id;
-                        //如果成功，可以删除
+                        //如果有密钥，可以删除
                         $("#deleteBtn").show();
-                        if($scope.merchant.sign_type == "MD5"){
-                            $("#publicSignDiv").hide();
-                            $("#privateSignDiv").hide();
-                            $("#mdgSignDiv").show();
-                        }else if($scope.merchant.sign_type == "RSA2"){
-                            $("#mdgSignDiv").hide();
-                            $("#publicSignDiv").show();
-                            $("#privateSignDiv").show();
-                        }
-                    
-                    } else {
+
+                    }else{
+                        //如果没有密钥，隐藏删除按钮
+                        $("#deleteBtn").hide();
                         $scope.merchant.sign="";
                         $scope.merchant.public_sign="";
                         $scope.merchant.private_sign="";
-                        $scope.merchant.signId = "";
-                     
-                        $("#deleteBtn").hide();
-                        toastr.error(res.message);
+                        $scope.merchant.signId="";
                     }
+
                    
                 }).error(function (data, status) {
                     console.log("status:", status);
@@ -138,34 +119,60 @@
             
         }
         
-        $scope.selectSignTypeChange = function(sign_type){
+        $scope.selectSignTypeChange = function(sign_type) {
             console.log("sign_type : " + sign_type);
-            if(sign_type == "MD5"){
-                $("#publicSignDiv").hide();
-                $("#privateSignDiv").hide();
+            //如果有签名类型，则设置对应的编辑框，并显示签名
+            if (sign_type) {
+
+                if (sign_type == "MD5") {
+                    $("#publicSignDiv").hide();
+                    $("#privateSignDiv").hide();
+                    $("#mdgSignDiv").show();
+                } else if (sign_type == "RSA2") {
+                    $("#mdgSignDiv").hide();
+                    $("#publicSignDiv").show();
+                    $("#privateSignDiv").show();
+                }else{
+                    $("#mdgSignDiv").show();
+                    $("#publicSignDiv").show();
+                    $("#privateSignDiv").show();
+                }
+                
+                $scope.showKey(sign_type);
+            }else{//如果没有签名类型
+
+                //没有签名类型就显示所有输入框，并把输入框都置空
+                $("#deleteBtn").hide();
                 $("#mdgSignDiv").show();
-            }else if(sign_type == "RSA2"){
-                $("#mdgSignDiv").hide();
                 $("#publicSignDiv").show();
                 $("#privateSignDiv").show();
+                $scope.merchant.sign="";
+                $scope.merchant.public_sign="";
+                $scope.merchant.private_sign="";
+                $scope.merchant.signId = "";
             }
-            $scope.showKey();
+
         }
 
+
         $scope.saveSign = function(){
-            console.log("save sign:",$scope.merchant);
+            console.log("$scope.merchant.signId:",$scope.merchant.signId);
+            
             if($scope.merchant.signId){
                 $http.put("/api/sign/" + $scope.merchant.signId,$scope.merchant).success(function(response){
                     console.log("response:",response);
                     if(response.success){
                         toastr.success('数据更新成功!');
-                      //  $("#deleteBtn").hide();
-                       // $scope.merchant={};
+                        //  $("#deleteBtn").hide();
+                        // $scope.merchant={};
                         console.log("merchant:",$scope.merchant);
                         console.log("merchant.signId:",$scope.merchant.signId);
-                    } else {
+
+                    }else{
                         toastr.error(response.message);
                     }
+
+
                 }).error(function(data, status){
                     console.log("status:",status);
                     toastr.error(data);
