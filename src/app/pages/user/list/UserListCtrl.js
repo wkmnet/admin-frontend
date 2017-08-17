@@ -52,6 +52,16 @@
 */
         $scope.queryUser();
 
+
+        $scope.delete = function(id,name){
+            var msg = "确定要删除" + name + "吗？";
+            if (confirm(msg)==true){
+                $scope.deleteUser(id);
+            }else{
+                console.log("取消删除")
+            }
+        };
+
         $scope.deleteUser = function (id) {
             $http.delete("/api/user/" + id).success(function(resp){
                 if(resp.success){

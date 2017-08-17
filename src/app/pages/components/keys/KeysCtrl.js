@@ -192,6 +192,15 @@
 
         }
 
+        $scope.delete = function(name){
+            var msg = "确定要删除" + name + "吗？";
+            if (confirm(msg)==true){
+                $scope.deleteSign();
+            }else{
+                console.log("取消删除")
+            }
+        };
+
         $scope.deleteSign = function(){
             console.log("id:",$scope.merchant.signId);
             console.log("sign_type:",$scope.merchant.sign_type);

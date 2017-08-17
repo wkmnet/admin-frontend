@@ -56,6 +56,15 @@
 
         $scope.queryMerchant();
 
+        $scope.delete = function(id,name){
+            var msg = "确定要删除" + name + "吗？";
+            if (confirm(msg)==true){
+                $scope.deleteMerchant(id);
+            }else{
+                console.log("取消删除")
+            }
+        };
+
         $scope.deleteMerchant = function (id) {
             $http.delete("/api/merchant/" + id).success(function(resp){
                 if(resp.success){

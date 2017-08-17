@@ -55,6 +55,15 @@
 */
         $scope.queryAgency();
 
+        $scope.delete = function(id,name){
+            var msg = "确定要删除" + name + "吗？";
+            if (confirm(msg)==true){
+                $scope.deleteAgency(id);
+            }else{
+                console.log("取消删除")
+            }
+        };
+
         $scope.deleteAgency = function (id) {
             $http.delete("/api/agency/" + id).success(function(resp){
                 if(resp.success){
