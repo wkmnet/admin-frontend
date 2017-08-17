@@ -25,7 +25,7 @@
         
         $scope.md5 = {};
 
-        $scope.wxSignType = ["MD5","testSignType"];
+        $scope.wxSignType = ["MD5"];
 
         $scope.alipaySignType = ["RSA2"];
 
@@ -157,7 +157,7 @@
 
         $scope.saveSign = function(){
             console.log("$scope.merchant.signId:",$scope.merchant.signId);
-            
+
             if($scope.merchant.signId){
                 $http.put("/api/sign/" + $scope.merchant.signId,$scope.merchant).success(function(response){
                     console.log("response:",response);
