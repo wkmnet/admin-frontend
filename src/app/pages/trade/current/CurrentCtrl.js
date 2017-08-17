@@ -155,23 +155,7 @@
 
         };
         
-        $scope.order ={};
-        $scope.queryTradeById = function(id){
-            console.log("id: " + id);
-            var url = "/api/trade/" + id;
-            $http.get(url).success(function(resp){
-                if(resp.success){
-                   $scope.order = resp.data;
-                    console.log("currentOrder : " + $scope.order.order_no)
-                } else {
-                    toastr.error(resp.message);
-                }
-            }).error(function(resp,status){
-                console.log("status:",status);
-                toastr.error(resp);
-            });
-            
-        };
+
 
         $scope.open = function(id) {
             console.log("index :" + id);
@@ -196,7 +180,40 @@
     
     function OrderModalCtrl($scope, $http, toastr,$uibModal,order) {
         $scope.order = order;
+        $scope.org_order = {};
         console.log("order_no : " + $scope.order.order_no);
+
+
+        $scope.queryOrgTrade = function(org_id) {
+            console.log("org_id: " + org_id);
+            if(org_id){
+                 $scope.queryTradeById(org_id);
+                console.log("org_order.order_no: " + $scope.org_order.order_no);
+            }else{
+                $scope.org_order = {};
+            }
+
+        };
+
+        $scope.queryTradeById = function(id){
+            console.log("id: " + id);
+            var url = "/api/trade/" + id;
+             $http.get(url).success(function(resp){
+                if(resp.success){
+                  $scope.org_order = resp.data;
+
+                } else {
+                    toastr.error(resp.message);
+                }
+            }).error(function(resp,status){
+                console.log("status:",status);
+                toastr.error(resp);
+            });
+
+        };
+
+        $scope.queryOrgTrade($scope.order.org_id);
+        
         
     }
 
