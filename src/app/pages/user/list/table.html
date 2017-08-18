@@ -5,6 +5,7 @@
             <th class="align-right">#</th>
             <th class="align-right">邮箱</th>
             <th class="align-right">用户名</th>
+            <th class="align-right">角色</th>
             <th class="align-right">创建时间</th>
             <th class="align-right">操作</th>
         </tr>
@@ -13,10 +14,11 @@
             <td class="align-right">{{item.id}}</td>
             <td class="align-right">{{item.email}}</td>
             <td class="align-right">{{item.user_name}}</td>
+            <td class="align-right">{{item.role == 'admin' ? '管理员': item.role == 'normal' ?'普通用户' : item.role}}</td>
             <td class="align-right">{{item.created_time}}</td>
             <td class="align-right">
                 <a href="javascript:void(0);" ng-click="delete(item.id,item.user_name)">{{currentUser.user_name == 'root' ? '删除' : item.id == currentUser.id ? '删除':''}}</a>
-                <a href="#/user/new/edit/{{item.id}}">{{currentUser.user_name == 'root' ? '编辑' : item.id == currentUser.id ? '编辑':''}}</a>
+                <a href="#/user/new/edit/{{item.id}}">{{currentUser.role == 'admin' ? '编辑' : item.id == currentUser.id ? '编辑':''}}</a>
             </td>
         </tr>
         <tfoot>

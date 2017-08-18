@@ -23,6 +23,7 @@
         console.log("userId",$stateParams.user);
 
         $scope.user = {};
+        $scope.param={};
 
         $scope.loadUser = function() {
             console.log("user",$scope.userId);
@@ -41,7 +42,9 @@
         $scope.loadUser();
 
         $scope.saveUser = function () {
+            $scope.user.password = $scope.param.password;
             console.log("update user:",$scope.user);
+
             $http.put("/api/user/" + $scope.userId,$scope.user).success(function(response){
                 console.log("response:",response);
                 if(response.success){
@@ -54,6 +57,20 @@
                 toastr.error(data);
             });
         };
+
+        $scope.checkUser = function(){
+            var regEmail = /^([a-zA-Z0-9_-])+\@([a-zA-Z0-9_-])+.([a-zA-Z])+$/;
+            var regPwd =/^[a-z0-9_]{6,18}$/;
+
+            if(!$scope.user.email || !regEmail.test($scope.user.email)){
+                toastr.error("邮箱格式不正确！");
+                return;
+            }
+            $scope.saveUser();
+
+        };
+
+
 
     }
 
