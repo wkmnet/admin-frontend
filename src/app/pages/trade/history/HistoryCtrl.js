@@ -13,7 +13,7 @@
     'use strict'
 
     angular.module('BlurAdmin.pages.trade.history')
-        .controller('HistoryCtrl', HistoryCtrl);
+        .controller('HistoryCtrl', HistoryCtrl).controller("HistoryOrderModalCtrl",HistoryOrderModalCtrl);
 
     /** @ngInject */
     function HistoryCtrl($scope, $http, toastr,$uibModal) {
@@ -152,8 +152,8 @@
             // $scope.queryTradeById(id);
             $uibModal.open({
                 animation: true,
-                templateUrl: "app/pages/trade/current/order_info.html",
-                controller:"OrderModalCtrl",
+                templateUrl: "app/pages/trade/order_info.html",
+                controller:"HistoryOrderModalCtrl",
                 resolve: {
                     order:function(){
                         console.log("order :" + $scope.data.list[id].order_no);
@@ -162,6 +162,63 @@
                 }
             });
         };
+
+    }
+
+
+    function HistoryOrderModalCtrl($scope, $http, toastr,$uibModal,order) {
+        $scope.order = order;
+        $scope.org_order = {};
+        $scope.org = false;
+ 
+        $scope.queryTradeById = function(id){
+            console.log("id: " + id);
+            var url = "/api/trade/history/" + id;
+            $http.get(url).success(function(resp){
+                if(resp.success){
+                    $scope.org_order = resp.data;
+
+                } else {
+                    toastr.error(resp.message);
+                }
+            }).error(function(resp,status){
+                console.log("status:",status);
+                toastr.error(resp);
+            });
+
+        };
+
+        $scope.queryOrgTrade = function(org_id) {
+            console.log("org_id: " + org_id);
+            if(org_id){
+                $scope.queryTradeById(org_id);
+                $scope.org = true;
+            }else{
+                $scope.org_order = {};
+                $scope.org = false;
+
+            }
+
+        };
+
+       
+        $scope.queryOrgTrade($scope.order.org_id);
+
+
+
+       $scope.back = false;
+
+        $scope.goBack = function(){
+            $scope.order=order;
+            $scope.back = false;
+            $scope.org = true;
+        }
+        $scope.goOrg = function(){
+            $scope.order=$scope.org_order;
+            $scope.back=  true;
+            $scope.org = false;
+        }
+
 
     }
    
