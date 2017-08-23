@@ -154,10 +154,55 @@
             });
 
         };
-        
+
+        $scope.org_order = {};
+        $scope.org = false;
+        $scope.queryOrgTrade = function(org_id) {
+            console.log("org_id: " + org_id);
+            if(org_id){
+                $scope.queryTradeById(org_id);
+                $scope.org = true;
+            }else{
+                $scope.org_order = {};
+                $scope.org = false;
+
+            }
+
+        };
+        $scope.queryTradeById = function(id){
+            console.log("id: " + id);
+            var url = "/api/trade/" + id;
+            $http.get(url).success(function(resp){
+                if(resp.success){
+                    $scope.org_order = resp.data;
+
+                } else {
+                    toastr.error(resp.message);
+                }
+            }).error(function(resp,status){
+                console.log("status:",status);
+                toastr.error(resp);
+            });
+
+        };
+
+        $scope.openOrder = false;
+        $scope.openList = true;
+        $scope.order={};
+        $scope.open = function(index){
+            $scope.order = $scope.data.list[index];
+            $scope.openOrder = true;
+            $scope.openList = false;
+            console.log("org_id : " + $scope.data.list[index].org_id);
+            $scope.queryOrgTrade($scope.data.list[index].org_id);
+        };
+        $scope.close = function(){
+            $scope.openOrder = false;
+            $scope.openList = true;
+        };
 
 
-        $scope.open = function(id) {
+/*        $scope.open = function(id) {
             console.log("index :" + id);
            // $scope.queryTradeById(id);
             $uibModal.open({
@@ -171,7 +216,7 @@
                     }
                 }
             });
-        };
+        };*/
 
 
 
