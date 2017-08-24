@@ -22,7 +22,7 @@
         $scope.agencyId = $stateParams.agency;
         console.log("agencyId",$stateParams.agency);
 
-        $scope.agency = {"expire_age":5};
+        $scope.agency = {"expire_age":10};
 
         $scope.loadAgency = function() {
             console.log("agency",$scope.agencyId);

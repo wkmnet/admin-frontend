@@ -19,7 +19,7 @@
     /** @ngInject */
     function NewAgencyCtrl($scope, $http, toastr) {
 
-        $scope.agency = {"expire_age":5};
+        $scope.agency = {"expire_age":10};
 
         $scope.saveAgency = function () {
             console.log("save agency:",$scope.agency);
