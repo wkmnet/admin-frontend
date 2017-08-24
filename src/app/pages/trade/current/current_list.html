@@ -1,4 +1,4 @@
-<div class="widgets" ng-if="openList">
+<div class="widgets" ng-show="openList">
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
@@ -65,7 +65,7 @@
     </div>
 </div>
 
-<div ng-if="openOrder">
+<div ng-hide="openList">
     <table class="table">
         <tr>
             <td class="align-right">序号</td>

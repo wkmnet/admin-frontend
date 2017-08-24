@@ -64,17 +64,16 @@
             defaultDate: "+1w",
             changeMonth: true,
             numberOfMonths: 1,
-            language:"zh-CN",
             dateFormat:"yy-mm-dd",
             onClose: function( selectedDate ) {
                 $( "#end" ).datepicker( "option", "minDate", selectedDate );
             }
         });
+
         $( "#end" ).datepicker({
             defaultDate: "+1w",
             changeMonth: true,
             numberOfMonths: 1,
-            language:"zh-CN",
             dateFormat:"yy-mm-dd",
             onClose: function( selectedDate ) {
                 $( "#start" ).datepicker( "option", "maxDate", selectedDate );
@@ -131,8 +130,8 @@
             });
 
         };
-
-     /*   $scope.btns = [];
+/*
+        $scope.btns = [];
         $scope.createBtn = function(){
             $scope.btns = [];
             //var num = Math.ceil($scope.data.totalRow /  $scope.data.pageSize);
@@ -162,7 +161,9 @@
                 }
             });
         };*/
-        $scope.org_order = {};
+        
+
+      $scope.org_order = {};
         $scope.org = false;
         $scope.queryOrgTrade = function(org_id) {
             console.log("org_id: " + org_id);
@@ -193,22 +194,30 @@
 
         };
 
-        $scope.openOrder = false;
+
+       // $scope.openOrder = false;
         $scope.openList = true;
+        
+        
+
         $scope.order={};
         $scope.open = function(index){
             $scope.order = $scope.data.list[index];
-            $scope.openOrder = true;
+          //  $scope.openOrder = true;
             $scope.openList = false;
             console.log("org_id : " + $scope.data.list[index].org_id);
             $scope.queryOrgTrade($scope.data.list[index].org_id);
         };
-        $scope.close = function(){
-            $scope.openOrder = false;
+
+        $scope.goBack = function(){
+          //  $scope.openOrder = false;
             $scope.openList = true;
         };
 
-    }
+
+   
+    };
+
 
 
     function HistoryOrderModalCtrl($scope, $http, toastr,$uibModal,order) {

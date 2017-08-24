@@ -186,18 +186,18 @@
 
         };
 
-        $scope.openOrder = false;
+       // $scope.openOrder = false;
         $scope.openList = true;
         $scope.order={};
         $scope.open = function(index){
             $scope.order = $scope.data.list[index];
-            $scope.openOrder = true;
+         //   $scope.openOrder = true;
             $scope.openList = false;
             console.log("org_id : " + $scope.data.list[index].org_id);
             $scope.queryOrgTrade($scope.data.list[index].org_id);
         };
         $scope.close = function(){
-            $scope.openOrder = false;
+          //  $scope.openOrder = false;
             $scope.openList = true;
         };
 

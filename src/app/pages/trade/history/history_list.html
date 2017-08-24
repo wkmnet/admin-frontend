@@ -1,4 +1,4 @@
-<div class="widgets" ng-if="openList">
+<div class="widgets" ng-show="openList">
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
@@ -40,11 +40,12 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="order_no">交易日期</label>
-                <div class="input-daterange input-group" id="datepicker">
+               <div class="input-date range input-group">
                     <input type="text" ng-model="param.start" id="start" class="form-control" name="start"/>
                     <span class="input-group-addon">到</span>
                     <input type="text" ng-model="param.end" id="end" class="form-control" name="end"/>
                 </div>
+
             </div>
         </div>
         <div class="col-md-2">
@@ -64,7 +65,8 @@
     </div>
 </div>
 
-<div ng-if="openOrder">
+
+<div ng-hide="openList">
     <table class="table">
         <tr>
             <td class="align-right">序号</td>
@@ -148,7 +150,7 @@
         </tr>
         <tfoot>
             <div class="align-left">
-                <button type="button" class="btn btn-primary btn-sm" ng-click="close()">返回</button>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="goBack()">返回</button>
             </div>
         </tfoot>
     </table>
