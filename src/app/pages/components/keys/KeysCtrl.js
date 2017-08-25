@@ -199,8 +199,8 @@
 
         }
 
-        $scope.delete = function(name){
-            var msg = "确定要删除" + name + "吗？";
+        $scope.delete = function(){
+            var msg = "确定要删除吗？";
             if (confirm(msg)==true){
                 $scope.deleteSign();
             }else{

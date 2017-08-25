@@ -17,7 +17,7 @@
         <tr ng-repeat="item in data.list">
             <td class="align-left">{{item.id}}</td>
             <td class="align-left">{{item.times}}</td>
-            <td class="align-left">{{item.status}}</td>
+            <td class="align-left">{{item.status == 0 ? '创建' : item.status == 1 ? '成功' : item.status == '2' ? '失败' : item.status}}</td>
             <td class="align-left">{{item.delay}}</td>
             <td class="align-left">{{item.created_time}}</td>
             <td class="align-left">{{item.updated_time}}</td>
