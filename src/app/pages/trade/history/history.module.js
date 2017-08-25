@@ -25,7 +25,7 @@
                 title: '历史订单',
                 sidebarMeta: {
                     icon: 'ion-ios-pulse',
-                    order: 0,
+                    order: 50,
                 },
             });
     }
