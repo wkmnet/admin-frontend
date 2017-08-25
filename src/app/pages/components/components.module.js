@@ -24,7 +24,8 @@
           abstract: true,
           title: '支付管理',
           sidebarMeta: {
-            icon: 'ion-gear-a',
+              /**ion-gear-a**/
+            icon: 'ion-social-euro',
             order: 100,
           },
         });

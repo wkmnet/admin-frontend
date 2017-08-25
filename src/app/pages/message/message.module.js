@@ -24,7 +24,7 @@
                 abstract: true,
                 title: '消息管理',
                 sidebarMeta: {
-                    icon: 'ion-gear-a',
+                    icon: 'ion-android-mail',
                     order: 50,
                 },
             });

@@ -24,7 +24,7 @@
                 abstract: true,
                 title: '订单管理',
                 sidebarMeta: {
-                    icon: 'ion-gear-a',
+                    icon: 'ion-social-yen',
                     order: 50,
                 },
             });

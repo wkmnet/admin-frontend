@@ -19,7 +19,7 @@
           abstract: true,
           title: '用户管理',
           sidebarMeta: {
-            icon: 'ion-gear-a',
+            icon: 'ion-person-stalker',
             order: 50,
           },
         });

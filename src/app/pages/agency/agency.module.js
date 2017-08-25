@@ -19,7 +19,7 @@
           abstract: true,
           title: '平台管理',
           sidebarMeta: {
-            icon: 'ion-gear-a',
+            icon: 'ion-monitor',
             order: 50,
           },
         });
