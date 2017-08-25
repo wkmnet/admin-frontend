@@ -28,7 +28,8 @@
         $scope.queryMessage = function () {
             var url = "/api/message?page=" + ($scope.param.page || "") +
                 "&page_size=" + ($scope.param.page_size || "") +
-                "&status=" + ($scope.param.status || "");
+                "&status=" + ($scope.param.status || "") +
+                "&text=" + ($scope.param.text || "");
 
             $http.get(url).success(function(resp){
                 if(resp.success){
