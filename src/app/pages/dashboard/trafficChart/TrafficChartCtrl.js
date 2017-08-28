@@ -16,7 +16,7 @@
     function loadOrderData() {
       $http.get("/api/order/count").success(function(resp){
         if(resp.success){
-          $scope.data = response.data;
+          $scope.data = resp.data;
           createChart();
         } else {
           toastr.error(resp.message)
