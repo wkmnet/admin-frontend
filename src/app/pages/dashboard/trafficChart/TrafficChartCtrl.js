@@ -64,6 +64,7 @@
                 $scope.doughnutData[index].value = value.value;
                 $scope.doughnutData[index].percentage = value.percentage;
             });
+            console.log("处理完成统计结果:" + $scope.data.list.length);
         }
         var ctx = document.getElementById('chart-area').getContext('2d');
         window.myDoughnut = new Chart(ctx).Doughnut($scope.doughnutData, {
