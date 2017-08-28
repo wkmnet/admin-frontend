@@ -136,7 +136,7 @@
 
         };*/
 
-        //发送通知
+        //退款
         $scope.refund = function(order_no,amount_pay){
             console.log("order_no : " + order_no);
             console.log("order_no : " + order_no);
@@ -144,6 +144,23 @@
             $http.get(url).success(function(resp){
                 if(resp.success){
                     toastr.success("申请退款成功！");
+                    $scope.queryTrade();
+                } else {
+                    toastr.error(resp.message);
+                }
+            }).error(function(resp,status){
+                console.log("status:",status);
+                toastr.error(resp);
+            });
+
+        };
+        //补单
+        $scope.fix = function(order_no){
+            console.log("order_no : " + order_no);
+            var url = "/api/trade/fix?order_no=" + order_no;
+            $http.get(url).success(function(resp){
+                if(resp.success){
+                    toastr.success("申请补单成功！");
                     $scope.queryTrade();
                 } else {
                     toastr.error(resp.message);
