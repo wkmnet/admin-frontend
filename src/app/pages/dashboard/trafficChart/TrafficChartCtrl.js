@@ -34,13 +34,6 @@
                 percentage: 87,
                 order: 1,
             }, {
-                value: 1500,
-                color: dashboardColors.blueStone,
-                highlight: colorHelper.shade(dashboardColors.blueStone, 15),
-                label: 'Search engines',
-                percentage: 22,
-                order: 4,
-            }, {
                 value: 1000,
                 color: dashboardColors.surfieGreen,
                 highlight: colorHelper.shade(dashboardColors.surfieGreen, 15),
@@ -63,7 +56,7 @@
                 order: 0,
             },
         ];
-        if($scope.data.list.length != 5){
+        if($scope.data.list.length != 4){
           console.log("order-count-list-size:" + $scope.data.list.length);
         } else {
             $scope.data.list.forEach(function(value, index,array){
@@ -82,5 +75,14 @@
 
     //初始化表格数据
     loadOrderData();
+
+      /*{
+          value: 1500,
+              color: dashboardColors.blueStone,
+              highlight: colorHelper.shade(dashboardColors.blueStone, 15),
+              label: 'Search engines',
+              percentage: 22,
+              order: 4,
+      }*/
   }
 })();
