@@ -48,7 +48,7 @@
         $http.get("/api/order/current").success(function(resp){
             if(resp.success){
                 $scope.data = resp.data;
-                createChart();
+                createNewChart();
             } else {
                 toastr.error(resp.message)
             }
@@ -56,6 +56,61 @@
     }
 
     loadCurrentTrade();
+
+    function createNewChart(){
+        var chartData = [];
+        $scope.data.list.forEach(function(value,index,array){
+            chartData.push({date: new Date(value.date), total: value.total,success: value.success})
+        });
+        var chart = AmCharts.makeChart("amchart", {
+            "type": "serial",
+            "theme": "light",
+            "marginRight": 80,
+            "dataProvider": chartData,
+            "valueAxes": [{
+                "position": "left",
+                "title": "订单数量"
+            }],
+            "graphs": [{
+                "id": "g0",
+                "lineColor": baUtil.hexToRGB(graphColor, 0.3),
+                "fillAlphas": 1,
+                "valueField": "total",
+                "balloonText": "<div style='margin:5px; font-size:19px;'>总订单:<b>[[value]]</b></div>"
+            },{
+                "id": "g1",
+                "lineColor": baUtil.hexToRGB(graphColor, 0.5),
+                "fillAlphas": 1,
+                "valueField": "success",
+                "balloonText": "<div style='margin:5px; font-size:19px;'>成功单:<b>[[value]]</b></div>"
+            }],
+            "chartCursor": {
+                "categoryBalloonDateFormat": "JJ:NN, DD MMMM",
+                "cursorPosition": "mouse"
+            },
+            "categoryField": "date",
+            "categoryAxis": {
+                "minPeriod": "mm",
+                "parseDates": true
+            },
+            "export": {
+                "enabled": true,
+                "dateFormat": "YYYY-MM-DD HH:NN:SS"
+            }
+        });
+
+        chart.addListener("dataUpdated", zoomChart);
+        // when we apply theme, the dataUpdated event is fired even before we add listener, so
+        // we need to call zoomChart here
+        zoomChart();
+        // this method is called when chart is first inited as we listen for "dataUpdated" event
+        function zoomChart() {
+            // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
+            chart.zoomToIndexes(chartData.length - 250, chartData.length - 100);
+        }
+
+    }
+
 
     function createChart(){
 
@@ -112,7 +167,7 @@
             }
           ],
           chartCursor: {
-            categoryBalloonDateFormat: 'JJ:NN',//MM YYYY
+           categoryBalloonDateFormat: 'JJ:NN, DD MMMM',//MM YYYY
             categoryBalloonColor: '#4285F4',
             categoryBalloonAlpha: 0.7,
             cursorAlpha: 0,
@@ -120,7 +175,7 @@
             valueLineBalloonEnabled: true,
             valueLineAlpha: 0.5
           },
-          dataDateFormat: 'JJ:NN',
+          dataDateFormat: 'YYYY-MM-DD HH:NN:SS',
           export: {
             enabled: true
           },
@@ -141,5 +196,6 @@
             chart.zoomToDates(new Date($scope.data.start), new Date($scope.data.end));
         }
     }
+
   }
 })();
