@@ -47,6 +47,14 @@
                     toastr.error("邮箱格式不正确！");
                     return;
                 }
+                if(!$scope.user.user_name){
+                    toastr.error("用户名不能为空！")
+                    return;
+                }
+                if(!$scope.user.role){
+                    toastr.error("用户角色不能为空！")
+                    return;
+                }
                 if(!regPwd.test($scope.user.password)){
                     toastr.error("密码格式不正确！6-18位，字母、数字、下划线");
                     return;
