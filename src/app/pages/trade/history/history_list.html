@@ -16,7 +16,7 @@
         </div>
         <div class="col-md-4">
             <div class="form-group">
-                <label for="order_no">交易订单号</label>
+                <label for="order_no">流水号</label>
                 <input type="text" ng-model="param.order_no" class="form-control" id="order_no" placeholder="">
             </div>
         </div>
@@ -81,11 +81,11 @@
             <td class="align-left">{{order.id}} </td>
         </tr>
         <tr ng-if="org">
-            <td class="align-right">原订单号</td>
+            <td class="align-right">原流水号</td>
             <td class="align-left">{{org_order.order_no}}</td>
         </tr>
         <tr>
-            <td class="align-right">订单号</td>
+            <td class="align-right">流水号</td>
             <td class="align-left">{{order.order_no}}</td>
         </tr>
         <tr>
@@ -117,7 +117,7 @@
             <td class="align-left">{{order.body}}</td>
         </tr>
         <tr>
-            <td class="align-right">金额</td>
+            <td class="align-right">订单金额</td>
             <td class="align-left">{{order.amount}}</td>
         </tr>
         <tr>
