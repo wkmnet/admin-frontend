@@ -85,7 +85,7 @@
                 "balloonText": "<div style='margin:5px; font-size:19px;'>成功单:<b>[[value]]</b></div>"
             }],
             "chartCursor": {
-                "categoryBalloonDateFormat": "JJ:NN, DD MMMM",
+                "categoryBalloonDateFormat": "JJ:NN, MM-DD",
                 "cursorPosition": "mouse"
             },
             "categoryField": "date",
