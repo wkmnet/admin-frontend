@@ -61,7 +61,7 @@
 
         var chartData = [];
         $scope.data.list.forEach(function(value,index,array){
-          chartData.push({date: new Date(value.date), value: value.total_order, value0: value.success_order})
+          chartData.push({date: new Date(value.date), value: value.total, value0: value.success})
         });
 
         var chart = AmCharts.makeChart('amchart', {
