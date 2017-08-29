@@ -37,16 +37,16 @@
                 </select>
             </div>
         </div>
-     <div class="col-md-6">
-        <div class="form-group">
-            <label for="order_no">交易日期</label>
-            <div class="input-daterange input-group" id="datepicker">
-                <input type="text" ng-model="param.start" id="start" class="form-control" name="start"/>
-                <span class="input-group-addon">到</span>
-                <input type="text" ng-model="param.end" id="end" class="form-control" name="end"/>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="order_no">交易日期</label>
+                <div class="input-daterange input-group" id="datepicker">
+                    <input ng-dblclick="clearDate()" ng-click="selectDate()" type="text" ng-model="param.start" id="start" class="form-control" name="start"/>
+                    <span class="input-group-addon">到</span>
+                    <input ng-dblclick="clearDate()" ng-click="selectDate()" type="text" ng-model="param.end" id="end" class="form-control" name="end"/>
+                </div>
             </div>
-        </div>
-
+            <div ng-blur="closeDatePicker" ng-show="showDatePicker" date-range id="pickerRange" start="query.start" end="query.end" date-change="changeDate" view="date" min-view="date" timezone="UTC"></div>
         </div>
         <div class="col-md-2">
             <label></label>

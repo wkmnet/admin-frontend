@@ -21,6 +21,10 @@
         $scope.param = {"page":1,"page_size":$scope.tablePageSize};
 
         $scope.data = {};
+
+        $scope.query = {};
+
+        $scope.showDatePicker = false;
         
         $scope.channel = {};
 
@@ -60,7 +64,7 @@
         $scope.queryHistoryTrade();
 
        
-        $( "#start" ).datepicker({
+        /*$( "#start" ).datepicker({
             defaultDate: "+1w",
             changeMonth: true,
             numberOfMonths: 1,
@@ -78,7 +82,29 @@
             onClose: function( selectedDate ) {
                 $( "#start" ).datepicker( "option", "maxDate", selectedDate );
             }
-        });
+        });*/
+
+        $scope.selectDate = function () {
+            $scope.showDatePicker = !$scope.showDatePicker;
+        }
+
+        $scope.changeDate = function (modelName, newDate) {
+            console.log("modelName:" + modelName + "---newDate:" + newDate);
+            if("start" == modelName){
+                $scope.param.start = newDate.format("YYYY-MM-DD");
+            } else {
+                $scope.param.end = newDate.format("YYYY-MM-DD");
+            }
+        }
+
+        $scope.clearDate = function () {
+            $scope.param.start = "";
+            $scope.param.end = "";
+        }
+
+        $scope.closeDatePicker = function () {
+            $scope.showDatePicker = false;
+        }
         
         //查询渠道
         $scope.selectChannel = function () {

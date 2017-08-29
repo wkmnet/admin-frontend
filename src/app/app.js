@@ -13,6 +13,7 @@ angular.module('BlurAdmin', [
   'ngJsTree',
   'angular-progress-button-styles',
   'angularFileUpload',
+  'datePicker',
 
   'BlurAdmin.theme',
   'BlurAdmin.pages'
