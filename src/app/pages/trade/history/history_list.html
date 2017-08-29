@@ -45,9 +45,16 @@
                     <span class="input-group-addon">到</span>
                    <input ng-dblclick="clearDate()" ng-click="selectDate()" type="text" ng-model="param.end" id="end" class="form-control" name="end"/>
                </div>
-
             </div>
-            <div ng-blur="closeDatePicker" ng-show="showDatePicker" date-range id="pickerRange" start="query.start" end="query.end" date-change="changeDate" view="date" min-view="date" timezone="UTC"></div>
+            <div ng-show="showDatePicker" id="myPicker" style="position: absolute;z-index: 100;border:1px solid #000">
+                <div>
+                    <ul class="btn-list clearfix">
+                        <li><button title="关闭" ng-click="closeDatePicker()" type="button" class="btn btn-primary btn-icon"><i class="ion-ios-close-outline"></i></button></li>
+                        <li><button title="清空" ng-click="clearDate()" type="button" class="btn btn-primary btn-icon"><i class="ion-loop"></i></button></li>
+                    </ul>
+                </div>
+                <div date-range id="pickerRange" start="query.start" end="query.end" date-change="changeDate" view="date" min-view="date" timezone="UTC"></div>
+            </div>
         </div>
         <div class="col-md-2">
             <label></label>
