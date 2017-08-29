@@ -9,7 +9,7 @@
       .controller('DashboardLineChartCtrl', DashboardLineChartCtrl);
 
   /** @ngInject */
-  function DashboardLineChartCtrl($http, toastr, baConfig, layoutPaths, baUtil) {
+  function DashboardLineChartCtrl($scope, $http, toastr, baConfig, layoutPaths, baUtil) {
     var layoutColors = baConfig.colors;
     var graphColor = baConfig.theme.blur ? '#000000' : layoutColors.primary;
     /*var chartData = [
