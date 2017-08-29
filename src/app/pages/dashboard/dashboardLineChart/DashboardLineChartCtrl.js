@@ -137,10 +137,9 @@
         if (chart.zoomChart) {
             chart.zoomChart();
         }
-    }
-
-    function zoomChart() {
-      chart.zoomToDates(new Date($scope.data.start), new Date($scope.data.end));
+        function zoomChart() {
+            chart.zoomToDates(new Date($scope.data.start), new Date($scope.data.end));
+        }
     }
   }
 })();
