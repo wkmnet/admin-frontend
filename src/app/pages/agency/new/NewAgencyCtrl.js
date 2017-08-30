@@ -55,6 +55,29 @@
 
       //  $scope.getAgencyNo();
 
+        $scope.checkAgency = function () {
+            if(!$scope.agency.agency_no){
+                toastr.error("平台编号为空！");
+                return;
+            }
+            if(!$scope.agency.agency_name){
+                toastr.error("平台名称为空！");
+                return;
+            };
+            if(!$scope.agency.expire_age || $scope.agency.expire_age < 10){
+                toastr.error("超时时间不能少于10分钟！");
+                return;
+            };
+            if(!$scope.agency.agency_key){
+                toastr.error("平台密钥不能为空！");
+                return;
+            };
+
+            $scope.saveAgency();
+
+
+        };
+
 
 
     }

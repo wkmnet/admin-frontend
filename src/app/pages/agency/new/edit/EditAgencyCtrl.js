@@ -24,6 +24,8 @@
 
         $scope.agency = {"expire_age":10};
 
+        $scope.saveFlag = false;
+
         $scope.loadAgency = function() {
             console.log("agency",$scope.agencyId);
             $http.get("/api/agency/" + $scope.agencyId).success(function(response){
@@ -59,6 +61,7 @@
             $http.get("/api/agency/getAgencyNo").success(function(response){
                 if(response.success){
                     $scope.agency.agency_no=response.data;
+                    $scope.saveFlag = true;
                 }else{
                     toastr.error(response.message)
                 }
@@ -68,6 +71,45 @@
                 toastr.error(resp);
             });
         };
+
+        $scope.changeAgencyNo = function () {
+            if(!$scope.agency.agency_no){
+                toastr.error("平台编号为空！");
+                $scope.saveFlag = false;
+                return;
+            };
+            $scope.saveFlag = true;
+
+        };
+        $scope.changeAgencyName = function () {
+            if(!$scope.agency.agency_name){
+                toastr.error("平台名称为空！");
+                $scope.saveFlag = false;
+                return;
+            };
+            $scope.saveFlag = true;
+
+        };
+        $scope.changeAgencyAge = function () {
+
+            if(!$scope.agency.expire_age || $scope.agency.expire_age < 10){
+                toastr.error("超时时间不能少于10分钟！");
+                $scope.saveFlag = false;
+                return;
+            };
+            $scope.saveFlag = true;
+
+        };
+        $scope.changeAgencyKey = function () {
+            if(!$scope.agency.agency_key){
+                toastr.error("平台密钥不能为空！");
+                $scope.saveFlag = false;
+                return;
+            };
+            $scope.saveFlag = true;
+        };
+
+
 
     }
 
