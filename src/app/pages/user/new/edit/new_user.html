@@ -1,22 +1,22 @@
 <form>
     <div class="form-group">
         <label for="email">邮箱</label>
-        <input type="text" class="form-control" id="email" ng-model="user.email" placeholder="邮箱" ng-change="changeEmail()">
+        <input type="text" class="form-control" id="email" ng-model="user.email" placeholder="邮箱" ng-change="checkUser()">
     </div>
     <div class="form-group">
         <label for="user_name">用户名</label>
-        <input type="text" class="form-control" id="user_name" ng-model="user.user_name" placeholder="用户名" ng-change="changeName()">
+        <input type="text" class="form-control" id="user_name" ng-model="user.user_name" placeholder="用户名" ng-change="checkUser()">
     </div>
     <div class="form-group" id="roleDiv">
         <label for="role">用户角色</label>
-        <select class="form-control" id="role" ng-model="user.role" title="用户角色" data-style="btn-primary" data-container="body" ng-change="changeRole()" selectpicker>
+        <select class="form-control" id="role" ng-model="user.role" title="用户角色" data-style="btn-primary" data-container="body" ng-change="checkUser()" selectpicker>
             <option value="normal">普通用户</option>
             <option value="admin">管理员</option>
         </select>
     </div>
     <div class="form-group">
         <label for="password">密码</label>
-        <input type="password" class="form-control form-control-rounded" id="password" ng-model="param.password" placeholder="密码" ng-change="changePassword()">
+        <input type="password" class="form-control form-control-rounded" id="password" ng-model="param.password" placeholder="密码" ng-change="checkUser()">
     </div>
     <div class="row">
         <div class="col-md-2">

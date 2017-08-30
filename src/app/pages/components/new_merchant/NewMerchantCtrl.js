@@ -53,6 +53,40 @@
             }
         };
 
+        $scope.checkMerchant = function(){
+
+            if(!$scope.merchant.merchant_no) {
+                toastr.error("支付渠道编号不能为空!");
+                return;
+            };
+            if(!$scope.merchant.merchant_name) {
+                toastr.error("支付渠道名称不能为空!");
+                return;
+            };
+            if(!$scope.merchant.pay_channel) {
+                toastr.error("支付渠道不能为空!");
+                return;
+            };
+            if(!$scope.merchant.pay_type) {
+                toastr.error("支付方式不能为空!");
+                return;
+            };
+            if(!$scope.merchant.mch_no) {
+                toastr.error("收款商户不能为空!");
+                return;
+            };
+            if(!$scope.merchant.app_id) {
+                toastr.error("第三方应用ID不能为空!");
+                return;
+            };
+            if(!$scope.merchant.notify_url) {
+                toastr.error("回调不能为空!");
+                return;
+            };
+
+            $scope.saveMerchant();
+        };
+
 
 
     }

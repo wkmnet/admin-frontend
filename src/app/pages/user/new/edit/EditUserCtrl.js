@@ -57,35 +57,26 @@
                 toastr.error(data);
             });
         };
-        
 
-        $scope.changeEmail = function () {
+
+        $scope.checkUser = function () {
+            var regEmail = /^([a-zA-Z0-9_-])+\@([a-zA-Z0-9_-])+.([a-zA-Z])+$/;
+            var regPwd =/^[a-z0-9_]{6,18}$/;
             if(!$scope.user.email || !regEmail.test($scope.user.email)){
                 toastr.error("邮箱格式不正确！");
                 $scope.saveFlag = false;
                 return;
             }
-            $scope.saveFlag = true;
-        };
-        $scope.changeName = function () {
             if(!$scope.user.user_name){
                 toastr.error("用户名不能为空！");
                 $scope.saveFlag = false;
                 return;
             }
-            $scope.saveFlag = true;
-        };
-        $scope.changeRole = function () {
             if(!$scope.user.role){
                 toastr.error("用户角色不能为空！");
                 $scope.saveFlag = false;
                 return;
             }
-            $scope.saveFlag = true;
-        };
-        $scope.changePassword = function () {
-            var regEmail = /^([a-zA-Z0-9_-])+\@([a-zA-Z0-9_-])+.([a-zA-Z])+$/;
-            var regPwd =/^[a-z0-9_]{6,18}$/;
             if(!regPwd.test($scope.param.password)){
                 toastr.error("密码格式不正确！6-18位，字母、数字、下划线");
                 $scope.saveFlag = false;
