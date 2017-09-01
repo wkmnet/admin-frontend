@@ -34,7 +34,7 @@
             <!--<td class="align-right">{{item.subject}}</td>-->
             <!--  <td class="align-right">{{item.body}}</td>-->
             <!--  <td class="align-right">{{item.amount}}</td>-->
-            <td class="align-right">{{item.amount_pay/100 | number:2}}元/{{item.amount_refunded/100 | number:2}}元</td>
+            <td class="align-right">{{item.amount_pay/100 | number:2}}/{{item.amount_refunded/100 | number:2}}</td>
            <!-- <td class="align-right">{{item.merchant}}</td>-->
             <td class="align-right">{{item.status == 0?"创建":item.status == 1?"成功":item.status == 2?"超时":item.status == 3 ? "退款":item.status == 4 ? "支付中":item.status == 5 ? "取消":item.status}}
            <td class="align-right">{{item.created_time}}</td>
