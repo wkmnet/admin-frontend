@@ -23,8 +23,7 @@
         console.log("agencyId",$stateParams.agency);
 
         $scope.agency = {"expire_age":10};
-
-        $scope.saveFlag = false;
+        
 
         $scope.loadAgency = function() {
             console.log("agency",$scope.agencyId);
@@ -61,7 +60,6 @@
             $http.get("/api/agency/getAgencyNo").success(function(response){
                 if(response.success){
                     $scope.agency.agency_no=response.data;
-                    $scope.checkAgency();
                 }else{
                     toastr.error(response.message)
                 }
@@ -76,27 +74,23 @@
         $scope.checkAgency = function () {
             if(!$scope.agency.agency_no){
                 toastr.error("平台编号为空！");
-                $scope.saveFlag = false;
                 return;
             };
 
             if(!$scope.agency.agency_name) {
                 toastr.error("平台名称为空！");
-                $scope.saveFlag = false;
                 return;
             };
 
             if(!$scope.agency.expire_age || $scope.agency.expire_age < 10){
                 toastr.error("超时时间不能少于10分钟！");
-                $scope.saveFlag = false;
                 return;
             };
             if(!$scope.agency.agency_key){
                 toastr.error("平台密钥不能为空！");
-                $scope.saveFlag = false;
                 return;
             };
-            $scope.saveFlag = true;
+            $scope.saveAgency();
 
         };
 
