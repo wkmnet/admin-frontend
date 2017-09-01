@@ -60,7 +60,8 @@
     function createNewChart(){
         var chartData = [];
         $scope.data.list.forEach(function(value,index,array){
-            chartData.push({date: new Date(value.date), total: value.total,success: value.success,refund: value.refund})
+            chartData.push({date: new Date(value.date), total: value.total,success: value.success,
+                refund: value.refund,cancel: value.cancel})
         });
         var chart = AmCharts.makeChart("amchart", {
             "type": "serial",
@@ -85,10 +86,16 @@
                 "balloonText": "<div style='margin:5px; font-size:19px;'>成功单:<b>[[value]]</b></div>"
             },{
                 "id": "g2",
-                "lineColor": baUtil.hexToRGB(graphColor, 0.8),
+                "lineColor": baUtil.hexToRGB(graphColor, 0.7),
                 "fillAlphas": 1,
                 "valueField": "refund",
                 "balloonText": "<div style='margin:5px; font-size:19px;'>退款单:<b>[[value]]</b></div>"
+            },{
+                "id": "g3",
+                "lineColor": baUtil.hexToRGB(graphColor, 0.9),
+                "fillAlphas": 1,
+                "valueField": "cancel",
+                "balloonText": "<div style='margin:5px; font-size:19px;'>取消单:<b>[[value]]</b></div>"
             }],
             "chartCursor": {
                 "categoryBalloonDateFormat": "JJ:NN, MM-DD",
