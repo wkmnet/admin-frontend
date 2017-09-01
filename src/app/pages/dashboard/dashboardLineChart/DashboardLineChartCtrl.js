@@ -60,7 +60,7 @@
     function createNewChart(){
         var chartData = [];
         $scope.data.list.forEach(function(value,index,array){
-            chartData.push({date: new Date(value.date), total: value.total,success: value.success,refund: 0})
+            chartData.push({date: new Date(value.date), total: value.total,success: value.success,refund: value.refund})
         });
         var chart = AmCharts.makeChart("amchart", {
             "type": "serial",
