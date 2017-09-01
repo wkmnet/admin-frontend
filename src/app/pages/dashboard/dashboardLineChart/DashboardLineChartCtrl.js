@@ -119,7 +119,7 @@
         // this method is called when chart is first inited as we listen for "dataUpdated" event
         function zoomChart() {
             // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
-            chart.zoomToIndexes(chartData.length - 250, chartData.length - 100);
+            chart.zoomToIndexes(0, chartData.length - 1);
         }
 
     }
