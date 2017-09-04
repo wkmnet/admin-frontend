@@ -16,7 +16,7 @@
         .controller('HistoryCtrl', HistoryCtrl).controller("HistoryOrderModalCtrl",HistoryOrderModalCtrl);
 
     /** @ngInject */
-    function HistoryCtrl($scope, $http, toastr,$uibModal) {
+    function HistoryCtrl($scope, $http, toastr,$uibModal,cfpLoadingBar) {
         $scope.tablePageSize = 10;
         $scope.param = {"page":1,"page_size":$scope.tablePageSize};
 
@@ -29,6 +29,7 @@
         $scope.channel = {};
 
         $scope.queryHistoryTrade = function () {
+            cfpLoadingBar.start();
             var url = "/api/trade/history?page=" + ($scope.param.page || "") +
                 "&page_size=" + ($scope.param.page_size || "") +
                 "&order_no=" + ($scope.param.order_no || "") +
@@ -44,9 +45,11 @@
                 } else {
                     toastr.error(resp.message);
                 }
+                cfpLoadingBar.complete();
             }).error(function(resp,status){
                 console.log("status:",status);
                 toastr.error(resp);
+                cfpLoadingBar.complete();
             });
 
         };

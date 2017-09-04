@@ -18,7 +18,7 @@
 
 
     /** @ngInject */
-    function CurrentCtrl($scope, $http, toastr,$uibModal) {
+    function CurrentCtrl($scope, $http, toastr,$uibModal,cfpLoadingBar) {
         
         $scope.tablePageSize = 10;
         $scope.param = {"page":1,"page_size":$scope.tablePageSize};
@@ -32,6 +32,7 @@
         $scope.channel = {};
 
         $scope.queryTrade = function () {
+            cfpLoadingBar.start();
             var url = "/api/trade?page=" + ($scope.param.page || "") +
                 "&page_size=" + ($scope.param.page_size || "") +
                 "&order_no=" + ($scope.param.order_no || "") +
@@ -46,13 +47,14 @@
                     $scope.data = resp.data;
                     //设置butten组
                   //  $scope.createBtn();
-
                 } else {
                     toastr.error(resp.message);
                 }
+                cfpLoadingBar.complete();
             }).error(function(resp,status){
                 console.log("status:",status);
                 toastr.error(resp);
+                cfpLoadingBar.complete();
             });
 
 

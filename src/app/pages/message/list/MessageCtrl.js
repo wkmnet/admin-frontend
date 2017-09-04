@@ -16,7 +16,7 @@
         .controller('MessageCtrl', MessageCtrl);
 
     /** @ngInject */
-    function MessageCtrl($scope, $http, toastr) {
+    function MessageCtrl($scope, $http, toastr,cfpLoadingBar) {
         
         $scope.tablePageSize = 10;
         $scope.param = {"page":1,"page_size":$scope.tablePageSize};
@@ -26,6 +26,7 @@
         $scope.channel = {};
 
         $scope.queryMessage = function () {
+            cfpLoadingBar.start();
             var url = "/api/message?page=" + ($scope.param.page || "") +
                 "&page_size=" + ($scope.param.page_size || "") +
                 "&status=" + ($scope.param.status || "") +
@@ -36,13 +37,14 @@
                     $scope.data = resp.data;
                     //设置butten组
                    // $scope.createBtn();
-
                 } else {
                     toastr.error(resp.message);
                 }
+                cfpLoadingBar.complete();
             }).error(function(resp,status){
                 console.log("status:",status);
                 toastr.error(resp);
+                cfpLoadingBar.complete();
             });
 
         };

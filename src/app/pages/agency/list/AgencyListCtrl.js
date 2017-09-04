@@ -16,7 +16,7 @@
         .controller('AgencyListCtrl', AgencyListCtrl);
 
     /** @ngInject */
-    function AgencyListCtrl($scope, $http, toastr) {
+    function AgencyListCtrl($scope, $http, toastr,cfpLoadingBar) {
         $scope.tablePageSize = 10;
         $scope.param = {"page":1,"page_size":$scope.tablePageSize};
         
@@ -24,6 +24,7 @@
         $scope.data = {};
 
         $scope.queryAgency = function () {
+            cfpLoadingBar.start();
             var url = "/api/agency?page=" + ($scope.param.page || "") + 
                 "&page_size=" + ($scope.param.page_size || "") +
                 "&agency_no=" + ($scope.param.agency_no || "") + 
@@ -36,9 +37,11 @@
                 } else {
                     toastr.error(resp.message);
                 }
+                cfpLoadingBar.complete();
             }).error(function(resp,status){
                 console.log("status:",status);
                 toastr.error(resp);
+                cfpLoadingBar.complete();
             });
 
         };

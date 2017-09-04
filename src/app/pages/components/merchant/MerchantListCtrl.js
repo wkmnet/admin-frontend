@@ -17,7 +17,7 @@
         .controller('MerchantListCtrl', MerchantListCtrl);
 
     /** @ngInject */
-    function MerchantListCtrl($scope, $http, toastr) {
+    function MerchantListCtrl($scope, $http, toastr,cfpLoadingBar) {
 
         $scope.tablePageSize = 10;
         $scope.param = {"page":1,"page_size":$scope.tablePageSize};
@@ -25,6 +25,7 @@
         $scope.data = {};
 
         $scope.queryMerchant = function () {
+            cfpLoadingBar.start();
             var url = "/api/merchant?page=" + ($scope.param.page || "") +
                 "&page_size=" + ($scope.param.page_size || "") +
                 "&merchant_no=" + ($scope.param.merchant_no || "") +
