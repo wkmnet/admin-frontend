@@ -127,14 +127,14 @@
         $scope.monitor = response;
         loadPieCharts();
         updatePieCharts();
-        $timeout(scanSystemMonitor,1000);
+        //$timeout(scanSystemMonitor,1000);
     });
     function scanSystemMonitor() {
         $http.get("/api/monitor").success(function(response) {
             $scope.monitor = response;
             console.log($scope.monitor);
             updatePieCharts();
-            $timeout(scanSystemMonitor,3000);
+            //$timeout(scanSystemMonitor,3000);
         });
     }
     //跳转url
