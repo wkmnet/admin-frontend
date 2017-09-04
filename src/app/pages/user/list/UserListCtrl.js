@@ -23,6 +23,7 @@
         $scope.data = {};
 
         $scope.queryUser = function () {
+            cfpLoadingBar.start();
             var url = "/api/user?page=" + ($scope.param.page || "") +
                 "&page_size=" + ($scope.param.page_size || "") +
                 "&email=" + ($scope.param.email || "") +
@@ -34,9 +35,11 @@
                 } else {
                     toastr.error(resp.message);
                 }
+                cfpLoadingBar.complete();
             }).error(function(resp,status){
                 console.log("status:",status);
                 toastr.error(resp);
+                cfpLoadingBar.complete();
             });
 
         };
