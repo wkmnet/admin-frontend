@@ -14,6 +14,7 @@ angular.module('BlurAdmin', [
   'angular-progress-button-styles',
   'angularFileUpload',
   'datePicker',
+  'angular-loading-bar',
 
   'BlurAdmin.theme',
   'BlurAdmin.pages'
