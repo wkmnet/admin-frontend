@@ -123,12 +123,12 @@
       });
     }
 
-    // $http.get("/api/monitor").success(function(response) {
-    //     $scope.monitor = response;
-    //     loadPieCharts();
-    //     updatePieCharts();
-        //$timeout(scanSystemMonitor,1000);
-    // });
+    $http.get("/api/monitor").success(function(response) {
+        $scope.monitor = response;
+        loadPieCharts();
+        updatePieCharts();
+        $timeout(scanSystemMonitor,30000);
+    });
     function scanSystemMonitor() {
         $http.get("/api/monitor").success(function(response) {
             $scope.monitor = response;
@@ -137,7 +137,6 @@
             $timeout(scanSystemMonitor,30000);
         });
     }
-    scanSystemMonitor();
     //跳转url
     // $timeout(redirection,20000);
     // function redirection() {
