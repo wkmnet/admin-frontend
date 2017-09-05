@@ -2,16 +2,8 @@
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
-                <label for="status">订单状态</label>
-                <select class="form-control" id="status" ng-model="param.status" title="订单状态" data-style="btn-primary" data-container="body" selectpicker>
-                    <option></option>
-                    <option value="0">创建</option>
-                    <option value="1">成功</option>
-                    <option value="2">超时</option>
-                    <option value="3">已退款</option>
-                    <option value="4">支付中</option>
-                    <option value="5">取消</option>
-                </select>
+                <label for="out_pay_order">接入方订单号</label>
+                <input type="text" ng-model="param.out_pay_order" class="form-control" id="out_pay_order" placeholder="">
             </div>
         </div>
         <div class="col-md-4">
@@ -20,12 +12,21 @@
                 <input type="text" ng-model="param.order_no" class="form-control" id="order_no" placeholder="">
             </div>
         </div>
-       <div class="col-md-4">
+        <div class="col-md-4">
             <div class="form-group">
-                <label for="out_pay_order">接入方订单号</label>
-                <input type="text" ng-model="param.out_pay_order" class="form-control" id="out_pay_order" placeholder="">
+                <label for="status">订单状态</label>
+                <select class="form-control" id="status" ng-model="param.status" title="订单状态" data-style="btn-primary" data-container="body" selectpicker>
+                    <option></option>
+                    <option value="0">创建</option>
+                    <option value="1">成功</option>
+                    <option value="2">超时</option>
+                    <option value="3">退款</option>
+                    <!--<option value="4">支付中</option>-->
+                    <option value="5">取消</option>
+                </select>
             </div>
         </div>
+
     </div>
     <div class="row">
         <div class="col-md-4">
