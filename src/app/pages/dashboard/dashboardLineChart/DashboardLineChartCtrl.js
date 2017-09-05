@@ -61,7 +61,7 @@
         var chartData = [];
         $scope.data.list.forEach(function(value,index,array){
             chartData.push({date: new Date(value.date), total: value.total,success: value.success,
-                refund: value.refund,cancel: value.cancel})
+                refund: value.refund,cancel: value.cancel,timeout: value.timeout})
         });
         var chart = AmCharts.makeChart("amchart", {
             "type": "serial",
@@ -74,28 +74,34 @@
             }],
             "graphs": [{
                 "id": "g0",
-                "lineColor": baUtil.hexToRGB(graphColor, 0.3),
+                "lineColor": baUtil.hexToRGB(graphColor, 0.1),
                 "fillAlphas": 1,
                 "valueField": "total",
                 "balloonText": "<div style='margin:5px; font-size:19px;'>总订单:<b>[[value]]</b></div>"
             },{
                 "id": "g1",
-                "lineColor": baUtil.hexToRGB(graphColor, 0.5),
+                "lineColor": baUtil.hexToRGB(graphColor, 0.3),
                 "fillAlphas": 1,
                 "valueField": "success",
                 "balloonText": "<div style='margin:5px; font-size:19px;'>成功单:<b>[[value]]</b></div>"
             },{
                 "id": "g2",
-                "lineColor": baUtil.hexToRGB(graphColor, 0.7),
+                "lineColor": baUtil.hexToRGB(graphColor, 0.5),
                 "fillAlphas": 1,
                 "valueField": "refund",
                 "balloonText": "<div style='margin:5px; font-size:19px;'>退款单:<b>[[value]]</b></div>"
             },{
                 "id": "g3",
-                "lineColor": baUtil.hexToRGB(graphColor, 0.9),
+                "lineColor": baUtil.hexToRGB(graphColor, 0.7),
                 "fillAlphas": 1,
                 "valueField": "cancel",
                 "balloonText": "<div style='margin:5px; font-size:19px;'>取消单:<b>[[value]]</b></div>"
+            },{
+                "id": "g4",
+                "lineColor": baUtil.hexToRGB(graphColor, 0.9),
+                "fillAlphas": 1,
+                "valueField": "timeout",
+                "balloonText": "<div style='margin:5px; font-size:19px;'>超时单:<b>[[value]]</b></div>"
             }],
             "chartCursor": {
                 "categoryBalloonDateFormat": "JJ:NN, MM-DD",
