@@ -22,7 +22,7 @@
                 url: '/list',
                 templateUrl: 'app/pages/config/list/list.html',
                 controller: "ConfigListCtrl",
-                title: '系统配置列表',
+                title: '配置列表',
                 sidebarMeta: {
                     icon: 'ion-ios-pulse',
                     order: 0,
