@@ -22,7 +22,7 @@
         $scope.agencyId = $stateParams.agency;
         console.log("agencyId",$stateParams.agency);
 
-        $scope.agency = {"expire_age":10};
+        $scope.agency = {"expire_age":1};
         
 
         $scope.loadAgency = function() {
@@ -82,8 +82,8 @@
                 return;
             };
 
-            if(!$scope.agency.expire_age || $scope.agency.expire_age < 10){
-                toastr.error("超时时间不能少于10分钟！");
+            if(!$scope.agency.expire_age || $scope.agency.expire_age < 1){
+                toastr.error("超时时间不能少于1分钟！");
                 return;
             };
             if(!$scope.agency.agency_key){
