@@ -124,6 +124,7 @@
             });
             
         };
+        $scope.selectChannel();
 
         //发送通知
        /* $scope.sendMessge = function(order_no){

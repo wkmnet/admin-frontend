@@ -31,7 +31,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="channel">选择支付渠道</label>
-                <select class="form-control" id="channel" ng-click="selectChannel()" ng-model="param.channel" title="支付渠道" data-style="btn-primary" data-container="body" selectpicker>
+                <select class="form-control" id="channel" ng-model="param.channel" title="支付渠道" data-style="btn-primary" data-container="body" selectpicker>
                     <option></option>
                     <option ng-repeat="item in channel.list" value="{{item.merchant_no}}">{{item.merchant_no}}      {{item.merchant_name}}</option>
                 </select>
