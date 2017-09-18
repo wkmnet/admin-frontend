@@ -144,6 +144,16 @@
 
         };*/
 
+        $scope.refundConfirm = function (order_no, amount_pay) {
+            var msg = "确定要退款订单 " + order_no + " 吗？";
+            if (confirm(msg) == true) {
+                $scope.refund(order_no, amount_pay);
+            } else {
+                console.log("取消删除")
+            }
+        };
+
+
         //发送通知
         $scope.refund = function(order_no,amount_pay){
             console.log("order_no : " + order_no);
