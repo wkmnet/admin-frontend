@@ -28,7 +28,17 @@
        </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="type">订单类型</label>
+                <select class="form-control" id="type" ng-model="param.trans_type" title="订单类型" data-style="btn-primary" data-container="body" selectpicker>
+                    <option></option>
+                    <option value="charge">交易</option>
+                    <option value="refund">退款</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
             <div class="form-group">
                 <label for="channel">选择支付渠道</label>
                 <select class="form-control" id="channel" ng-model="param.channel" title="支付渠道" data-style="btn-primary" data-container="body" selectpicker>
@@ -37,7 +47,7 @@
                 </select>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div class="form-group">
                 <label for="order_no">交易日期</label>
                 <div class="input-daterange input-group" id="datepicker">
@@ -56,7 +66,7 @@
                 <div date-range id="pickerRange" start="query.start" end="query.end" date-change="changeDate" view="date" min-view="date" timezone="UTC"></div>
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
             <label></label>
             <div class="button-wrapper"><button type="button" ng-click="queryBtn()" class="btn btn-primary  btn-sm">查询</button></div>
         </div>

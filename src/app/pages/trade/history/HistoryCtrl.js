@@ -36,6 +36,7 @@
                 "&out_trade_no=" + ($scope.param.out_pay_order || "") +
                 "&channel=" + ($scope.param.channel || "") +
                 "&status=" + ($scope.param.status || "") +
+                "&trans_type=" + ($scope.param.trans_type || "") +
                 "&start=" + ($scope.param.start || "") +
                 "&end=" + ($scope.param.end || "");
 
