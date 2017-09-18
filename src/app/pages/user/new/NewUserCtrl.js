@@ -67,7 +67,21 @@
 
 
         $scope.currentUser= {};
-        $scope.queryCurrent = function (id) {
+        $scope.queryCurrent = function(){
+            $http.get("/api/current/user").success(function (resp) {
+                if(resp.success){
+                    $scope.currentUser = resp.data;
+                } else {
+                    toastr.error(resp.message);
+                }
+                
+            }).error(function () {
+                console.log("status:",status);
+                toastr.error(resp);
+            });
+        };
+        $scope.queryCurrent();
+        /*$scope.queryCurrent = function (id) {
             $http.get("/api/user/" + id).success(function(resp){
                 if(resp.success){
                     $scope.currentUser = resp.data;
@@ -103,7 +117,7 @@
         }
 
         $scope.getCookie();
-
+*/
 
 
     }
