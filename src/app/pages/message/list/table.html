@@ -22,11 +22,10 @@
             <td class="align-left">{{item.created_time}}</td>
             <td class="align-left">{{item.updated_time}}</td>
             <td class="align-left">{{item.notify_url}}</td>
-            <td class="align-left">{{item.text}}</td>
+            <td class="align-left"><pre>{{strToJson(item.id,item.text)}}</pre></td>
             <td class="align-left">
                 <a href="javascript:void(0)" ng-click="sendMessge({{item.id}})">通知</a>
             </td>
-
 
         </tr>
         <tfoot>

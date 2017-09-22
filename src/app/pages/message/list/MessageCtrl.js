@@ -90,6 +90,12 @@
             });
 
         };
+        
+        $scope.strToJson = function (id,str){
+            var str = JSON.stringify(JSON.parse(str), undefined, 4);
+            console.log("str ", str);
+            return str;
+        }
 
 
 
