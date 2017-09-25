@@ -17,8 +17,8 @@
         .service('commonService', commonService);
 
     /** @ngInject */
-    function commonService($uibModal,title,body) {
-        this.confirm = function (scope) {
+    function commonService($uibModal) {
+        this.confirm = function (scope,title,body) {
             if(!scope.confirm_title){
                 scope.confirm_title = title;
             }
