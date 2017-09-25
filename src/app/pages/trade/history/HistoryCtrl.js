@@ -16,7 +16,7 @@
         .controller('HistoryCtrl', HistoryCtrl).controller("HistoryOrderModalCtrl",HistoryOrderModalCtrl);
 
     /** @ngInject */
-    function HistoryCtrl($scope, $http, toastr,$uibModal,cfpLoadingBar) {
+    function HistoryCtrl($scope, $http, toastr,$uibModal,cfpLoadingBar,commonService) {
         $scope.tablePageSize = 10;
         $scope.param = {"page":1,"page_size":$scope.tablePageSize};
 
@@ -144,13 +144,13 @@
 
         };*/
 
-        $scope.refundConfirm = function (order_no, amount_pay) {
-            var msg = "确定要退款订单 " + order_no + " 吗？";
-            if (confirm(msg) == true) {
-                $scope.refund(order_no, amount_pay);
-            } else {
-                console.log("取消删除")
-            }
+        $scope.refundConfirm = function(order_no,amount_pay){
+            commonService.confirm($scope,'确认对话框','您确定要退款订单 ' + order_no +' 吗？').then(function(result){
+                console.log("result...",result);
+                if(result == 'ok'){
+                    $scope.refund(order_no,amount_pay);
+                }
+            });
         };
 
 

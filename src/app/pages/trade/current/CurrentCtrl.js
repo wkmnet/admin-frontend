@@ -18,7 +18,7 @@
 
 
     /** @ngInject */
-    function CurrentCtrl($scope, $http, toastr,$uibModal,cfpLoadingBar) {
+    function CurrentCtrl($scope, $http, toastr,$uibModal,cfpLoadingBar,commonService) {
         
         $scope.tablePageSize = 10;
         $scope.param = {"page":1,"page_size":$scope.tablePageSize};
@@ -57,9 +57,6 @@
                 toastr.error(resp);
                 cfpLoadingBar.complete();
             });
-
-
-
         };
         $scope.queryBtn = function(){
             $scope.param.page = 1;
@@ -83,32 +80,7 @@
             console.log("btns : " + $scope.btns);
         };
 */
-
-
         $scope.queryTrade();
-
-       /*
-        $( "#start" ).datepicker({
-            defaultDate: "+1w",
-            changeMonth: true,
-            numberOfMonths: 1,
-            changeYear:true,
-            dateFormat:"yy-mm-dd",
-            onClose: function( selectedDate ) {
-                $( "#end" ).datepicker( "option", "minDate", selectedDate );
-            }
-        });
-        $( "#end" ).datepicker({
-            defaultDate: "+1w",
-            changeMonth: true,
-            numberOfMonths: 1,
-            changeYear:true,
-            dateFormat:"yy-mm-dd",
-            regional:"[zh-CN]",
-            onClose: function( selectedDate ) {
-                $( "#start" ).datepicker( "option", "maxDate", selectedDate );
-            }
-        });*/
 
         $scope.selectDate = function () {
             $scope.showDatePicker = !$scope.showDatePicker;
@@ -148,35 +120,24 @@
             
         };
         $scope.selectChannel();
-        
-        //发送通知
-  /*      $scope.sendMessge = function(order_no){
-            console.log("order_no : " + order_no);
-            var url = "/api/trade/sendMessage?order_no=" + order_no;
-            $http.get(url).success(function(resp){
-                if(resp.success){
-                   toastr.success("发送通知成功！");
-                } else {
-                    toastr.error(resp.message);
-                }
-            }).error(function(resp,status){
-                console.log("status:",status);
-                toastr.error(resp);
-            });
 
-        };*/
-
-        $scope.refundConfirm = function (order_no, amount_pay) {
+/*        $scope.refundConfirm = function (order_no, amount_pay) {
             var msg = "确定要退款订单 " + order_no + " 吗？";
             if (confirm(msg) == true) {
                 $scope.refund(order_no, amount_pay);
             } else {
                 console.log("取消删除")
             }
+        };*/
+        $scope.refundConfirm = function(order_no,amount_pay){
+            commonService.confirm($scope,'确认对话框','您确定要退款订单 ' + order_no +' 吗？').then(function(result){
+                console.log("result...",result);
+                if(result == 'ok'){
+                    $scope.refund(order_no,amount_pay);
+                }
+            });
         };
-
-
-
+        
         //退款
         $scope.refund = function(order_no,amount_pay){
             console.log("order_no : " + order_no);
@@ -195,8 +156,18 @@
             });
 
         };
-        //补单
+
         $scope.fix = function(order_no){
+            commonService.confirm($scope,'确认对话框','您确定要补单 ' + order_no +' 吗？').then(function(result){
+                console.log("result...",result);
+                if(result == 'ok'){
+                    $scope.fix_order(order_no);
+                }
+            });
+        };
+
+        //补单
+        $scope.fix_order = function(order_no){
             console.log("order_no : " + order_no);
             var url = "/api/trade/fix?order_no=" + order_no;
             $http.get(url).success(function(resp){
@@ -223,7 +194,6 @@
             }else{
                 $scope.org_order = {};
                 $scope.org = false;
-
             }
 
         };
@@ -233,7 +203,6 @@
             $http.get(url).success(function(resp){
                 if(resp.success){
                     $scope.org_order = resp.data;
-
                 } else {
                     toastr.error(resp.message);
                 }
@@ -244,18 +213,15 @@
 
         };
 
-       // $scope.openOrder = false;
         $scope.openList = true;
         $scope.order={};
         $scope.open = function(index){
             $scope.order = $scope.data.list[index];
-         //   $scope.openOrder = true;
             $scope.openList = false;
             console.log("org_id : " + $scope.data.list[index].org_id);
             $scope.queryOrgTrade($scope.data.list[index].org_id);
         };
         $scope.close = function(){
-          //  $scope.openOrder = false;
             $scope.openList = true;
         };
 
@@ -276,8 +242,6 @@
             });
         };*/
 
-
-
     }
 
     
@@ -285,7 +249,6 @@
         $scope.order = order;
         $scope.org_order = {};
         $scope.org = false;
-
         $scope.queryTradeById = function(id){
             console.log("id: " + id);
             var url = "/api/trade/" + id;
@@ -315,14 +278,9 @@
             }
 
         };
-
         $scope.queryOrgTrade($scope.order.org_id);
-
         
-
         $scope.back = false;
-        
-
         $scope.goBack = function(){
             $scope.order=order;
             $scope.back = false;
@@ -334,9 +292,6 @@
             $scope.back=  true;
             $scope.org = false;
         }
-        
-        
     }
-
 
 })();

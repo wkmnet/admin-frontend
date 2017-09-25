@@ -17,7 +17,7 @@
         .controller('KeysCtrl', KeysCtrl);
 
     /** @ngInject */
-    function KeysCtrl($scope, $http, toastr) {
+    function KeysCtrl($scope, $http, toastr,commonService) {
 
         $scope.merchant = {};
 
@@ -200,12 +200,12 @@
         }
 
         $scope.delete = function(){
-            var msg = "确定要删除吗？";
-            if (confirm(msg)==true){
-                $scope.deleteSign();
-            }else{
-                console.log("取消删除")
-            }
+            commonService.confirm($scope,'确认对话框','您确定要删除密钥吗？').then(function(result){
+                console.log("result...",result);
+                if(result == 'ok'){
+                    $scope.deleteSign();
+                }
+            });
         };
 
         $scope.deleteSign = function(){

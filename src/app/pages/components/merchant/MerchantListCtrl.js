@@ -17,7 +17,7 @@
         .controller('MerchantListCtrl', MerchantListCtrl);
 
     /** @ngInject */
-    function MerchantListCtrl($scope, $http, toastr,cfpLoadingBar) {
+    function MerchantListCtrl($scope, $http, toastr,cfpLoadingBar,commonService) {
 
         $scope.tablePageSize = 10;
         $scope.param = {"page":1,"page_size":$scope.tablePageSize};
@@ -58,12 +58,12 @@
         $scope.queryMerchant();
 
         $scope.delete = function(id,name){
-            var msg = "确定要删除" + name + "吗？";
-            if (confirm(msg)==true){
-                $scope.deleteMerchant(id);
-            }else{
-                console.log("取消删除")
-            }
+            commonService.confirm($scope,'确认对话框','您确定要删除 ' + name +' 支付渠道吗？').then(function(result){
+                console.log("result...",result);
+                if(result == 'ok'){
+                    $scope.deleteMerchant(id);
+                }
+            });
         };
 
         $scope.deleteMerchant = function (id) {

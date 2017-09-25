@@ -17,7 +17,7 @@
 
     /** @ngInject */
     function AgencyListCtrl($scope, $http, toastr,cfpLoadingBar,commonService) {
-        $scope.tablePageSize = 10;
+        $scope.tablePageSize = 5;
         $scope.param = {"page":1,"page_size":$scope.tablePageSize};
         
 
@@ -59,20 +59,13 @@
         $scope.queryAgency();
 
         $scope.delete = function(id,name){
-            commonService.confirm($scope,'确认对话框','您确定要删除' + name).then(function(result){
+            commonService.confirm($scope,'确认对话框','您确定要删除 ' + name +' 平台吗？').then(function(result){
                 console.log("result...",result);
                 if(result == 'ok'){
                     $scope.deleteAgency(id);
                 }
             });
-            // var msg = "确定要删除" + name + "吗？";
-            // if (confirm(msg)==true){
-            //     $scope.deleteAgency(id);
-            // }else{
-            //     console.log("取消删除")
-            // }
         };
-
         $scope.deleteAgency = function (id) {
             $http.delete("/api/agency/" + id).success(function(resp){
                 if(resp.success){

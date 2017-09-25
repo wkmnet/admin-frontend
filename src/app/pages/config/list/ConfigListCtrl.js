@@ -8,7 +8,7 @@
         .controller('ConfigListCtrl', ConfigListCtrl);
 
 
-    function ConfigListCtrl($scope, $http, toastr, cfpLoadingBar) {
+    function ConfigListCtrl($scope, $http, toastr, cfpLoadingBar,commonService) {
         $scope.tablePageSize = 10;
         $scope.param = {"page": 1, "page_size": $scope.tablePageSize};
 
@@ -42,13 +42,13 @@
         $scope.queryConfig();
 
 
-        $scope.delete = function (id, name) {
-            var msg = "确定要删除" + name + "吗？";
-            if (confirm(msg) == true) {
-                $scope.deleteConfig(id);
-            } else {
-                console.log("取消删除")
-            }
+        $scope.delete = function(id,name){
+            commonService.confirm($scope,'确认对话框','您确定要删除 ' + name +' 参数吗？').then(function(result){
+                console.log("result...",result);
+                if(result == 'ok'){
+                    $scope.deleteConfig(id);
+                }
+            });
         };
 
         $scope.deleteConfig = function (id) {

@@ -16,7 +16,7 @@
         .controller('MessageCtrl', MessageCtrl);
 
     /** @ngInject */
-    function MessageCtrl($scope, $http, toastr,cfpLoadingBar) {
+    function MessageCtrl($scope, $http, toastr,cfpLoadingBar,commonService) {
         
         $scope.tablePageSize = 10;
         $scope.param = {"page":1,"page_size":$scope.tablePageSize};
@@ -73,6 +73,15 @@
 
 
         $scope.queryMessage();
+
+        $scope.send = function(id){
+            commonService.confirm($scope,'确认对话框','您确定要发送通知吗？').then(function(result){
+                console.log("result...",result);
+                if(result == 'ok'){
+                    $scope.sendMessge(id);
+                }
+            });
+        };
         
         //发送通知
         $scope.sendMessge = function(id){
