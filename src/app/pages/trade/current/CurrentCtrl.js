@@ -158,7 +158,7 @@
         };
 
         $scope.fix = function(order_no){
-            commonService.confirm($scope,'确认对话框','您确定要补单 ' + order_no +' 吗？').then(function(result){
+            commonService.confirm($scope,'确认对话框','您确定要补单【' + order_no +'】吗？').then(function(result){
                 console.log("result...",result);
                 if(result == 'ok'){
                     $scope.fix_order(order_no);

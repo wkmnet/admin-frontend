@@ -65,7 +65,7 @@
         //     }
         // };
         $scope.delete = function(id,name){
-            commonService.confirm($scope,'确认对话框','您确定要删除 ' + name +' 用户吗？').then(function(result){
+            commonService.confirm($scope,'确认对话框','您确定要删除【' + name +'】用户吗？').then(function(result){
                 console.log("result...",result);
                 if(result == 'ok'){
                     $scope.deleteUser(id);

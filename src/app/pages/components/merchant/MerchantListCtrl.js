@@ -58,7 +58,7 @@
         $scope.queryMerchant();
 
         $scope.delete = function(id,name){
-            commonService.confirm($scope,'确认对话框','您确定要删除 ' + name +' 支付渠道吗？').then(function(result){
+            commonService.confirm($scope,'确认对话框','您确定要删除【' + name +'】支付渠道吗？').then(function(result){
                 console.log("result...",result);
                 if(result == 'ok'){
                     $scope.deleteMerchant(id);
@@ -87,7 +87,7 @@
             if(status == '1'){
                 content = '启用';
             }
-            commonService.confirm($scope,'确认对话框','您确定要' + content + name +'支付渠道吗？').then(function(result){
+            commonService.confirm($scope,'确认对话框','您确定要' + content + '【' + name +'】支付渠道吗？').then(function(result){
                 console.log("result...",result);
                 if(result == 'ok'){
                     $scope.switch(id,status);
