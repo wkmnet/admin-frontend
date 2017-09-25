@@ -19,12 +19,8 @@
     /** @ngInject */
     function commonService($uibModal) {
         this.confirm = function (scope,title,body) {
-            if(!scope.confirm_title){
-                scope.confirm_title = title;
-            }
-            if(!scope.confirm_body){
-                scope.confirm_body = body;
-            }
+            scope.confirm_title = title;
+            scope.confirm_body = body;
             var items = {};
             var modalConfig = {
                 animation: true,
