@@ -80,7 +80,23 @@
             });
         };
 
-        $scope.switchStatus = function(id,status){
+        $scope.switchStatus = function(id,name,status){
+            console.log("name:",name);
+            var content = "";
+            if(status == '2'){
+                content = '禁用';
+            }
+            if(status == '1'){
+                content = '启用';
+            }
+            commonService.confirm($scope,'确认对话框','您确定要' + content + name +'平台吗？').then(function(result){
+                console.log("result...",result);
+                if(result == 'ok'){
+                    $scope.switch(id,status);
+                }
+            });
+        };
+        $scope.switch = function(id,status){
             console.log("id:",id);
             console.log("status",status);
             $http.put("/api/agency/" + id,{"status":status}).success(function(response){
