@@ -130,7 +130,7 @@
             }
         };*/
         $scope.refundConfirm = function(order_no,amount_pay){
-            commonService.confirm($scope,'确认对话框','您确定要退款订单 ' + order_no +' 吗？').then(function(result){
+            commonService.confirm($scope,'确认对话框','您确定要对订单 ' + order_no +' 进行退款操作吗？').then(function(result){
                 console.log("result...",result);
                 if(result == 'ok'){
                     $scope.refund(order_no,amount_pay);
@@ -158,7 +158,7 @@
         };
 
         $scope.fix = function(order_no){
-            commonService.confirm($scope,'确认对话框','您确定要补单【' + order_no +'】吗？').then(function(result){
+            commonService.confirm($scope,'确认对话框','您确定要对订单【' + order_no +'】进行补单操作吗？').then(function(result){
                 console.log("result...",result);
                 if(result == 'ok'){
                     $scope.fix_order(order_no);
