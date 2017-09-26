@@ -3,11 +3,11 @@
         <thead>
         <tr>
             <th class="align-left">#</th>
-            <th class="align-left">通知次数</th>
-            <th class="align-left">状态</th>
+            <th class="align-left">次数/状态</th>
+          <!--  <th class="align-left">状态</th>-->
             <th class="align-left">延迟时间</th>
-            <th class="align-left">创建时间</th>
-            <th class="align-left">更新时间</th>
+            <th class="align-left">创建时间/更新时间</</th>
+         <!--   <th class="align-left">更新时间</th>-->
             <th class="align-left">通知地址</th>
             <th class="align-left">通知文本</th>
             <th class="align-left">操作</th>
@@ -16,11 +16,11 @@
         </thead>
         <tr ng-repeat="item in data.list">
             <td class="align-left">{{item.id}}</td>
-            <td class="align-left">{{item.times}}</td>
-            <td class="align-left">{{item.status == 0 ? '创建' : item.status == 1 ? '成功' : item.status == '2' ? '失败' : item.status}}</td>
+            <td class="align-left">{{item.times}}/{{item.status == 0 ? '创建' : item.status == 1 ? '成功' : item.status == '2' ? '失败' : item.status}}</td>
+           <!-- <td class="align-left">{{item.status == 0 ? '创建' : item.status == 1 ? '成功' : item.status == '2' ? '失败' : item.status}}</td>-->
             <td class="align-left">{{item.delay}}</td>
-            <td class="align-left">{{item.created_time}}</td>
-            <td class="align-left">{{item.updated_time}}</td>
+            <td class="align-left">创建：{{item.created_time}}<br>更新：{{item.updated_time}}</td>
+           <!-- <td class="align-left">{{item.updated_time}}</td>-->
             <td class="align-left">{{item.notify_url}}</td>
             <td class="align-left"><pre>{{strToJson(item.id,item.text)}}</pre></td>
             <td class="align-left">
