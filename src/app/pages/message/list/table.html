@@ -22,7 +22,7 @@
             <td class="align-left">创建：{{item.created_time}}<br>更新：{{item.updated_time}}</td>
            <!-- <td class="align-left">{{item.updated_time}}</td>-->
             <td class="align-left">{{item.notify_url}}</td>
-            <td class="align-left"><pre>{{strToJson(item.id,item.text)}}</pre></td>
+            <td class="align-left"><pre>{{strToJson(item.text)}}</pre></td>
             <td class="align-left">
                 <a href="javascript:void(0)" ng-click="send(item.id)">通知</a>
             </td>

@@ -12,12 +12,12 @@
 (function(){
     'use strict'
 
-    angular.module('BlurAdmin.pages.user.list')
+    angular.module('BlurAdmin.pages.agency.list')
         .controller('AgencyListCtrl', AgencyListCtrl);
 
     /** @ngInject */
     function AgencyListCtrl($scope, $http, toastr,cfpLoadingBar,commonService) {
-        $scope.tablePageSize = 5;
+        $scope.tablePageSize = 10;
         $scope.param = {"page":1,"page_size":$scope.tablePageSize};
         
 
