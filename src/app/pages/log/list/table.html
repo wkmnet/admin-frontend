@@ -8,7 +8,7 @@
             <th class="align-left">操作人ID/Email/名称</th>
            <!-- <th class="align-left">操作人Email</th>-->
          <!--   <th class="align-left">操作人名称</th>-->
-            <th class="align-left">操作前/操作后</th>
+            <th class="align-left">操作详情</th>
            <!-- <th class="align-left">操作后</th>-->
             <th class="align-left">操作时间</th>
         </tr>
@@ -20,8 +20,7 @@
             <td class="align-left">ID：{{item.user_id}}<br>Email：{{item.email}}<br>名称：{{item.user_name}}</td>
            <!-- <td class="align-left">{{item.email}}</td>-->
            <!-- <td class="align-left">{{item.user_name}}</td>-->
-            <td class="align-left"><pre>{{strToJson(item.before_text)}}</pre>
-            <pre>{{strToJson(item.after_text)}}</pre>
+            <td class="align-left"><pre>{{strToJson(item.text)}}</pre>
             </td>
             <td class="align-left">{{item.operated_time}}</td>
         </tr>

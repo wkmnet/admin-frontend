@@ -18,8 +18,7 @@
                 "&page_size=" + ($scope.param.page_size || "") +
                 "&module=" + ($scope.param.module || "") +
                 "&event=" + ($scope.param.event || "") +
-                "&before_text=" + ($scope.param.before_text || "") +
-                "&after_text=" + ($scope.param.after_text || "") +
+                "&text=" + ($scope.param.text || "") +
                 "&email=" + ($scope.param.email || "");
             $http.get(url).success(function (resp) {
                 if (resp.success) {
