@@ -7,7 +7,7 @@
 
     /** @ngInject */
     function LogListCtrl($scope, $http, toastr,cfpLoadingBar,commonService) {
-        $scope.tablePageSize = 5;
+        $scope.tablePageSize = 10;
         $scope.param = {"page": 1, "page_size": $scope.tablePageSize};
 
         $scope.data = {};
