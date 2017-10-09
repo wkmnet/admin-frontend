@@ -3,13 +3,25 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="module">操作模块</label>
-                <input type="text" ng-model="param.module" class="form-control" id="module" placeholder="">
+               <!-- <input type="text" ng-model="param.module" class="form-control" id="module" placeholder="">-->
+                <div class="form-group">
+                    <select class="form-control" ng-model="param.module" id="module" data-style="btn-primary" selectpicker>
+                        <option></option>
+                        <option ng-repeat="item in modules" value="{{item.module}}">{{item.module}}</option>
+                    </select>
+                </div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="form-group">
                 <label for="event">操作事件</label>
-                <input type="text" ng-model="param.event" class="form-control" id="event" placeholder="">
+              <!--  <input type="text" ng-model="param.event" class="form-control" id="event" placeholder="">-->
+                <div class="form-group">
+                    <select class="form-control" ng-model="param.event" id="event" data-style="btn-primary" selectpicker>
+                        <option></option>
+                        <option ng-repeat="item in events" value="{{item.event}}">{{item.event}}</option>
+                    </select>
+                </div>
             </div>
         </div>
         <div class="col-md-4">

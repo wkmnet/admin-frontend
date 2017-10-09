@@ -46,6 +46,37 @@
             console.log("str ", str);
             return str;
         }
+        
+        $scope.modules = {};
+        $scope.getModules = function(){
+            $http.get("/api/log/getModules").success(function(response){
+                if(response.success){
+                    $scope.modules=response.data;
+                }else{
+                    toastr.error(response.message)
+                }
+
+            }).error(function(resp,status){
+                console.log("status",status);
+                toastr.error(resp);
+            });
+        };
+        $scope.getModules();
+        $scope.events = {};
+        $scope.getEvents = function(){
+            $http.get("/api/log/getEvents").success(function(response){
+                if(response.success){
+                    $scope.events=response.data;
+                }else{
+                    toastr.error(response.message)
+                }
+
+            }).error(function(resp,status){
+                console.log("status",status);
+                toastr.error(resp);
+            });
+        };
+        $scope.getEvents();
 
     }
 })();
