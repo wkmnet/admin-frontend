@@ -50,7 +50,10 @@
         <tfoot>
 
         <tr>
-            <td colspan="15" class="text-center">
+            <td colspan="1" class="text-center">
+                <div ng-if="data.totalPage">总条数：{{data.totalRow}}</div>
+            </td>
+            <td colspan="14" class="text-center">
                 <!--<div st-pagination=""  st-items-by-page="1" st-displayed-pages="3"></div>-->
                 <!--<st-pagination collection="data.list"></st-pagination>-->
                 <!-- <div class="row"  ng-if="data.list.length">
