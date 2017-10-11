@@ -25,7 +25,7 @@
                 title: '订单管理',
                 sidebarMeta: {
                     icon: 'ion-social-yen',
-                    order: 50,
+                    order: 40,
                 },
             });
     }

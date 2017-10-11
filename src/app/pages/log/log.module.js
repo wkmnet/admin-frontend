@@ -19,7 +19,7 @@
           title: '日志管理',
           sidebarMeta: {
             icon: 'ion-ios-paper-outline',
-            order: 50,
+            order: 100,
           },
         });
   }

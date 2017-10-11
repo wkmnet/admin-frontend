@@ -19,7 +19,7 @@
           title: '系统配置',
           sidebarMeta: {
             icon: 'ion-wrench',
-            order: 50,
+            order: 90,
           },
         });
   }
