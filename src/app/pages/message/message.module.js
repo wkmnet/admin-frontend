@@ -25,7 +25,7 @@
                 title: '消息管理',
                 sidebarMeta: {
                     icon: 'ion-android-mail',
-                    order: 50,
+                    order: 70,
                 },
             });
     }

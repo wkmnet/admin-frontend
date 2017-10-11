@@ -26,7 +26,7 @@
           sidebarMeta: {
               /**ion-gear-a**/
             icon: 'ion-social-euro',
-            order: 70,
+            order: 60,
           },
         });
   }
