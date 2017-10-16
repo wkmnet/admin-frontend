@@ -14,12 +14,12 @@
     $scope.monitor = {"cpu":0,"memory":0,"linuxCpu":0,"linuxMemory":0};
     $scope.charts = [{
       color: pieColor,
-      description: '虚拟机CPU',
+      description: '支付CPU',
       stats: '100',
       icon: 'person',
     }, {
       color: pieColor,
-      description: '虚拟机内存',
+      description: '支付内存',
       stats: '100',
       icon: 'money',
     }, {
@@ -46,7 +46,7 @@
           chart.easyPieChart({
             easing: 'easeOutBounce',
             onStep: function (from, to, percent) {
-              $(this.el).find('.percent').text($scope.monitor.cpu);
+              $(this.el).find('.percent').text($scope.monitor.pay_cpu);
             },
             barColor: chart.attr('rel'),
             trackColor: 'rgba(0,0,0,0)',
@@ -61,7 +61,7 @@
             chart.easyPieChart({
                 easing: 'easeOutBounce',
                 onStep: function (from, to, percent) {
-                    $(this.el).find('.percent').text($scope.monitor.memory);
+                    $(this.el).find('.percent').text($scope.monitor.pay_memory);
                 },
                 barColor: chart.attr('rel'),
                 trackColor: 'rgba(0,0,0,0)',
@@ -112,9 +112,9 @@
     function updatePieCharts() {
       $('.pie-charts .chart').each(function(index, chart) {
         if(index == 0) {
-            $(chart).data('easyPieChart').update($scope.monitor.cpu);
+            $(chart).data('easyPieChart').update($scope.monitor.pay_cpu);
         } else if(index == 1){
-            $(chart).data('easyPieChart').update($scope.monitor.memory);
+            $(chart).data('easyPieChart').update($scope.monitor.pay_memory);
         } else if(index == 2) {
             $(chart).data('easyPieChart').update($scope.monitor.linuxCpu);
         } else {
@@ -125,6 +125,7 @@
 
     $http.get("/api/monitor").success(function(response) {
         $scope.monitor = response;
+        initChart();
         loadPieCharts();
         updatePieCharts();
         $timeout(scanSystemMonitor,30000);
@@ -133,9 +134,18 @@
         $http.get("/api/monitor").success(function(response) {
             $scope.monitor = response;
             console.log($scope.monitor);
+            initChart();
             updatePieCharts();
             $timeout(scanSystemMonitor,30000);
         });
+    }
+
+    function initChart() {
+        if($scope.monitor.remote_server){
+        } else {
+            $scope.monitor.pay_cpu = 0;
+            $scope.monitor.pay_memory = 0;
+        }
     }
     //跳转url
     // $timeout(redirection,20000);
