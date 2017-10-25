@@ -25,7 +25,7 @@
         console.log("resource",$stateParams.resource);
 
         $scope.redis = {};
-        $scope.redis.redis_name = $scope.resource;
+       
         $scope.param={};
 
         $scope.loadRedis = function() {
@@ -35,8 +35,7 @@
                 console.log("response:",response);
                 if(response.success){
                     $scope.redis = response.data;
-                    $scope.redis
-                    
+                    $scope.redis.redis_name = $scope.resource;
                 } else {
                     toastr.error(response.message);
                 }

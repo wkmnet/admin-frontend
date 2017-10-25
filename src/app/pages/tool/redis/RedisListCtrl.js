@@ -64,7 +64,7 @@
         $scope.queryBtn = function () {
             $scope.param.page = 1;
             $scope.queryRedis();
-        }
+        };
 
         
         
