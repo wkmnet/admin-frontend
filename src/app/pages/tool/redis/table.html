@@ -12,7 +12,10 @@
             <td class="align-left">{{item.key}}</td>
             <td class="align-left">{{item.value}}</td>
             <td class="align-left">{{item.timeout}}</td>
-            <td><a href="#/tool/redis/edit/{{param.redis_name}}/{{item.key}}">编辑</a></td>
+            <td>
+                <a href="#/tool/redis/edit/{{param.redis_name}}/{{item.key}}">编辑</a>
+                <a href="javascript:void(0);" ng-click="delete(item.key)">删除</a>
+            </td>
         </tr>
         <tfoot>
         <tr>

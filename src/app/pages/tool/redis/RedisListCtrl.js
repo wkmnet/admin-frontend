@@ -66,6 +66,28 @@
             $scope.queryRedis();
         };
 
+        $scope.delete = function(key){
+            commonService.confirm($scope,'确认对话框','您确定要删除【' + key +'】吗？').then(function(result){
+                console.log("result...",result);
+                if(result == 'ok'){
+                    $scope.deleteRedis(key);
+                }
+            });
+        };
+        $scope.deleteRedis = function (key) {
+            $http.delete("/api/redis/1?key=" + key).success(function(resp){
+                if(resp.success){
+                    toastr.success('数据删除成功!');
+                    $scope.queryRedis();
+                } else {
+                    toastr.error(resp.message);
+                }
+            }).error(function(resp,status){
+                console.log("status:",status);
+                toastr.error(resp);
+            });
+        };
+
         
         
 
