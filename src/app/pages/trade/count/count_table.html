@@ -19,11 +19,10 @@
            <!-- <th class="align-right">创建时间</th>-->
             <th class="align-right">交易时间/创建时间/超时时间</th>
             <!-- <th class="align-right">通知地址</th>-->
-            <th class="align-right">操作</th>
         </tr>
         </thead>
         <tr ng-repeat="item in data.list">
-            <td class="align-right" ng-click = "open($index)">{{item.id}}</td>
+            <td class="align-right">{{item.id}}</td>
             <td class="align-right">订单号：{{item.out_trade_no}}<br>流水号：{{item.order_no}}<br>{{item.transaction_no ? "交易号：":""}}{{item.transaction_no}}</td>
   <!--          <td class="align-right">{{item.transaction_no}}</td>-->
           <!--  <td class="align-right">{{item.out_pay_order}}</td>-->
@@ -40,34 +39,14 @@
           <!--  <td class="align-right">{{item.created_time}}</td>-->
             <td class="align-right">超时时间：{{item.time_expire}}<br>创建时间：{{item.created_time}}<br>{{item.time_paid ? "交易时间：":""}}{{item.time_paid}}</td>
             <!--  <td class="align-right">{{item.notify_url}}</td>-->
-
-            <td class="align-right">
-                <!--<a href="javascript:void(0)" ng-click="sendMessge({{item.order_no}})">通知</a>-->
-                <a href="javascript:void(0)" ng-click="refundConfirm(item.order_no,item.amount_pay)">{{(item.trans_type == 'charge' && item.status == 1) ? '退款' : ''}}</a>
-                <a href="javascript:void(0)" ng-click="open($index)">详情</a>
-            </td>
         </tr>
         <tfoot>
 
         <tr>
             <td colspan="1" class="text-center">
-                <div ng-if="data.totalPage" class="align-left">{{data.totalRow}}</div>
+                <div ng-if="data.totalPage">总条数：{{data.totalRow}}</div>
             </td>
-            <td colspan="14" class="text-center">
-                <!--<div st-pagination=""  st-items-by-page="1" st-displayed-pages="3"></div>-->
-                <!--<st-pagination collection="data.list"></st-pagination>-->
-                <!-- <div class="row"  ng-if="data.list.length">
-                     <div class="col-md-2">
-                         当前第{{data.pageNumber}}页
-                     </div>
-                     <div class="col-md-2">
-                         总共{{data.totalPage}}页
-                     </div>
-                     <div id="btn-group"  class="btn-group col-md-8" role="group" aria-label="First group">
-                         <button type="button" data-ng-repeat="btn in btns" ng-click="page(btn+1)" class="btn btn-primary">{{btn+1}}</button>
-                     </div>
-
-                 </div>-->
+            <td colspan="8" class="text-center">
                 <div ng-if="data.totalPage">
                     <uib-pagination
                             total-items="data.totalRow"
@@ -90,4 +69,6 @@
         </tr>
         </tfoot>
     </table>
+
 </div>
+<div ng-show= "showChart" id="tradeVolume" style="width: 100%;height: 360px"></div>

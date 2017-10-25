@@ -13,7 +13,7 @@
 (function () {
     'use strict';
 
-    angular.module("BlurAdmin.pages.trade",["BlurAdmin.pages.trade.current","BlurAdmin.pages.trade.history"]).config(routeConfig);
+    angular.module("BlurAdmin.pages.trade",["BlurAdmin.pages.trade.current","BlurAdmin.pages.trade.history","BlurAdmin.pages.trade.count"]).config(routeConfig);
 
     /** @ngInject */
     function routeConfig($stateProvider) {

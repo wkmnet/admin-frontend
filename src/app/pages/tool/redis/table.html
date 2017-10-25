@@ -1,0 +1,44 @@
+<div class="horizontal-scroll">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th class="align-left">key</th>
+            <th class="align-left">value</th>
+            <th class="align-left">超时时间</th>
+            <th class="align-left">操作</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="item in data.list">
+            <td class="align-left">{{item.key}}</td>
+            <td class="align-left">{{item.value}}</td>
+            <td class="align-left">{{item.timeout}}</td>
+            <td><a href="#/tool/redis/edit/{{param.redis_name}}/{{item.key}}">编辑</a></td>
+        </tr>
+        <tfoot>
+        <tr>
+            <td colspan="9" class="text-center">
+
+                <div ng-if="data.totalPage">
+
+                    <uib-pagination
+                            total-items="data.totalRow"
+                            class="pagination-sm"
+                            ng-model="param.page"
+                            max-size="5"
+                            boundary-links="true"
+                            force-ellipses="false"
+                            first-text="首页"
+                            last-text="末页"
+                            previous-text="上一页"
+                            next-text="下一页"
+                            num-pages="data.totalPage"
+                            ng-change="queryRedis()"
+                            items-per-page="data.pageSize">
+                    </uib-pagination>
+                </div>
+
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>

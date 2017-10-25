@@ -22,6 +22,7 @@
     // 'BlurAdmin.pages.charts',
     // 'BlurAdmin.pages.maps',
     'BlurAdmin.pages.profile',
+    'BlurAdmin.pages.tool',
   ])
       .config(routeConfig);
 
