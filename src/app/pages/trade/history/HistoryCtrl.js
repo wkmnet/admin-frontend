@@ -37,6 +37,7 @@
                 "&channel=" + ($scope.param.channel || "") +
                 "&status=" + ($scope.param.status || "") +
                 "&trans_type=" + ($scope.param.trans_type || "") +
+                "&phone=" + ($scope.param.phone || "") +
                 "&start=" + ($scope.param.start || "") +
                 "&end=" + ($scope.param.end || "");
 
@@ -254,9 +255,25 @@
           //  $scope.openOrder = false;
             $scope.openList = true;
         };
+        
 
+        //获取用户信息
+/*        $scope.user = {};
+        $scope.showUser = function(user_id){
+            var url = "/api/trade/user?user_id=" + user_id;
+            $http.get(url).success(function(resp){
+                if(resp.success){
+                    $scope.user = resp.data;
+                    console.log("user : " + $scope.user);
+                } else {
+                    toastr.error(resp.message);
+                }
+            }).error(function(resp,status){
+                console.log("status:",status);
+                toastr.error(resp);
+            });
+        }*/
 
-   
     };
 
 

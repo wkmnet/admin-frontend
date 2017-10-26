@@ -3,7 +3,8 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="out_pay_order">接入方订单号</label>
-                <input type="text" ng-model="param.out_pay_order" class="form-control" id="out_pay_order" placeholder="">
+                <input type="text" ng-model="param.out_pay_order" class="form-control" id="out_pay_order"
+                       placeholder="">
             </div>
         </div>
         <div class="col-md-4">
@@ -14,8 +15,41 @@
         </div>
         <div class="col-md-4">
             <div class="form-group">
+                <label for="phone">用户手机号</label>
+                <input type="text" ng-model="param.phone" class="form-control" id="phone" placeholder="">
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="type">订单类型</label>
+                <select class="form-control" id="type" ng-model="param.trans_type" title="订单类型" data-style="btn-primary"
+                        data-container="body" selectpicker>
+                    <option></option>
+                    <option value="charge">交易</option>
+                    <option value="refund">退款</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="channel">选择支付渠道</label>
+                <select class="form-control" id="channel" ng-model="param.channel" title="支付渠道" data-style="btn-primary"
+                        data-container="body" selectpicker>
+                    <option></option>
+                    <option ng-repeat="item in channel.list" value="{{item.merchant_no}}">{{item.merchant_no}}
+                        {{item.merchant_name}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
                 <label for="status">订单状态</label>
-                <select class="form-control" id="status" ng-model="param.status" title="订单状态" data-style="btn-primary" data-container="body" selectpicker>
+                <select class="form-control" id="status" ng-model="param.status" title="订单状态" data-style="btn-primary"
+                        data-container="body" selectpicker>
                     <option></option>
                     <option value="0">创建</option>
                     <option value="1">成功</option>
@@ -26,50 +60,39 @@
                 </select>
             </div>
         </div>
-
-    </div>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="form-group">
-                <label for="type">订单类型</label>
-                <select class="form-control" id="type" ng-model="param.trans_type" title="订单类型" data-style="btn-primary" data-container="body" selectpicker>
-                    <option></option>
-                    <option value="charge">交易</option>
-                    <option value="refund">退款</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label for="channel">选择支付渠道</label>
-                <select class="form-control" id="channel" ng-model="param.channel" title="支付渠道" data-style="btn-primary" data-container="body" selectpicker>
-                    <option></option>
-                    <option ng-repeat="item in channel.list" value="{{item.merchant_no}}">{{item.merchant_no}}      {{item.merchant_name}}</option>
-                </select>
-            </div>
-        </div>
         <div class="col-md-5">
             <div class="form-group">
                 <label for="order_no">交易日期</label>
-               <div class="input-date range input-group">
-                    <input ng-dblclick="clearDate()" ng-click="selectDate()" type="text" ng-model="param.start" id="start" class="form-control" name="start"/>
+                <div class="input-date range input-group">
+                    <input ng-dblclick="clearDate()" ng-click="selectDate()" type="text" ng-model="param.start"
+                           id="start" class="form-control" name="start"/>
                     <span class="input-group-addon">到</span>
-                   <input ng-dblclick="clearDate()" ng-click="selectDate()" type="text" ng-model="param.end" id="end" class="form-control" name="end"/>
-               </div>
+                    <input ng-dblclick="clearDate()" ng-click="selectDate()" type="text" ng-model="param.end" id="end"
+                           class="form-control" name="end"/>
+                </div>
             </div>
             <div ng-show="showDatePicker" id="myPicker" style="position: absolute;z-index: 100;border:1px solid #000">
                 <div>
                     <ul class="btn-list clearfix">
-                        <li><button title="关闭" ng-click="closeDatePicker()" type="button" class="btn btn-primary btn-icon"><i class="ion-ios-close-outline"></i></button></li>
-                        <li><button title="清空" ng-click="clearDate()" type="button" class="btn btn-primary btn-icon"><i class="ion-loop"></i></button></li>
+                        <li>
+                            <button title="关闭" ng-click="closeDatePicker()" type="button"
+                                    class="btn btn-primary btn-icon"><i class="ion-ios-close-outline"></i></button>
+                        </li>
+                        <li>
+                            <button title="清空" ng-click="clearDate()" type="button" class="btn btn-primary btn-icon"><i
+                                    class="ion-loop"></i></button>
+                        </li>
                     </ul>
                 </div>
-                <div date-range id="pickerRange" start="query.start" end="query.end" date-change="changeDate" view="date" min-view="date" timezone="UTC"></div>
+                <div date-range id="pickerRange" start="query.start" end="query.end" date-change="changeDate"
+                     view="date" min-view="date" timezone="UTC"></div>
             </div>
         </div>
         <div class="col-md-1">
             <label></label>
-            <div class="button-wrapper"><button type="button" ng-click="queryBtn()" class="btn btn-primary  btn-sm">查询</button></div>
+            <div class="button-wrapper">
+                <button type="button" ng-click="queryBtn()" class="btn btn-primary  btn-sm">查询</button>
+            </div>
         </div>
 
     </div>
@@ -89,7 +112,7 @@
     <table class="table">
         <tr>
             <td class="align-right">序号</td>
-            <td class="align-left">{{order.id}} </td>
+            <td class="align-left">{{order.id}}</td>
         </tr>
         <tr ng-if="org">
             <td class="align-right">原流水号</td>
@@ -112,12 +135,25 @@
             <td class="align-left">{{order.user_id}}</td>
         </tr>
         <tr>
+            <td class="align-right">用户名</td>
+            <td class="align-left">{{order.user_name}}</td>
+        </tr>
+        <tr>
+            <td class="align-right">用户昵称</td>
+            <td class="align-left">{{order.nickname}}</td>
+        </tr>
+        <tr>
+            <td class="align-right">用户手机号</td>
+            <td class="align-left">{{order.input_phone}}</td>
+        </tr>
+        <tr>
             <td class="align-right">渠道</td>
             <td class="align-left">{{order.channel}}</td>
         </tr>
         <tr>
             <td class="align-right">交易类型</td>
-            <td class="align-left">{{order.trans_type == 'charge' ? '交易': order.trans_type == 'refund' ? '退款' : '-'}}</td>
+            <td class="align-left">{{order.trans_type == 'charge' ? '交易': order.trans_type == 'refund' ? '退款' : '-'}}
+            </td>
         </tr>
         <tr>
             <td class="align-right">商品</td>
@@ -149,7 +185,8 @@
         </tr>
         <tr>
             <td class="align-right">状态</td>
-            <td class="align-left">{{order.status == 0?"创建":order.status == 1?"成功":order.status == 2?"超时":order.status == 3 ? "退款":order.status == 4 ? "取消":order.status}}
+            <td class="align-left">{{order.status == 0?"创建":order.status == 1?"成功":order.status == 2?"超时":order.status
+                == 3 ? "退款":order.status == 4 ? "取消":order.status}}
         </tr>
         <tr>
             <td class="align-right">创建时间</td>
@@ -168,9 +205,9 @@
             <td class="align-left">{{order.notify_url}}</td>
         </tr>
         <tfoot>
-            <div class="align-left">
-                <button type="button" class="btn btn-primary btn-sm" ng-click="goBack()">返回</button>
-            </div>
+        <div class="align-left">
+            <button type="button" class="btn btn-primary btn-sm" ng-click="goBack()">返回</button>
+        </div>
         </tfoot>
     </table>
 

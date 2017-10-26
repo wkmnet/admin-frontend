@@ -40,6 +40,7 @@
                 "&channel=" + ($scope.param.channel || "") +
                 "&status=" + ($scope.param.status || "") +
                 "&trans_type=" + ($scope.param.trans_type || "") +
+                "&phone=" + ($scope.param.phone || "") +
                 "&start=" + ($scope.param.start || "") +
                 "&end=" + ($scope.param.end || "");
 
