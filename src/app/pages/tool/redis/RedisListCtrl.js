@@ -40,12 +40,14 @@
         };
         $scope.getNames();
         
-
         $scope.queryRedis= function () {
+            console.log("cursor : " + $scope.data.cursor);
             cfpLoadingBar.start();
             var url = "/api/redis?page=" + ($scope.param.page || "") +
                 "&page_size=" + ($scope.param.page_size || "") +
                 "&redis_name=" + ($scope.param.redis_name || "") +
+                "&pre_page=" + ($scope.param.pre_page || "") +
+                "&cursor=" + ($scope.data.cursor|| "") +
                 "&key=" + ($scope.param.key || "");
             $http.get(url).success(function (resp) {
                 if (resp.success) {
@@ -59,6 +61,7 @@
                 toastr.error(resp);
                 cfpLoadingBar.complete();
             });
+            $scope.param.pre_page = $scope.param.page;
 
         };
         $scope.queryBtn = function () {
