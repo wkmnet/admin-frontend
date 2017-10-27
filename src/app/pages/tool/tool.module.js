@@ -26,7 +26,7 @@
                 abstract: true,
                 title: '工具箱',
                 sidebarMeta: {
-                    icon: 'ion-ios-paper-outline',
+                    icon: 'ion-ios-briefcase',
                     order: 101,
                 },
             });
