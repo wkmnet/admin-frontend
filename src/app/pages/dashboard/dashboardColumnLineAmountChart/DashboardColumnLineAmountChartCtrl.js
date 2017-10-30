@@ -38,9 +38,9 @@
                         "fillAlphas": 1,
                         "id": "AmGraph-1",
                         "labelText": "[[value]]",
-                        "title": "成功单数",
+                        "title": "交易金额",
                         "type": "column",
-                        "valueField": "successTrade"
+                        "valueField": "totalAmount"
                     },
                     {
                         "balloonText": "[[date]]的[[title]]:[[value]]",
@@ -48,7 +48,7 @@
                         "id": "AmGraph-2",
                         "labelText": "[[value]]",
                         "lineThickness": 2,
-                        "title": "订单金额",
+                        "title": "成功金额",
                         "valueField": "successAmount"
                     }
                 ],
@@ -56,7 +56,7 @@
                 "valueAxes": [
                     {
                         "id": "ValueAxis-1",
-                        "title": "成功单数"
+                        "title": "金额"
                     }
                 ],
                 "allLabels": [],
@@ -69,7 +69,7 @@
                     {
                         "id": "Title-1",
                         "size": 15,
-                        "text": "近三十天下单交易成功单数和交易金额汇总"
+                        "text": "近三十天订单交易金额和成功金额汇总"
                     }
                 ],
                 "dataProvider": $scope.data.list
