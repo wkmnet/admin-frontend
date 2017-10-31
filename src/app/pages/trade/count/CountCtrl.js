@@ -89,6 +89,27 @@
         };
         $scope.selectChannel();
 
+        $scope.createExcel = function(){
+            var url = "/api/history/report/excel?" +
+                "&order_no=" + ($scope.param.order_no || "") +
+                "&out_trade_no=" + ($scope.param.out_pay_order || "") +
+                "&channel=" + ($scope.param.channel || "") +
+                "&start=" + ($scope.param.start || "") +
+                "&end=" + ($scope.param.end || "");
+            $http.get(url).success(function (resp) {
+                console.log("resp:",resp);
+                if(resp.success){
+                    $scope.fileUrl = resp.data;
+                    window.location.href = $scope.fileUrl;
+                } else {
+                    toastr.error(resp.message);
+                }
+            }).error(function(resp,status){
+                console.log("status:",status);
+                toastr.error(resp);
+            });
+        };
+
 
 
         $scope.showChart = false;
