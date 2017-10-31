@@ -12,6 +12,7 @@
   function popularApp() {
     return {
       restrict: 'E',
+      controller: 'PopularAppCtrl',
       templateUrl: 'app/pages/dashboard/popularApp/popularApp.html'
     };
   }
