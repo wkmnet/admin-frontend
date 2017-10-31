@@ -27,9 +27,9 @@
 
         $scope.signType = '';
 
-        $scope.wxPayType = [{"key": "NATIVE", "value": "二维码支付"}, {"key": "MWEB", "value": "H5页面支付"}, {"key": "JSAPI", "value": "公众号支付"}];
+        $scope.wxPayType = [{"key": "NATIVE", "value": "二维码支付"}, {"key": "MWEB", "value": "H5页面支付"}, {"key": "JSAPI", "value": "公众号支付"},{"key":"APP","value":"手机APP支付"}];
 
-        $scope.alipayPayType = [{"key": "NATIVE", "value": "二维码支付"}, {"key": "QUICK_WAP_PAY", "value": "手机网站支付"}, {"key": "FAST_INSTANT_TRADE_PAY", "value": "PC网站支付"}];
+        $scope.alipayPayType = [{"key": "NATIVE", "value": "二维码支付"}, {"key": "QUICK_WAP_PAY", "value": "手机网站支付"}, {"key": "FAST_INSTANT_TRADE_PAY", "value": "PC网站支付"},{"key":"QUICK_MSECURITY_PAY","value":"支付宝APP支付"}];
 
         $scope.orgPayMethod = {};
         $scope.loadMerchant = function () {
