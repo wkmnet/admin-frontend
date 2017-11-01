@@ -56,7 +56,7 @@
                 "valueAxes": [
                     {
                         "id": "ValueAxis-1",
-                        "title": "金额"
+                        "title": "金额（元）"
                     }
                 ],
                 "allLabels": [],
