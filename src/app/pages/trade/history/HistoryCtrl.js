@@ -27,6 +27,7 @@
         $scope.showDatePicker = false;
         
         $scope.channel = {};
+        $scope.platform = {};
 
         $scope.queryHistoryTrade = function () {
             cfpLoadingBar.start();
@@ -38,6 +39,7 @@
                 "&status=" + ($scope.param.status || "") +
                 "&trans_type=" + ($scope.param.trans_type || "") +
                 "&phone=" + ($scope.param.phone || "") +
+                "&platform_no=" + ($scope.param.platform_no || "") +
                 "&start=" + ($scope.param.start || "") +
                 "&end=" + ($scope.param.end || "");
 
@@ -127,6 +129,24 @@
             
         };
         $scope.selectChannel();
+
+        //查询平台
+        $scope.selectPlatform = function () {
+            var url = "/api/agency";
+            $http.get(url).success(function(resp){
+                if(resp.success){
+                    $scope.platform = resp.data;
+                } else {
+                    toastr.error(resp.message);
+                }
+            }).error(function(resp,status){
+                console.log("status:",status);
+                toastr.error(resp);
+            });
+
+        };
+        $scope.selectPlatform();
+
 
         //发送通知
        /* $scope.sendMessge = function(order_no){
