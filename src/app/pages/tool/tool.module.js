@@ -14,7 +14,8 @@
     'use strict';
 
     angular.module('BlurAdmin.pages.tool', [
-        'BlurAdmin.pages.tool.redis'
+        'BlurAdmin.pages.tool.redis',
+        'BlurAdmin.pages.tool.user'
     ]).config(routeConfig);
 
     /** @ngInject */
@@ -22,7 +23,7 @@
         $stateProvider
             .state('tool', {
                 url: '/tool',
-                template : '<ui-view></ui-view>',
+                template: '<ui-view></ui-view>',
                 abstract: true,
                 title: '工具箱',
                 sidebarMeta: {

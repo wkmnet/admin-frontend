@@ -1,0 +1,37 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="userId">用户ID</label>
+                <input type="text" ng-model="param.userId" class="form-control" id="userId" placeholder="">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <label></label>
+            <div class="button-wrapper">
+                <button type="button" ng-click="queryUserById()" class="btn btn-primary  btn-sm">查询</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="phone">用户手机号</label>
+                <input type="text" ng-model="param.phone" class="form-control" id="phone" placeholder="">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <label></label>
+            <div class="button-wrapper">
+                <button type="button" ng-click="queryUserByPhone()" class="btn btn-primary  btn-sm">查询</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="用户信息" ba-panel-class="with-scroll">
+                <div include-with-scope="app/pages/tool/user/table.html"></div>
+            </div>
+        </div>
+    </div>
+</div>
