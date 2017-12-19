@@ -13,11 +13,11 @@
 (function(){
     'use strict'
 
-    angular.module('BlurAdmin.pages.tool.user')
-        .controller('UserListCtrl', UserListCtrl);
+    angular.module('BlurAdmin.pages.tool.queryUser')
+        .controller('QueryUserListCtrl', QueryUserListCtrl);
 
     /** @ngInject */
-    function UserListCtrl($scope, $http, toastr,cfpLoadingBar) {
+    function QueryUserListCtrl($scope, $http, toastr,cfpLoadingBar) {
         $scope.data = {};
         $scope.param = {};
         

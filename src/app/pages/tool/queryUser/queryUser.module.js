@@ -12,15 +12,15 @@
 (function () {
     'use strict';
 
-    angular.module("BlurAdmin.pages.tool.user",[]).config(routeConfig);
+    angular.module("BlurAdmin.pages.tool.queryUser",[]).config(routeConfig);
 
     /** @ngInject */
     function routeConfig($stateProvider,$urlRouterProvider) {
         $stateProvider
-            .state('tool.user', {
-                url: '/user',
-                templateUrl: 'app/pages/tool/user/user_list.html',
-                controller: "UserListCtrl",
+            .state('tool.queryUser', {
+                url: '/queryUser',
+                templateUrl: 'app/pages/tool/queryUser/queryUser_list.html',
+                controller: "QueryUserListCtrl",
                 title: 'User管理',
                 sidebarMeta: {
                     icon: 'ion-ios-pulse',

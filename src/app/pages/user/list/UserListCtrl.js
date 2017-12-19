@@ -31,7 +31,6 @@
             $http.get(url).success(function(resp){
                 if(resp.success){
                     $scope.data = resp.data;
-                   // $scope.createBtn();
                 } else {
                     toastr.error(resp.message);
                 }
@@ -43,27 +42,14 @@
             });
 
         };
+        $scope.queryUser();
         $scope.queryBtn = function(){
             $scope.param.page = 1;
             $scope.queryUser();
-        }
-
-       /* $scope.page = function (p) {
-            $scope.param.page = p;
-            $scope.queryUser();
         };
-*/
-        $scope.queryUser();
-
-
-        // $scope.delete = function(id,name){
-        //     var msg = "确定要删除" + name + "吗？";
-        //     if (confirm(msg)==true){
-        //         $scope.deleteUser(id);
-        //     }else{
-        //         console.log("取消删除")
-        //     }
-        // };
+        
+       
+        
         $scope.delete = function(id,name){
             commonService.confirm($scope,'确认对话框','您确定要删除【' + name +'】用户吗？').then(function(result){
                 console.log("result...",result);
@@ -87,17 +73,6 @@
             });
         };
 
-    /*    $scope.btns = [];
-        $scope.createBtn = function(){
-            $scope.btns = [];
-            //var num = Math.ceil($scope.data.totalRow /  $scope.data.pageSize);
-            var num = $scope.data.totalPage;
-            console.log("num : " + num);
-            for (var i = 0;i< num;i++) {
-                $scope.btns.push(i);
-            }
-            console.log("btns : " + $scope.btns);
-        };*/
 
         $scope.currentUser= {};
         $scope.queryCurrent = function(){
@@ -115,45 +90,6 @@
         };
         $scope.queryCurrent();
 
-/*
-        $scope.currentUser= {};
-        $scope.queryCurrent = function (id) {
-            $http.get("/api/user/" + id).success(function(resp){
-                if(resp.success){
-                    $scope.currentUser = resp.data;
-                } else {
-                    toastr.error(resp.message);
-                }
-            }).error(function(resp,status){
-                console.log("status:",status);
-                toastr.error(resp);
-            });
-        };
-
-
-        $scope.getCookie = function(){
-            var name = "MANGER-USER-KEY";
-            var cookie_value =  $scope.readCookie(name);
-            var end = cookie_value.indexOf("-")
-            console.log("value : " + cookie_value);
-            var id = cookie_value.substring(0,end);
-            console.log("currentId : " + id);
-            $scope.queryCurrent(id);
-        };
-
-        $scope.readCookie = function(name) {
-            var nameEQ = name + "=";
-            var ca = document.cookie.split(';');
-            for(var i=0;i < ca.length;i++) {
-                var c = ca[i];
-                while (c.charAt(0)==' ') c = c.substring(1,c.length);
-                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-            }
-            return null;
-        }
-
-        $scope.getCookie();
-*/
 
 
     }
