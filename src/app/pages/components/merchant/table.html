@@ -5,6 +5,7 @@
             <th class="align-right">#</th>
             <th class="align-right">支付渠道编号</th>
             <th class="align-right">支付渠道名称</th>
+            <th class="align-right">APPID</th>
             <th class="align-right">签名类型</th>
             <th class="align-right">回调地址</th>
             <th class="align-right">状态</th>
@@ -15,6 +16,7 @@
             <td class="align-right">{{item.id}}</td>
             <td class="align-right">{{item.merchant_no}}</td>
             <td class="align-right">{{item.merchant_name}}</td>
+            <td class="align-right">{{item.app_id}}</td>
             <td class="align-right">{{item.sign_type == "MD5"?"MD5":item.sign_type == "RSA2"?"RSA2":"-"}}</td>
             <td class="align-right">{{item.notify_url}}</td>
             <td class="align-right">{{item.status == 0?"创建":item.status == 1?"正常":item.status == 2?"禁用":"-"}}
