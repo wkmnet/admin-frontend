@@ -205,24 +205,7 @@
             console.log("btns : " + $scope.btns);
         };
 */
-
-
-
-    /*    $scope.open = function(id) {
-            console.log("index :" + id);
-            // $scope.queryTradeById(id);
-            $uibModal.open({
-                animation: true,
-                templateUrl: "app/pages/trade/order_info.html",
-                controller:"HistoryOrderModalCtrl",
-                resolve: {
-                    order:function(){
-                        console.log("order :" + $scope.data.list[id].order_no);
-                        return $scope.data.list[id];
-                    }
-                }
-            });
-        };*/
+        
         
 
       $scope.org_order = {};
@@ -294,22 +277,48 @@
             });
         }*/
 
+        $scope.openRefund = function(id) {
+            console.log("index :" + id);
+            // $scope.queryTradeById(id);
+            $uibModal.open({
+                animation: true,
+                templateUrl: "app/pages/trade/refund_modal.html",
+                controller:"HistoryOrderModalCtrl",
+                resolve: {
+                    order:function(){
+                        console.log("order :" + $scope.data.list[id]);
+                        return $scope.data.list[id];
+                    }
+                }
+            });
+        };
+
     };
 
 
 
     function HistoryOrderModalCtrl($scope, $http, toastr,$uibModal,order) {
         $scope.order = order;
-        $scope.org_order = {};
+        console.log("order :",$scope.order);
+        $scope.amount_refund=0;
 
- 
-        $scope.queryTradeById = function(id){
-            console.log("id: " + id);
-            var url = "/api/trade/history/" + id;
+        //发送通知
+        $scope.refund = function(){
+            if($scope.amount_refund <=0){
+                toastr.error("请输入退款金额！");
+                return;
+            }
+            var total_refund_amount = ($scope.order.amount_pay - $scope.order.amount_refunded);
+            console.log("total_refund_amount:",total_refund_amount)
+            if($scope.amount_refund > total_refund_amount){
+                toastr.error("退款金额最大为"+total_refund_amount);
+                return;
+            }
+            console.log("order_no : " + order_no);
+            var url = "/api/trade/refund?order_no=" + $scope.order.order_no + "&amount_refund=" + $scope.amount_refund;
             $http.get(url).success(function(resp){
                 if(resp.success){
-                    $scope.org_order = resp.data;
-
+                    toastr.success("申请退款成功！");
                 } else {
                     toastr.error(resp.message);
                 }
@@ -319,38 +328,6 @@
             });
 
         };
-
-        $scope.queryOrgTrade = function(org_id) {
-            console.log("org_id: " + org_id);
-            if(org_id){
-                $scope.queryTradeById(org_id);
-                $scope.org = true;
-            }else{
-                $scope.org_order = {};
-                $scope.org = false;
-
-            }
-
-        };
-
-       
-        $scope.queryOrgTrade($scope.order.org_id);
-
-
-
-       $scope.back = false;
-        $scope.org = false;
-
-        $scope.goBack = function(){
-            $scope.order=order;
-            $scope.back = false;
-            $scope.org = true;
-        }
-        $scope.goOrg = function(){
-            $scope.order=$scope.org_order;
-            $scope.back=  true;
-            $scope.org = false;
-        }
 
 
     }
