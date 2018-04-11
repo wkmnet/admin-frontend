@@ -247,10 +247,9 @@
 
         $scope.openRefund = function(id) {
             console.log("index :" + id);
-           // $scope.queryTradeById(id);
             $uibModal.open({
                 animation: true,
-                templateUrl: "app/pages/trade/refund_modal.html",
+                templateUrl: "app/pages/trade/current/refund_modal.html",
                 controller:"CurrentOrderModalCtrl",
                 resolve: {
                     order:function(){

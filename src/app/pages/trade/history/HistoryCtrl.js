@@ -282,7 +282,7 @@
             // $scope.queryTradeById(id);
             $uibModal.open({
                 animation: true,
-                templateUrl: "app/pages/trade/refund_modal.html",
+                templateUrl: "app/pages/trade/history/refund_modal.html",
                 controller:"HistoryOrderModalCtrl",
                 resolve: {
                     order:function(){
