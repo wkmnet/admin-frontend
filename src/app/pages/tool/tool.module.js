@@ -15,7 +15,8 @@
 
     angular.module('BlurAdmin.pages.tool', [
         'BlurAdmin.pages.tool.redis',
-        'BlurAdmin.pages.tool.queryUser'
+        'BlurAdmin.pages.tool.queryUser',
+        'BlurAdmin.pages.tool.batchSearch'
     ]).config(routeConfig);
 
     /** @ngInject */

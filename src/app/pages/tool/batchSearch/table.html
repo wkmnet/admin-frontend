@@ -1,0 +1,18 @@
+<div class="horizontal-scroll">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th class="align-left">用户ID</th>
+          <!--  <th class="align-left">用户名</th>-->
+            <th class="align-left">手机号</th>
+          <!--  <th class="align-left">昵称</th>-->
+        </tr>
+        </thead>
+        <tr  ng-repeat="item in data.list">
+            <td class="align-left">{{item.id}}</td>
+          <!--  <td class="align-left">{{item.user_name}}</td>-->
+            <td class="align-left">{{item.user_phone}}</td>
+       <!--     <td class="align-left">{{item.nickname}}</td>-->
+        </tr>
+    </table>
+</div>

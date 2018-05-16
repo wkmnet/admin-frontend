@@ -1,0 +1,29 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="userId">用户ID</label>
+                <textarea type="text" ng-model="param.userId" class="form-control" id="userId" placeholder=""/>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <label></label>
+            <div class="button-wrapper">
+                <button type="button" ng-click="queryUserByIds()" class="btn btn-primary  btn-sm">查询</button>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <label></label>
+            <div class="button-wrapper">
+                <button type="button" ng-click="download()" class="btn btn-primary  btn-sm">下载excel</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="用户信息" ba-panel-class="with-scroll">
+                <div include-with-scope="app/pages/tool/batchSearch/table.html"></div>
+            </div>
+        </div>
+    </div>
+</div>
