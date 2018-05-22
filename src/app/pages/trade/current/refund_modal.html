@@ -1,0 +1,16 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+      <em class="ion-ios-close-empty sn-link-close"></em>
+    </button>
+    <h4 class="modal-title" id="myModalLabel">退款</h4>
+  </div>
+  <div class="modal-body">
+    支付金额：{{order.amount_pay}}分<br>
+    已退款金额：{{order.amount_refunded}}分<br>
+    输入退款金额：<input type="number" ng-model="amount_refund">分
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="refund()">退款</button>
+  </div>
+</div>
