@@ -14,15 +14,15 @@
     'use strict';
 
     angular.module('BlurAdmin.pages.dashboard')
-        .controller('DashboardColumnLineAmountChartCtrl', DashboardColumnLineAmountChartCtrl);
+        .controller('DashboardColumnLineYearAmountChartCtrl', DashboardColumnLineYearAmountChartCtrl);
 
     /** @ngInject */
-    function DashboardColumnLineAmountChartCtrl($scope, $http, toastr, baConfig, layoutPaths, baUtil) {
+    function DashboardColumnLineYearAmountChartCtrl($scope, $http, toastr, baConfig, layoutPaths, baUtil) {
         var layoutColors = baConfig.colors;
         var graphColor = baConfig.theme.blur ? '#000000' : layoutColors.primary;
 
         function createNewChart(){
-            var chart = AmCharts.makeChart("tradeAmountVolume", {
+            var chart = AmCharts.makeChart("tradeYearAmountVolume", {
                 "type": "serial",
                 "categoryField": "date",
                 "startDuration": 1,
@@ -69,7 +69,7 @@
                     {
                         "id": "Title-1",
                         "size": 15,
-                        "text": "近三十天订单交易金额和成功金额汇总"
+                        "text": "近三十年订单交易金额和成功金额汇总"
                     }
                 ],
                 "dataProvider": $scope.data.list
@@ -78,8 +78,8 @@
 
         $scope.data = {};
 
-        function loadHistoryTrade() {
-            $http.get("/api/order/historyAmount").success(function(resp){
+        function loadHistoryYearTrade() {
+            $http.get("/api/order/year_amount").success(function(resp){
                 if(resp.success){
                     $scope.data = resp.data;
                     createNewChart();
@@ -89,6 +89,6 @@
             });
         }
 
-        loadHistoryTrade();
+        loadHistoryYearTrade();
     }
 })();
