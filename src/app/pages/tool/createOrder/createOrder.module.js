@@ -21,7 +21,7 @@
                 url: '/createOrder',
                 templateUrl: 'app/pages/tool/createOrder/create_order.html',
                 controller: "CreateOrderCtrl",
-                title: '创建扫码支付订单',
+                title: '扫码支付',
                 sidebarMeta: {
                     icon: 'ion-ios-pulse',
                     order: 0,

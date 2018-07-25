@@ -7,7 +7,7 @@
         .controller('CreateOrderCtrl', CreateOrderCtrl);
 
     /** @ngInject */
-    function CreateOrderCtrl($scope, $http, toastr) {
+    function CreateOrderCtrl($scope, $filter,$http, toastr) {
         $scope.data = {};
         $scope.param = {};
         $scope.merchantList = {};
@@ -58,6 +58,14 @@
             console.info("platform:", platform)
             $scope.param.platform_no = platform.agency_no;
         };
+
+        $scope.generateOrderNo = function(){
+            var myDate = new Date();
+            var myJsDate= $filter('date')(myDate, 'yyyyMMddHHmmss');
+            $scope.param.out_trade_no = myJsDate;
+        }
+
+        $scope.generateOrderNo();
 
         $scope.createOrder = function () {
             console.log("create order:", $scope.param);
