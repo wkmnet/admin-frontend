@@ -1,0 +1,116 @@
+<form>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="amount">金额(分)</label>
+                <input type="number" class="form-control" id="amount" ng-model="param.amount">
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="amount_pay">支付金额(分)</label>
+                <input type="number" class="form-control" id="amount_pay" ng-model="param.amount_pay">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="channel">支付渠道</label>
+                <select class="form-control" id="channel" ng-model="index2" ng-change="selectMerchant(index2)"
+                        title="支付渠道" data-style="btn-primary" data-container="body" selectpicker>
+                    <option></option>
+                    <option data-ng-repeat="item in merchantList" value="{{$index}}">
+                        {{item.merchant_no}}{{item.merchant_name}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="app_id">appId</label>
+                <input type="text" class="form-control" id="app_id" ng-model="param.app_id">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="notify_url">通知地址</label>
+                <input type="text" class="form-control" id="notify_url" ng-model="param.notify_url">
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="return_url">返回地址</label>
+                <input type="text" class="form-control" id="return_url" ng-model="param.return_url">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="platform_no">平台号</label>
+                <select class="form-control" id="platform_no" ng-model="index" ng-change="selectPlatform(index)"
+                        title="平台" data-style="btn-primary" data-container="body" selectpicker>
+                    <option data-ng-repeat="item in platformList" value="{{$index}}">{{item.agency_no}}
+                        {{item.agency_name}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="out_trade_no">订单号</label>
+                <input type="text" class="form-control" id="out_trade_no" ng-model="param.out_trade_no">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="subject">主题</label>
+                <input type="text" class="form-control" id="subject" ng-model="param.subject">
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="body">商品描述</label>
+                <input type="text" class="form-control" id="body" ng-model="param.body">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="user_id">用户ID</label>
+                <input type="text" class="form-control" id="user_id" ng-model="param.user_id"
+                       placeholder="用户ID">
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="client_ip">客户端IP</label>
+                <input type="text" class="form-control" id="client_ip" ng-model="param.client_ip">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <div class="button-wrapper">
+                <button type="button" ng-click="checkOrder()" class="btn btn-success">创建订单</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<div class="horizontal-scroll">
+    <div>
+        <img src="data.qr">
+    </div>
+    <div>
+        图片链接：<p>{{data.qr}}</p>
+    </div>
+</div>
