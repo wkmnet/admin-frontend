@@ -42,6 +42,7 @@
                 "&status=" + ($scope.param.status || "") +
                 "&trans_type=" + ($scope.param.trans_type || "") +
                 "&phone=" + ($scope.param.phone || "") +
+                "&user_id=" + ($scope.param.user_id || "") +
                 "&platform_no=" + ($scope.param.platform_no || "") +
                 "&start=" + ($scope.param.start || "") +
                 "&end=" + ($scope.param.end || "");
