@@ -31,6 +31,8 @@
 
         $scope.alipayPayType = [{"key": "NATIVE", "value": "二维码支付"}, {"key": "QUICK_WAP_PAY", "value": "手机网站支付"}, {"key": "FAST_INSTANT_TRADE_PAY", "value": "PC网站支付"},{"key":"QUICK_MSECURITY_PAY","value":"支付宝APP支付"}];
 
+        $scope.jdPayType = [{"key":"QR","value":"二维码支付"},{"key":"GEN","value":"普通支付"}];
+
         $scope.orgPayMethod = {};
         $scope.loadMerchant = function () {
             console.log("merchant", $scope.merchantId);
@@ -49,6 +51,10 @@
                     if ($scope.merchant.pay_channel == "alipay") {
                         console.log("alipay")
                         $scope.payMethod = $scope.alipayPayType;
+                    }
+                    if ($scope.merchant.pay_channel == "jd") {
+                        console.log("jd")
+                        $scope.payMethod = $scope.jdPayType;
                     }
 
                 } else {
