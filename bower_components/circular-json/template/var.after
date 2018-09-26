@@ -1,0 +1,4 @@
+
+return CircularJSON;
+
+}(JSON, RegExp));
