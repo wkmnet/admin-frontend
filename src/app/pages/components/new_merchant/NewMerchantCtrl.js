@@ -51,6 +51,11 @@
                 $scope.payMethod = [{"key":"NATIVE","value":"二维码支付"},{"key":"QUICK_WAP_PAY","value":"手机网站支付"},{"key":"FAST_INSTANT_TRADE_PAY","value":"PC网站支付"},{"key":"QUICK_MSECURITY_PAY","value":"支付宝APP支付"}]
                 return
             }
+            if(selected == "jd"){
+                console.log("jd")
+                $scope.payMethod = [{"key":"QR","value":"二维码支付"},{"key":"GEN","value":"普通支付"}]
+                return
+            }
         };
 
         $scope.checkMerchant = function(){
