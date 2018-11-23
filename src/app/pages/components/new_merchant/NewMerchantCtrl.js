@@ -53,7 +53,7 @@
             }
             if(selected == "jd"){
                 console.log("jd")
-                $scope.payMethod = [{"key":"QR","value":"二维码支付"},{"key":"GEN","value":"普通支付"}]
+                $scope.payMethod = [{"key":"QR","value":"二维码支付"},{"key":"GEN","value":"普通支付"},{"key":"H5","value":"H5支付"}]
                 return
             }
         };
