@@ -63,6 +63,10 @@
                             //如果是支付宝，就显示支付宝的签名类型
                             console.log("alipay")
                             $scope.signType = $scope.alipaySignType;
+                        }else if($scope.merchant.pay_channel == "jd"){
+                            //如果是支付宝，就显示支付宝的签名类型
+                            console.log("alipay")
+                            $scope.signType = $scope.alipaySignType;
                         }
 
                     }else{
