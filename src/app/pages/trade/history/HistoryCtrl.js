@@ -116,7 +116,7 @@
         
         //查询渠道
         $scope.selectChannel = function () {
-            var url = "/api/merchant";
+            var url = "/api/merchant/list";
             $http.get(url).success(function(resp){
                 if(resp.success){
                     $scope.channel = resp.data;

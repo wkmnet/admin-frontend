@@ -56,6 +56,16 @@
                 $scope.payMethod = [{"key":"QR","value":"二维码支付"},{"key":"GEN","value":"普通支付"},{"key":"H5","value":"H5支付"}]
                 return
             }
+            if(selected == "apple"){
+                console.log("apple")
+                $scope.payMethod = [{"key":"IAP","value":"苹果内购"}]
+                return
+            }
+            if(selected == "xpc"){
+                console.log("apple")
+                $scope.payMethod = [{"key":"XYB","value":"学院币"}]
+                return
+            }
         };
 
         $scope.checkMerchant = function(){
