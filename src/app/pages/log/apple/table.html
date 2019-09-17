@@ -1,0 +1,62 @@
+<div class="horizontal-scroll">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th class="align-right">#</th>
+            <th class="align-right">交易ID</th>
+            <th class="align-right">关联单号</th>
+            <th class="align-right">苹果收据</th>
+            <th class="align-right">验证结果</th>
+            <th class="align-right">状态</th>
+            <th class="align-right">描述</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="item in data.list">
+            <td class="align-right">{{item.id}}</td>
+            <td class="align-right">{{item.transaction_id}}</td>
+            <td class="align-right">{{item.out_trade_no}}</td>
+            <td class="align-right">{{item.receipt_data}}</td>
+            <td class="align-right">{{item.receipt_response}}</td>
+            <td class="align-right">{{item.status == 1?"验证成功":item.status == 0?"验证失败":item.status}}</td>
+            <td class="align-right">{{item.comment}}</td>
+        </tr>
+        <tfoot>
+        <tr>
+        <td colspan="7" class="text-center">
+            <!--        <div class="row"  ng-if="data.list.length">
+                    <div class="col-md-2">
+                        当前第{{data.pageNumber}}页
+                    </div>
+                    <div class="col-md-2">
+                        总共{{data.totalPage}}页
+                    </div>
+                    <div id="btn-group"  class="btn-group col-md-8" role="group" aria-label="First group">
+                        <button type="button" data-ng-repeat="btn in btns" ng-click="page(btn+1)" class="btn btn-primary">{{btn+1}}</button>
+                    </div>
+
+                </div>-->
+
+
+            <div ng-if="data.totalPage">
+                <uib-pagination
+                        total-items="data.totalRow"
+                        class="pagination-sm"
+                        ng-model="param.page"
+                        max-size="5"
+                        boundary-links="true"
+                        force-ellipses="false"
+                        first-text="首页"
+                        last-text="末页"
+                        previous-text="上一页"
+                        next-text="下一页"
+                        num-pages="data.totalPage"
+                        ng-change="queryMerchant()"
+                        items-per-page="data.pageSize">
+                </uib-pagination>
+
+            </div>
+        </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>

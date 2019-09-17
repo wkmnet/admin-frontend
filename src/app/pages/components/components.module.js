@@ -10,7 +10,7 @@
     // 'BlurAdmin.pages.components.timeline',
     // 'BlurAdmin.pages.components.tree',
     // 'BlurAdmin.pages.components.upload',
-      'BlurAdmin.pages.components.keys',
+    'BlurAdmin.pages.components.keys',
     'BlurAdmin.pages.components.new_merchant',
     'BlurAdmin.pages.components.merchant',
   ]).config(routeConfig);

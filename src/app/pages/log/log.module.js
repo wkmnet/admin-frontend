@@ -7,6 +7,7 @@
 
   angular.module('BlurAdmin.pages.log', [
     'BlurAdmin.pages.log.list',
+    'BlurAdmin.pages.log.apple',
   ]).config(routeConfig);
 
   /** @ngInject */

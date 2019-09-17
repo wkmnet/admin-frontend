@@ -1,0 +1,27 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="mch_no">苹果内购交易号</label>
+                <input type="text" ng-model="param.transaction_id" class="form-control" id="transaction_id" placeholder="">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="mch_name">关联单号</label>
+                <input type="text" ng-model="param.out_trade_no" class="form-control" id="out_trade_no" placeholder="">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label></label>
+            <div class="button-wrapper"><button type="button" ng-click="queryBtn()" class="btn btn-primary  btn-sm">查询</button></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="苹果内购通知列表" ba-panel-class="with-scroll">
+                <div include-with-scope="app/pages/log/apple/table.html"></div>
+            </div>
+        </div>
+    </div>
+</div>
