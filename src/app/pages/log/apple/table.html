@@ -15,8 +15,8 @@
             <td class="align-right">{{item.id}}</td>
             <td class="align-right">{{item.transaction_id}}</td>
             <td class="align-right">{{item.out_trade_no}}</td>
-            <td class="align-right"><textarea cols="30" readonly>{{item.receipt_data}}</textarea></td>
-            <td class="align-right"><textarea cols="30" readonly>{{item.receipt_response}}</textarea></td>
+            <td class="align-right"><textarea cols="20" readonly>{{item.receipt_data}}</textarea></td>
+            <td class="align-right"><textarea cols="20" readonly>{{item.receipt_response}}</textarea></td>
             <td class="align-right">{{item.status == 1?"验证成功":item.status == 0?"验证失败":item.status}}</td>
             <td class="align-right">{{item.comment}}</td>
         </tr>
