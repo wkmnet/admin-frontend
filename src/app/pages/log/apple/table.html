@@ -8,6 +8,7 @@
             <th class="align-right">苹果收据</th>
             <th class="align-right">验证结果</th>
             <th class="align-right">状态</th>
+            <th class="align-right">时间</th>
             <th class="align-right">描述</th>
         </tr>
         </thead>
@@ -18,11 +19,12 @@
             <td class="align-right"><textarea cols="20" readonly>{{item.receipt_data}}</textarea></td>
             <td class="align-right"><textarea cols="20" readonly>{{item.receipt_response}}</textarea></td>
             <td class="align-right">{{item.status == 1?"验证成功":item.status == 0?"验证失败":item.status}}</td>
+            <td class="align-right">{{item.created_time}}</td>
             <td class="align-right">{{item.comment}}</td>
         </tr>
         <tfoot>
         <tr>
-        <td colspan="7" class="text-center">
+        <td colspan="8" class="text-center">
             <!--        <div class="row"  ng-if="data.list.length">
                     <div class="col-md-2">
                         当前第{{data.pageNumber}}页

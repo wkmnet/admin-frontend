@@ -28,6 +28,8 @@
             cfpLoadingBar.start();
             var url = "/api/balance/result?page=" + ($scope.param.page || "") +
                 "&page_size=" + ($scope.param.page_size || "") +
+                "&start=" + ($scope.param.start || "") +
+                "&end=" + ($scope.param.end || "") +
                 "&transaction_id=" + ($scope.param.transaction_id || "") +
                 "&out_trade_no=" + ($scope.param.out_trade_no || "");
             

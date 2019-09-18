@@ -1,18 +1,37 @@
 <div class="widgets">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="form-group">
                 <label for="mch_no">苹果内购交易号</label>
                 <input type="text" ng-model="param.transaction_id" class="form-control" id="transaction_id" placeholder="">
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="form-group">
                 <label for="mch_name">关联单号</label>
                 <input type="text" ng-model="param.out_trade_no" class="form-control" id="out_trade_no" placeholder="">
             </div>
         </div>
         <div class="col-md-4">
+            <div class="form-group">
+                    <label for="order_no">处理日期</label>
+                    <div class="input-date range input-group">
+                        <input ng-dblclick="clearDate()" ng-click="selectDate()" type="text" ng-model="param.start" id="start" class="form-control" name="start"/>
+                        <span class="input-group-addon">到</span>
+                        <input ng-dblclick="clearDate()" ng-click="selectDate()" type="text" ng-model="param.end" id="end" class="form-control" name="end"/>
+                    </div>
+                </div>
+                <div ng-show="showDatePicker" id="myPicker" style="position: absolute;z-index: 100;border:1px solid #000">
+                    <div>
+                        <ul class="btn-list clearfix">
+                            <li><button title="关闭" ng-click="closeDatePicker()" type="button" class="btn btn-primary btn-icon"><i class="ion-ios-close-outline"></i></button></li>
+                            <li><button title="清空" ng-click="clearDate()" type="button" class="btn btn-primary btn-icon"><i class="ion-loop"></i></button></li>
+                        </ul>
+                    </div>
+                    <div date-range id="pickerRange" start="query.start" end="query.end" date-change="changeDate" view="date" min-view="date" timezone="UTC"></div>
+            </div>
+        </div>
+        <div class="col-md-2">
             <label></label>
             <div class="button-wrapper"><button type="button" ng-click="queryBtn()" class="btn btn-primary  btn-sm">查询</button></div>
         </div>
