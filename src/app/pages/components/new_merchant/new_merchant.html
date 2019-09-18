@@ -46,6 +46,10 @@
         <label for="notify_url">回调地址</label>
         <input type="text" class="form-control" id="notify_url" ng-model="merchant.notify_url" placeholder="请填写回调地址">
     </div>
+    <div class="form-group">
+        <label for="tags">添加标签</label>
+        <input type="text" tag-input="primary" value="" data-role="tagsinput" id="tags" ng-model="merchant.tags" placeholder="标签">
+    </div>
     <div class="row">
         <div class="col-md-2">
             <div class="button-wrapper"><button type="button" ng-click="checkMerchant()" class="btn btn-success">保存</button></div>

@@ -27,6 +27,7 @@
                 "&channel=" + ($scope.param.channel || "") +
                 "&status=" + ($scope.param.status || "") +
                 "&trans_type=" + ($scope.param.trans_type || "") +
+                "&tags=" + ($scope.param.tags || "") +
                 "&start=" + ($scope.param.start || "") +
                 "&end=" + ($scope.param.end || "");
 

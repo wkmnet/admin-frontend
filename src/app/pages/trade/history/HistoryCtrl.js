@@ -41,6 +41,7 @@
                 "&phone=" + ($scope.param.phone || "") +
                 "&user_id=" + ($scope.param.user_id || "") +
                 "&platform_no=" + ($scope.param.platform_no || "") +
+                "&tags=" + ($scope.param.tags || "") +
                 "&start=" + ($scope.param.start || "") +
                 "&end=" + ($scope.param.end || "");
 
