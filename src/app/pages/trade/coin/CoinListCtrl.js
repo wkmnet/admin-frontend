@@ -31,6 +31,8 @@
                 "&user_id=" + ($scope.param.user_id || "") +
                 "&trade_ref_id=" + ($scope.param.trade_ref_id || "") +
                 "&trade_type=" + ($scope.param.trade_type || "") +
+                "&start=" + ($scope.param.start || "") +
+                "&end=" + ($scope.param.end || "") +
                 "&trade_ref_code=" + ($scope.param.trade_ref_code || "");
             
             $http.get(url).success(function(resp){
@@ -57,6 +59,28 @@
         };*/
 
         $scope.queryUserAmount();
+
+        $scope.selectDate = function () {
+            $scope.showDatePicker = !$scope.showDatePicker;
+        }
+
+        $scope.changeDate = function (modelName, newDate) {
+           console.log("modelName:" + modelName + "---newDate:" + newDate);
+           if("start" == modelName){
+               $scope.param.start = newDate.format("YYYY-MM-DD");
+           } else {
+               $scope.param.end = newDate.format("YYYY-MM-DD");
+           }
+        }
+
+        $scope.clearDate = function () {
+            $scope.param.start = "";
+            $scope.param.end = "";
+        }
+
+        $scope.closeDatePicker = function () {
+            $scope.showDatePicker = false;
+        }
 
         $scope.delete = function(id,name){
             commonService.confirm($scope,'确认对话框','您确定要删除【' + name +'】支付渠道吗？').then(function(result){
