@@ -56,7 +56,7 @@
                         console.log("jd")
                         $scope.payMethod = $scope.jdPayType;
                     }
-
+                    console.log("tags", $scope.merchant.tags);        
                 } else {
                     toastr.error(response.message);
                 }
