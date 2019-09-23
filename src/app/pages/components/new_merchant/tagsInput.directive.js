@@ -13,6 +13,7 @@
     return {
       restrict: 'A',
       link: function( $scope, elem, attr) {
+        $scope.loadMerchant();
         $(elem).tagsinput({
           tagClass:  'label label-' + attr.tagInput
         });

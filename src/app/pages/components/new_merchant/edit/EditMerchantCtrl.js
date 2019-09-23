@@ -56,7 +56,7 @@
                         console.log("jd")
                         $scope.payMethod = $scope.jdPayType;
                     }
-                    console.log("tags", $scope.merchant.tags);        
+                    $scope.tagsConvertList();      
                 } else {
                     toastr.error(response.message);
                 }
@@ -112,6 +112,13 @@
                 $scope.payMethod = $scope.alipayPayType;
                 $scope.signType = 'RSA2';
                 return;
+            }
+        };
+
+        
+        $scope.tagsConvertList = function (){
+            if($scope.merchant && $scope.merchant.tags){
+                $scope.tagList = $scope.merchant.tags.split(",");
             }
         };
 

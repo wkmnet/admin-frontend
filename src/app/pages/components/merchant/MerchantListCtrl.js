@@ -29,6 +29,7 @@
             var url = "/api/merchant?page=" + ($scope.param.page || "") +
                 "&page_size=" + ($scope.param.page_size || "") +
                 "&merchant_no=" + ($scope.param.merchant_no || "") +
+                "&tags=" + ($scope.param.tags || "") +
                 "&merchant_name=" + ($scope.param.merchant_name || "") +
                 "&status=" + ($scope.param.status || "");
             
