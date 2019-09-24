@@ -8,10 +8,10 @@
             <th class="align-right">关联ID</th>
             <th class="align-right">关联编号</th>
             <th class="align-right">描述</th>
-            <th class="align-right">发生金额(分)</th>
+            <th class="align-right">交易金额(分)</th>
+            <th class="align-right">变化金额(分)</th>
             <th class="align-right">用户余额(分)</th>
             <th class="align-right">日期</th>
-            <th class="align-right">操作</th>
         </tr>
         </thead>
         <tr ng-repeat="item in data.list">
@@ -22,11 +22,9 @@
             <td class="align-right">{{item.trade_ref_code}}</td>
             <td class="align-right">{{item.trade_ref_body}}</td>
             <td class="align-right">{{item.trade_charge}}</td>
+            <td class="align-right">{{item.coin_change}}</td>
             <td class="align-right">{{item.user_balance}}</td>
             <td class="align-right">{{item.created_time}}</td>
-            <td class="align-right">
-                <a href="javascript:void(0)">无效按钮</a>
-            </td>
         </tr>
         <tfoot>
         <tr>
