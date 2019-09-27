@@ -33,6 +33,10 @@
 
         $scope.jdPayType = [{"key":"QR","value":"二维码支付"},{"key":"GEN","value":"普通支付"},{"key":"H5","value":"H5支付"}];
 
+        $scope.applePayType = [{"key":"IAP","value":"苹果内购"}]
+
+        $scope.xybPayType = [{"key":"XYB","value":"学院币"}];
+
         $scope.orgPayMethod = {};
         $scope.loadMerchant = function () {
             console.log("merchant", $scope.merchantId);
@@ -55,6 +59,14 @@
                     if ($scope.merchant.pay_channel == "jd") {
                         console.log("jd")
                         $scope.payMethod = $scope.jdPayType;
+                    }
+                    if ($scope.merchant.pay_channel == "edu_coin") {
+                        console.log("edu_coin")
+                        $scope.payMethod = $scope.xybPayType;
+                    }
+                    if ($scope.merchant.pay_channel == "apple") {
+                        console.log("apple")
+                        $scope.payMethod = $scope.applePayType;
                     }
                     $scope.tagsConvertList();      
                 } else {
